@@ -1,0 +1,234 @@
+/* Who should attend — reference: .tcad-Rqilp
+   A horizontal bar, NOT a centred heading over the lanes: a fixed 232px label
+   column beside two counter-scrolling pill lanes. Stacks below 861px, where
+   the lanes go full-bleed so pills run off both screen edges. */
+
+.sec {
+  padding: var(--sec-pad-attend) 0;
+  position: relative;
+  isolation: isolate;
+  background: var(--c-cream);
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  position: relative;
+  z-index: 1;
+}
+
+/* the section is the positioning context, and the field is full-bleed inside
+   it — it should run to the screen edges, not stop at the content gutter */
+.field {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  display: block;
+  pointer-events: none;
+  image-rendering: pixelated;
+  opacity: 0.32;
+}
+
+.bar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 22px;
+}
+
+.lab {
+  width: 100%;
+  flex: none;
+}
+
+.lab h2 {
+  font-size: var(--fs-h2-attend);
+  font-weight: 800;
+  letter-spacing: var(--ls-tight);
+  line-height: 1.16;
+  margin: 0;
+}
+
+.rule {
+  width: 30px;
+  height: 2px;
+  border-radius: 2px;
+  margin: 13px 0 0;
+  background: linear-gradient(90deg, var(--c-red), var(--c-crimson));
+}
+
+.labSub {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--c-muted);
+  margin: 12px 0 0;
+}
+
+/* Fade masks rather than a hard clip, so titles dissolve at both edges
+   instead of being chopped. Full-bleed on phones. */
+.lanes {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
+
+/* 4px of headroom for the pill hover lift — overflow:hidden clips vertically
+   too, so without it the raised pill gets its top shaved. */
+.lane {
+  overflow: hidden;
+  padding: 4px 0;
+}
+
+.track {
+  display: flex;
+  align-items: stretch;
+  width: max-content;
+  will-change: transform;
+  animation-name: mq;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.rev {
+  animation-direction: reverse;
+}
+
+.lanes:hover .track {
+  animation-play-state: paused;
+}
+
+.pill {
+  flex: none;
+  margin-right: 13px;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: var(--rad-pill);
+  white-space: nowrap;
+  border: 1px solid var(--c-line);
+  background: var(--c-white);
+  color: var(--c-ink);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.pill:hover {
+  transform: translateY(-2px);
+  border-color: rgba(228, 0, 43, 0.35);
+  color: var(--c-red);
+}
+
+.hot {
+  background: var(--r-06);
+  border-color: var(--r-20);
+  color: var(--c-red);
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  margin-right: 9px;
+  flex: none;
+  background: var(--grad);
+}
+
+/* A rounded rect among round pills, so it reads as a different kind of object
+   rather than a pill that failed to load. */
+.chip {
+  flex: none;
+  margin-right: 13px;
+  width: 33px;
+  align-self: stretch;
+  border-radius: 11px;
+  overflow: hidden;
+  border: 1px solid var(--r-22);
+  background: var(--r-08);
+}
+
+.chip canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+
+@keyframes mq {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (min-width: 861px) {
+  .bar {
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(24px, 3.4vw, 48px);
+  }
+  .lab {
+    width: 232px;
+  }
+  .lanes {
+    width: auto;
+    margin-left: 0;
+  }
+  .pill {
+    font-size: var(--fs-card-d);
+    padding: 11px 19px;
+  }
+  .chip {
+    width: 40px;
+    border-radius: var(--rad-chip);
+  }
+}
+
+@media (min-width: 1600px) {
+  .wrap {
+    max-width: var(--wrap-xl);
+  }
+}
+
+/* No motion: drop the duplicate copy and let the titles wrap into a static
+   cloud, so the content is all still there and nothing moves. */
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+    width: auto;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .dup,
+  .chip {
+    display: none;
+  }
+  .lanes {
+    -webkit-mask-image: none;
+    mask-image: none;
+    width: auto;
+    margin-left: 0;
+  }
+  .lane {
+    overflow: visible;
+  }
+  .pill {
+    margin-bottom: 13px;
+  }
+  .pill:hover {
+    transform: none;
+  }
+}

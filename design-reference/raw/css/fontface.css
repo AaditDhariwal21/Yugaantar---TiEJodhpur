@@ -1,0 +1,20 @@
+
+@font-face{
+    font-family:"TiEconInterVariable";
+    src:url("https://rsms.me/inter/font-files/InterVariable.woff2?v=4.0") format("woff2-variations");
+    font-weight:100 900;
+    font-style:normal;
+    font-display:swap;
+}
+@keyframes tieconag-rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes tieconag-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.72)}}
+@media (prefers-reduced-motion: reduce){
+    *[style*="tieconag-"]{animation:none!important}
+}
+
+.tagRqulp-link:hover .tagRqulp-arrow{transform:translateX(4px)}
+.tagRqulp-link:hover .tagRqulp-linktext{color:rgb(216, 180, 106)}
+.tagRqulp-row:hover .tagRqulp-add{opacity:1;transform:translateY(0)}
+.tagRqulp-chip{transition:color .22s ease,border-color .22s ease,background .22s ease}
+.tagRqulp-add{transition:opacity .22s ease,transform .22s ease,color .22s ease}
+.tagRqulp-add:hover{color:rgb(216, 180, 106)}

@@ -1,0 +1,463 @@
+/* The Agenda — reference: the inline-styled `tag-Rqulp` component.
+   The only dark section on the page, and the only place gold is used.
+   Wider gutter than the rest of the site: it runs to a 56px margin rather
+   than the 1200px content column. */
+
+.sec {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--c-dark);
+  color: #fff;
+  padding: clamp(56px, 7vw, 96px) 0;
+}
+
+.glows {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 88% 18%, var(--c-dark-glow) 0%, transparent 58%),
+    radial-gradient(110% 80% at 12% 96%, var(--c-dark-glow) 0%, transparent 62%),
+    linear-gradient(115deg, transparent 26%, rgba(255, 255, 255, 0.055) 46%, transparent 64%);
+}
+
+.wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(22px, 4vw, 56px);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(36px, 5vw, 76px);
+}
+
+/* ---- left rail ----------------------------------------------------------- */
+.badge {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+}
+
+.h2 {
+  font-size: clamp(38px, 4.6vw, 62px);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  margin: 14px 0 0;
+  color: #fff;
+}
+
+.h2 span {
+  display: block;
+}
+
+.orn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--c-gold);
+  margin-top: 18px;
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  opacity: 0.85;
+}
+
+.railSub {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 20px 0 0;
+  max-width: 420px;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px clamp(24px, 3vw, 44px);
+  margin-top: 34px;
+}
+
+.statV {
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--c-gold);
+  line-height: 1;
+}
+
+.statL {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+  margin-top: 8px;
+}
+
+.cal {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 30px;
+  padding: 12px 18px;
+  border: 1px solid rgba(216, 180, 106, 0.55);
+  border-radius: var(--rad-xs);
+  color: var(--c-gold);
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+}
+
+.cal:hover {
+  background: rgba(216, 180, 106, 0.1);
+  border-color: var(--c-gold);
+  transform: translateY(-2px);
+}
+
+/* ---- right rail: day switcher -------------------------------------------- */
+.days {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.dayBtn {
+  appearance: none;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  padding: 11px 20px;
+  border-radius: var(--rad-sm);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(216, 180, 106, 0.28);
+  color: rgba(255, 255, 255, 0.7);
+  transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+}
+
+.dayBtn:hover {
+  border-color: rgba(216, 180, 106, 0.6);
+  color: #fff;
+}
+
+.dayBtn[data-on="true"] {
+  background: rgba(216, 180, 106, 0.14);
+  border-color: var(--c-gold);
+  color: #fff;
+}
+
+.dayLabel {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.dayShort {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+}
+
+/* ---- right rail: header + filters ---------------------------------------- */
+.dateRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px 20px;
+}
+
+.date {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.venue {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 22px;
+}
+
+.chip {
+  appearance: none;
+  font-family: inherit;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid rgba(216, 180, 106, 0.42);
+  color: var(--c-gold);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 17px;
+  border-radius: var(--rad-pill);
+  transition: color 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+}
+
+.chip:hover {
+  border-color: var(--c-gold);
+  background: rgba(216, 180, 106, 0.1);
+}
+
+.chip[data-on="true"] {
+  background: var(--c-gold);
+  border-color: var(--c-gold);
+  color: var(--c-dark);
+  font-weight: 700;
+}
+
+/* ---- timeline ------------------------------------------------------------ */
+.rows {
+  position: relative;
+  margin-top: 30px;
+}
+
+/* the continuous rail the markers sit on */
+.rows::before {
+  content: "";
+  position: absolute;
+  left: 78px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: rgba(216, 180, 106, 0.28);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 78px 1fr;
+  position: relative;
+  animation: rise 0.8s var(--ease-expo) both;
+}
+
+.time {
+  text-align: right;
+  padding: 0 18px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.timeEnd {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* the gold diamond on the rail */
+.marker {
+  position: absolute;
+  left: 78px;
+  top: 4px;
+  width: 11px;
+  height: 11px;
+  transform: translateX(-50%);
+  background: var(--c-gold);
+  /* the four-point sparkle the reference uses as its rail marker */
+  clip-path: polygon(
+    50% 0%, 58% 42%, 100% 50%, 58% 58%,
+    50% 100%, 42% 58%, 0% 50%, 42% 42%
+  );
+}
+
+.body {
+  padding: 0 0 0 22px;
+  min-width: 0;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: #fff;
+}
+
+.subtitle {
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+  margin-top: 9px;
+}
+
+/* rows with no subtitle centre their title, the way breaks and the opening
+   address read on the reference */
+.centred .title,
+.centred .meta {
+  text-align: center;
+}
+
+/* ---- expandable breakout row --------------------------------------------- */
+.expander {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+  text-align: inherit;
+}
+
+.expTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.caret {
+  color: var(--c-gold);
+  transition: transform 0.3s var(--ease-out);
+}
+
+.expander[aria-expanded="true"] .caret {
+  transform: rotate(180deg);
+}
+
+.meta {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin-top: 8px;
+}
+
+.tracks {
+  overflow: hidden;
+}
+
+.tracksInner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 18px 0 4px;
+}
+
+.track {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: var(--sh-agenda-row);
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.track:hover {
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(216, 180, 106, 0.42);
+  transform: translateY(-2px);
+}
+
+.trackLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: var(--ls-track);
+  text-transform: uppercase;
+  color: var(--c-gold);
+}
+
+.trackTitle {
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: #fff;
+  margin-top: 8px;
+}
+
+.trackSub {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+  margin-top: 7px;
+}
+
+/* ---- divider between rows ------------------------------------------------ */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 26px 0 26px 100px;
+  color: var(--c-gold);
+  opacity: 0.75;
+}
+
+.divider i {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(216, 180, 106, 0.38), transparent);
+}
+
+.divider span {
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  white-space: nowrap;
+}
+
+.empty {
+  margin-top: 28px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 15px;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 561px) {
+  .tracksInner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 981px) {
+  .split {
+    grid-template-columns: minmax(0, 0.44fr) minmax(0, 1fr);
+  }
+  .rows::before,
+  .marker {
+    left: 92px;
+  }
+  .row {
+    grid-template-columns: 92px 1fr;
+  }
+  .divider {
+    margin-left: 114px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row {
+    animation: none;
+  }
+}

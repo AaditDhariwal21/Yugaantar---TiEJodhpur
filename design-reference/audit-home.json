@@ -1,0 +1,2778 @@
+{
+  "url": "https://tieconamsterdam.org/",
+  "viewports": {
+    "desktop": {
+      "body": {
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)",
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "lineHeight": "normal"
+      },
+      "rootFontSize": "16px",
+      "vars": {
+        "--framer-will-change-override": "none",
+        "--framer-will-change-filter-override": "none"
+      },
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "",
+          "fontSize": "0px",
+          "fontWeight": "700",
+          "lineHeight": "0px",
+          "letterSpacing": "normal",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "The meeting point for the people building Europe's next great companies.",
+          "fontSize": "44px",
+          "fontWeight": "800",
+          "lineHeight": "50.16px",
+          "letterSpacing": "-1.1px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "A day designed for momentum, not just talks.",
+          "fontSize": "46px",
+          "fontWeight": "800",
+          "lineHeight": "51.52px",
+          "letterSpacing": "-1.15px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "A room built around the people who build, fund, and scale.",
+          "fontSize": "46px",
+          "fontWeight": "800",
+          "lineHeight": "51.52px",
+          "letterSpacing": "-1.15px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Themes that matter to founders and investors right now.",
+          "fontSize": "46px",
+          "fontWeight": "800",
+          "lineHeight": "51.52px",
+          "letterSpacing": "-1.15px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Who should attend",
+          "fontSize": "27px",
+          "fontWeight": "800",
+          "lineHeight": "31.32px",
+          "letterSpacing": "-0.675px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Speakers",
+          "fontSize": "46px",
+          "fontWeight": "800",
+          "lineHeight": "51.52px",
+          "letterSpacing": "-1.15px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Planning Committee",
+          "fontSize": "46px",
+          "fontWeight": "800",
+          "lineHeight": "51.52px",
+          "letterSpacing": "-1.15px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Secure your place at TiECON Amsterdam",
+          "fontSize": "46px",
+          "fontWeight": "800",
+          "lineHeight": "51.52px",
+          "letterSpacing": "-1.15px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "The organisations behind TiECON Amsterdam 2026",
+          "fontSize": "46px",
+          "fontWeight": "800",
+          "lineHeight": "51.52px",
+          "letterSpacing": "-1.15px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Organisations that power TiE Global",
+          "fontSize": "46px",
+          "fontWeight": "800",
+          "lineHeight": "51.52px",
+          "letterSpacing": "-1.15px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Be part of the TiECON Amsterdam.",
+          "fontSize": "46px",
+          "fontWeight": "800",
+          "lineHeight": "50.6px",
+          "letterSpacing": "-1.15px",
+          "color": "rgb(255, 255, 255)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        }
+      ],
+      "sections": [
+        {
+          "i": 0,
+          "tag": "STYLE",
+          "id": null,
+          "cls": "",
+          "paddingTop": "0px",
+          "paddingBottom": "0px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "bgImage": "none",
+          "height": 0,
+          "width": 0,
+          "heading": "",
+          "text": "html body { background: rgb(255, 255, 255); } @media (min-width: 810px) and (max-width: 1199.98px) { html { font-size: 93.75%; } } @media (max-width: 809.98px) { html { font-size: 87.5%; } }"
+        },
+        {
+          "i": 1,
+          "tag": "DIV",
+          "id": null,
+          "cls": "framer-V5545 framer-72rtr7",
+          "paddingTop": "0px",
+          "paddingBottom": "0px",
+          "bg": "rgb(255, 255, 255)",
+          "bgImage": "none",
+          "height": 17431,
+          "width": 1440,
+          "heading": "",
+          "text": "About | Experience | Agenda | Speakers | Committee | Tickets | Partnership | Register | TiECON Amsterdam 2026 · The flagship conference of TiE Amsterdam | One day in Amsterdam with the founders and investors shaping what comes next. | Conference · 24 September 2026 | Gala Dinner · 23 September 2026 | Hotel Novotel Amster"
+        },
+        {
+          "i": 2,
+          "tag": "DIV",
+          "id": "overlay",
+          "cls": "",
+          "paddingTop": "0px",
+          "paddingBottom": "0px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "bgImage": "none",
+          "height": 0,
+          "width": 1440,
+          "heading": "",
+          "text": ""
+        }
+      ],
+      "anchors": [
+        "main",
+        "top",
+        "about",
+        "experience",
+        "experience",
+        "agenda",
+        "attend",
+        "tcad-Rqilp-h",
+        "speakers",
+        "speakers",
+        "planningcommittee",
+        "committee",
+        "agendatable",
+        "agenda",
+        "tickets",
+        "sponsors",
+        "partners",
+        "contact",
+        "overlay",
+        "svg-templates",
+        "__framer-editorbar"
+      ],
+      "nav": {
+        "position": "relative",
+        "bg": "rgb(255, 251, 250)",
+        "backdrop": "none",
+        "height": 800,
+        "border": "0px none rgb(26, 22, 32)",
+        "links": [
+          {
+            "t": "Register Your Interest",
+            "h": "/tickets/registration-form"
+          },
+          {
+            "t": "Explore the Programme",
+            "h": "#experience"
+          }
+        ]
+      },
+      "buttons": [
+        {
+          "text": "About",
+          "href": "https://tieconamsterdam.org/#about",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Experience",
+          "href": "https://tieconamsterdam.org/#experience",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Agenda",
+          "href": "https://tieconamsterdam.org/#agendatable",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Speakers",
+          "href": "https://tieconamsterdam.org/#speakers",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Committee",
+          "href": "https://tieconamsterdam.org/#planningcommittee",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Tickets",
+          "href": "https://tieconamsterdam.org/#tickets",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Partnership",
+          "href": "https://tieconamsterdam.org/partnership",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register",
+          "href": "/tickets/registration-form",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "radius": "999px",
+          "padding": "12px 24px",
+          "fontSize": "15px",
+          "fontWeight": "600",
+          "border": "0px none rgb(255, 255, 255)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "About",
+          "href": "https://tieconamsterdam.org/#about",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "border": "0px none rgb(0, 0, 0)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Experience",
+          "href": "https://tieconamsterdam.org/#experience",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "border": "0px none rgb(0, 0, 0)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Agenda",
+          "href": "https://tieconamsterdam.org/#agendatable",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "border": "0px none rgb(0, 0, 0)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Speakers",
+          "href": "https://tieconamsterdam.org/#speakers",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "border": "0px none rgb(0, 0, 0)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Committee",
+          "href": "https://tieconamsterdam.org/#planningcommittee",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "border": "0px none rgb(0, 0, 0)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Tickets",
+          "href": "https://tieconamsterdam.org/#tickets",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "border": "0px none rgb(0, 0, 0)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Partnership",
+          "href": "https://tieconamsterdam.org/partnership",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 0)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "border": "0px none rgb(0, 0, 0)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register",
+          "href": "/tickets/registration-form",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "radius": "999px",
+          "padding": "12px 24px",
+          "fontSize": "15px",
+          "fontWeight": "600",
+          "border": "0px none rgb(255, 255, 255)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register Your Interest",
+          "href": "/tickets/registration-form",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "radius": "999px",
+          "padding": "14px 28px",
+          "fontSize": "15.5px",
+          "fontWeight": "600",
+          "border": "0px none rgb(255, 255, 255)",
+          "boxShadow": "rgba(228, 0, 43, 0.2) 0px 12px 28px 0px"
+        },
+        {
+          "text": "Explore the Programme",
+          "href": "#experience",
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "999px",
+          "padding": "14px 28px",
+          "fontSize": "15.5px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "rgba(20, 16, 40, 0.06) 0px 3px 12px 0px"
+        },
+        {
+          "text": "Add to calendar",
+          "href": null,
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(216, 180, 106)",
+          "radius": "2px",
+          "padding": "11px 18px",
+          "fontSize": "13px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(216, 180, 106)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Full Day",
+          "href": null,
+          "bg": "rgb(216, 180, 106)",
+          "color": "rgb(42, 12, 19)",
+          "radius": "999px",
+          "padding": "7px 14px",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(216, 180, 106)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Plenary",
+          "href": null,
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(216, 180, 106)",
+          "radius": "999px",
+          "padding": "7px 14px",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "border": "1px solid rgba(216, 180, 106, 0.42)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Breakouts",
+          "href": null,
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(216, 180, 106)",
+          "radius": "999px",
+          "padding": "7px 14px",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "border": "1px solid rgba(216, 180, 106, 0.42)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Breaks & Networking",
+          "href": null,
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(216, 180, 106)",
+          "radius": "999px",
+          "padding": "7px 14px",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "border": "1px solid rgba(216, 180, 106, 0.42)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register Now",
+          "href": "/tickets/registration-form",
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "14px",
+          "padding": "15px 20px",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register Now",
+          "href": "/tickets/registration-form",
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(228, 0, 43)",
+          "radius": "14px",
+          "padding": "15px 20px",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "border": "1px solid rgb(255, 255, 255)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register Now",
+          "href": "/tickets/registration-form",
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "14px",
+          "padding": "15px 20px",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register as a charter member",
+          "href": "https://events.tie.org/TiECONAmsterdam2026",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(228, 0, 43)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "14.5px",
+          "fontWeight": "700",
+          "border": "0px none rgb(228, 0, 43)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "All8",
+          "href": null,
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "radius": "999px",
+          "padding": "9px 16px",
+          "fontSize": "13px",
+          "fontWeight": "600",
+          "border": "1px solid rgba(0, 0, 0, 0)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Knowledge Partner Sponsor2",
+          "href": null,
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(107, 101, 113)",
+          "radius": "999px",
+          "padding": "9px 16px",
+          "fontSize": "13px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Silver Partner5",
+          "href": null,
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(107, 101, 113)",
+          "radius": "999px",
+          "padding": "9px 16px",
+          "fontSize": "13px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Exhibitor1",
+          "href": null,
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(107, 101, 113)",
+          "radius": "999px",
+          "padding": "9px 16px",
+          "fontSize": "13px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Explore partnership options",
+          "href": "#",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(228, 0, 43)",
+          "radius": "0px",
+          "padding": "0px 4px",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "border": "0px none rgb(228, 0, 43)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register Your Interest",
+          "href": "https://tieconamsterdam.org/tickets/registration-form",
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "999px",
+          "padding": "14px 28px",
+          "fontSize": "15.5px",
+          "fontWeight": "600",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "About",
+          "href": "https://tieconamsterdam.org/#about",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "The Experience",
+          "href": "https://tieconamsterdam.org/#experience",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Speakers",
+          "href": "https://tieconamsterdam.org/#speakers",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Planning Committee",
+          "href": "https://tieconamsterdam.org/#planningcommittee",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Tickets",
+          "href": "https://tieconamsterdam.org/#tickets",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Partner With Us",
+          "href": "https://tieconamsterdam.org/partnership",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "tieconamsterdam.org/",
+          "href": "https://tieconamsterdam.org/",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "13.5px",
+          "fontWeight": "600",
+          "border": "0px none rgb(255, 255, 255)",
+          "boxShadow": "none"
+        }
+      ],
+      "topRadii": [
+        [
+          "999px",
+          142
+        ],
+        [
+          "50%",
+          62
+        ],
+        [
+          "2px",
+          54
+        ],
+        [
+          "14px",
+          48
+        ],
+        [
+          "13px",
+          42
+        ],
+        [
+          "20px",
+          38
+        ],
+        [
+          "22px",
+          28
+        ],
+        [
+          "16px",
+          11
+        ],
+        [
+          "18px",
+          9
+        ],
+        [
+          "12px",
+          5
+        ],
+        [
+          "10px",
+          5
+        ],
+        [
+          "26px",
+          4
+        ],
+        [
+          "24px",
+          3
+        ],
+        [
+          "28px",
+          1
+        ]
+      ],
+      "topShadows": [
+        [
+          "rgba(0, 0, 0, 0.22) 0px 8px 20px 0px",
+          40
+        ],
+        [
+          "rgba(40, 12, 20, 0.06) 0px 10px 30px 0px",
+          11
+        ],
+        [
+          "rgba(40, 12, 20, 0.05) 0px 4px 16px 0px, rgba(40, 12, 20, 0.07) 0px 18px 44px 0px",
+          3
+        ],
+        [
+          "rgba(228, 0, 43, 0.2) 0px 12px 28px 0px",
+          1
+        ],
+        [
+          "rgba(20, 16, 40, 0.06) 0px 3px 12px 0px",
+          1
+        ],
+        [
+          "rgba(40, 12, 20, 0.1) 0px 24px 60px 0px",
+          1
+        ],
+        [
+          "rgba(40, 12, 20, 0.14) 0px 30px 70px 0px",
+          1
+        ],
+        [
+          "rgba(40, 12, 20, 0.2) 0px 36px 80px 0px",
+          1
+        ],
+        [
+          "rgba(0, 0, 0, 0.16) 0px 6px 18px 0px",
+          1
+        ],
+        [
+          "rgba(40, 12, 20, 0.05) 0px 14px 40px 0px",
+          1
+        ]
+      ],
+      "topBgs": [
+        [
+          "rgb(255, 255, 255)",
+          197
+        ],
+        [
+          "rgba(228, 0, 43, 0.08)",
+          34
+        ],
+        [
+          "rgba(228, 0, 43, 0.06)",
+          16
+        ],
+        [
+          "rgb(216, 180, 106)",
+          10
+        ],
+        [
+          "rgb(250, 247, 246)",
+          6
+        ],
+        [
+          "rgb(236, 231, 229)",
+          4
+        ],
+        [
+          "rgb(26, 22, 32)",
+          3
+        ],
+        [
+          "rgba(228, 0, 43, 0.07)",
+          2
+        ],
+        [
+          "rgba(255, 255, 255, 0.26)",
+          2
+        ],
+        [
+          "rgba(255, 255, 255, 0.82)",
+          1
+        ],
+        [
+          "rgb(255, 251, 250)",
+          1
+        ],
+        [
+          "rgb(42, 12, 19)",
+          1
+        ],
+        [
+          "rgba(255, 255, 255, 0.18)",
+          1
+        ],
+        [
+          "rgba(255, 255, 255, 0.15)",
+          1
+        ],
+        [
+          "rgba(255, 255, 255, 0.17)",
+          1
+        ],
+        [
+          "rgba(255, 255, 255, 0.2)",
+          1
+        ]
+      ],
+      "maxWidths": [
+        [
+          "720px",
+          15
+        ],
+        [
+          "1200px",
+          13
+        ],
+        [
+          "300px",
+          11
+        ],
+        [
+          "1240px",
+          1
+        ],
+        [
+          "900px",
+          1
+        ],
+        [
+          "780px",
+          1
+        ],
+        [
+          "640px",
+          1
+        ],
+        [
+          "1120px",
+          1
+        ],
+        [
+          "340px",
+          1
+        ]
+      ],
+      "docHeight": 17431
+    },
+    "tablet": {
+      "body": {
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)",
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "lineHeight": "normal"
+      },
+      "rootFontSize": "15px",
+      "vars": {
+        "--framer-will-change-override": "none",
+        "--framer-will-change-filter-override": "none"
+      },
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "",
+          "fontSize": "0px",
+          "fontWeight": "700",
+          "lineHeight": "0px",
+          "letterSpacing": "normal",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "The meeting point for the people building Europe's next great companies.",
+          "fontSize": "30.024px",
+          "fontWeight": "800",
+          "lineHeight": "34.2274px",
+          "letterSpacing": "-0.7506px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "A day designed for momentum, not just talks.",
+          "fontSize": "31.692px",
+          "fontWeight": "800",
+          "lineHeight": "35.495px",
+          "letterSpacing": "-0.7923px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "A room built around the people who build, fund, and scale.",
+          "fontSize": "31.692px",
+          "fontWeight": "800",
+          "lineHeight": "35.495px",
+          "letterSpacing": "-0.7923px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Themes that matter to founders and investors right now.",
+          "fontSize": "31.692px",
+          "fontWeight": "800",
+          "lineHeight": "35.495px",
+          "letterSpacing": "-0.7923px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Who should attend",
+          "fontSize": "22px",
+          "fontWeight": "800",
+          "lineHeight": "25.52px",
+          "letterSpacing": "-0.55px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Speakers",
+          "fontSize": "31.692px",
+          "fontWeight": "800",
+          "lineHeight": "35.495px",
+          "letterSpacing": "-0.7923px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Planning Committee",
+          "fontSize": "31.692px",
+          "fontWeight": "800",
+          "lineHeight": "35.495px",
+          "letterSpacing": "-0.7923px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Secure your place at TiECON Amsterdam",
+          "fontSize": "31.692px",
+          "fontWeight": "800",
+          "lineHeight": "35.495px",
+          "letterSpacing": "-0.7923px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "The organisations behind TiECON Amsterdam 2026",
+          "fontSize": "31.692px",
+          "fontWeight": "800",
+          "lineHeight": "35.495px",
+          "letterSpacing": "-0.7923px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Organisations that power TiE Global",
+          "fontSize": "31.692px",
+          "fontWeight": "800",
+          "lineHeight": "35.495px",
+          "letterSpacing": "-0.7923px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Be part of the TiECON Amsterdam.",
+          "fontSize": "33.36px",
+          "fontWeight": "800",
+          "lineHeight": "36.696px",
+          "letterSpacing": "-0.834px",
+          "color": "rgb(255, 255, 255)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        }
+      ],
+      "sections": [
+        {
+          "i": 0,
+          "tag": "STYLE",
+          "id": null,
+          "cls": "",
+          "paddingTop": "0px",
+          "paddingBottom": "0px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "bgImage": "none",
+          "height": 0,
+          "width": 0,
+          "heading": "",
+          "text": "html body { background: rgb(255, 255, 255); } @media (min-width: 810px) and (max-width: 1199.98px) { html { font-size: 93.75%; } } @media (max-width: 809.98px) { html { font-size: 87.5%; } }"
+        },
+        {
+          "i": 1,
+          "tag": "DIV",
+          "id": null,
+          "cls": "framer-V5545 framer-72rtr7",
+          "paddingTop": "0px",
+          "paddingBottom": "0px",
+          "bg": "rgb(255, 255, 255)",
+          "bgImage": "none",
+          "height": 20938,
+          "width": 834,
+          "heading": "",
+          "text": "TiECON Amsterdam 2026 · The flagship conference of TiE Amsterdam | One day in Amsterdam with the founders and investors shaping what comes next. | Conference · 24 September 2026 | Gala Dinner · 23 September 2026 | Hotel Novotel Amsterdam City, Amsterdam | Register Your Interest | Explore the Programme | 500,000"
+        },
+        {
+          "i": 2,
+          "tag": "DIV",
+          "id": "overlay",
+          "cls": "",
+          "paddingTop": "0px",
+          "paddingBottom": "0px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "bgImage": "none",
+          "height": 0,
+          "width": 834,
+          "heading": "",
+          "text": ""
+        }
+      ],
+      "anchors": [
+        "main",
+        "top",
+        "about",
+        "experience",
+        "experience",
+        "agenda",
+        "attend",
+        "tcad-Rqilp-h",
+        "speakers",
+        "speakers",
+        "planningcommittee",
+        "committee",
+        "agendatable",
+        "agenda",
+        "tickets",
+        "sponsors",
+        "partners",
+        "contact",
+        "overlay",
+        "svg-templates",
+        "__framer-editorbar"
+      ],
+      "nav": {
+        "position": "relative",
+        "bg": "rgb(255, 251, 250)",
+        "backdrop": "none",
+        "height": 761,
+        "border": "0px none rgb(26, 22, 32)",
+        "links": [
+          {
+            "t": "Register Your Interest",
+            "h": "/tickets/registration-form"
+          },
+          {
+            "t": "Explore the Programme",
+            "h": "#experience"
+          }
+        ]
+      },
+      "buttons": [
+        {
+          "text": "About",
+          "href": "https://tieconamsterdam.org/#about",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Experience",
+          "href": "https://tieconamsterdam.org/#experience",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Agenda",
+          "href": "https://tieconamsterdam.org/#agendatable",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Speakers",
+          "href": "https://tieconamsterdam.org/#speakers",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Committee",
+          "href": "https://tieconamsterdam.org/#planningcommittee",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Tickets",
+          "href": "https://tieconamsterdam.org/#tickets",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Partnership",
+          "href": "https://tieconamsterdam.org/partnership",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register",
+          "href": "/tickets/registration-form",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "radius": "999px",
+          "padding": "12px 24px",
+          "fontSize": "15px",
+          "fontWeight": "600",
+          "border": "0px none rgb(255, 255, 255)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "About",
+          "href": "https://tieconamsterdam.org/#about",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "13px 41.7px",
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Experience",
+          "href": "https://tieconamsterdam.org/#experience",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "13px 41.7px",
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Agenda",
+          "href": "https://tieconamsterdam.org/#agendatable",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "13px 41.7px",
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Speakers",
+          "href": "https://tieconamsterdam.org/#speakers",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "13px 41.7px",
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Committee",
+          "href": "https://tieconamsterdam.org/#planningcommittee",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "13px 41.7px",
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Tickets",
+          "href": "https://tieconamsterdam.org/#tickets",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "13px 41.7px",
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Partnership",
+          "href": "https://tieconamsterdam.org/partnership",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "13px 41.7px",
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register",
+          "href": "/tickets/registration-form",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "radius": "999px",
+          "padding": "12px 24px",
+          "fontSize": "15px",
+          "fontWeight": "600",
+          "border": "0px none rgb(255, 255, 255)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register Your Interest",
+          "href": "/tickets/registration-form",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "radius": "999px",
+          "padding": "14px 28px",
+          "fontSize": "15.5px",
+          "fontWeight": "600",
+          "border": "0px none rgb(255, 255, 255)",
+          "boxShadow": "rgba(228, 0, 43, 0.2) 0px 12px 28px 0px"
+        },
+        {
+          "text": "Explore the Programme",
+          "href": "#experience",
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "999px",
+          "padding": "14px 28px",
+          "fontSize": "15.5px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "rgba(20, 16, 40, 0.06) 0px 3px 12px 0px"
+        },
+        {
+          "text": "Add to calendar",
+          "href": null,
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(216, 180, 106)",
+          "radius": "2px",
+          "padding": "11px 18px",
+          "fontSize": "13px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(216, 180, 106)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Full Day",
+          "href": null,
+          "bg": "rgb(216, 180, 106)",
+          "color": "rgb(42, 12, 19)",
+          "radius": "999px",
+          "padding": "7px 14px",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(216, 180, 106)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Plenary",
+          "href": null,
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(216, 180, 106)",
+          "radius": "999px",
+          "padding": "7px 14px",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "border": "1px solid rgba(216, 180, 106, 0.42)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Breakouts",
+          "href": null,
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(216, 180, 106)",
+          "radius": "999px",
+          "padding": "7px 14px",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "border": "1px solid rgba(216, 180, 106, 0.42)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Breaks & Networking",
+          "href": null,
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(216, 180, 106)",
+          "radius": "999px",
+          "padding": "7px 14px",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "border": "1px solid rgba(216, 180, 106, 0.42)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register Now",
+          "href": "/tickets/registration-form",
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "14px",
+          "padding": "15px 20px",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register Now",
+          "href": "/tickets/registration-form",
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(228, 0, 43)",
+          "radius": "14px",
+          "padding": "15px 20px",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "border": "1px solid rgb(255, 255, 255)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register Now",
+          "href": "/tickets/registration-form",
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "14px",
+          "padding": "15px 20px",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register as a charter member",
+          "href": "https://events.tie.org/TiECONAmsterdam2026",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(228, 0, 43)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "14.5px",
+          "fontWeight": "700",
+          "border": "0px none rgb(228, 0, 43)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "All8",
+          "href": null,
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "radius": "999px",
+          "padding": "9px 16px",
+          "fontSize": "13px",
+          "fontWeight": "600",
+          "border": "1px solid rgba(0, 0, 0, 0)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Knowledge Partner Sponsor2",
+          "href": null,
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(107, 101, 113)",
+          "radius": "999px",
+          "padding": "9px 16px",
+          "fontSize": "13px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Silver Partner5",
+          "href": null,
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(107, 101, 113)",
+          "radius": "999px",
+          "padding": "9px 16px",
+          "fontSize": "13px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Exhibitor1",
+          "href": null,
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(107, 101, 113)",
+          "radius": "999px",
+          "padding": "9px 16px",
+          "fontSize": "13px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Explore partnership options",
+          "href": "#",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(228, 0, 43)",
+          "radius": "0px",
+          "padding": "0px 4px",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "border": "0px none rgb(228, 0, 43)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register Your Interest",
+          "href": "https://tieconamsterdam.org/tickets/registration-form",
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "999px",
+          "padding": "14px 28px",
+          "fontSize": "15.5px",
+          "fontWeight": "600",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "About",
+          "href": "https://tieconamsterdam.org/#about",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "The Experience",
+          "href": "https://tieconamsterdam.org/#experience",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Speakers",
+          "href": "https://tieconamsterdam.org/#speakers",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Planning Committee",
+          "href": "https://tieconamsterdam.org/#planningcommittee",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Tickets",
+          "href": "https://tieconamsterdam.org/#tickets",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Partner With Us",
+          "href": "https://tieconamsterdam.org/partnership",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "tieconamsterdam.org/",
+          "href": "https://tieconamsterdam.org/",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "13.5px",
+          "fontWeight": "600",
+          "border": "0px none rgb(255, 255, 255)",
+          "boxShadow": "none"
+        }
+      ],
+      "topRadii": [
+        [
+          "999px",
+          142
+        ],
+        [
+          "50%",
+          62
+        ],
+        [
+          "2px",
+          54
+        ],
+        [
+          "14px",
+          48
+        ],
+        [
+          "20px",
+          38
+        ],
+        [
+          "11px",
+          34
+        ],
+        [
+          "22px",
+          28
+        ],
+        [
+          "16px",
+          11
+        ],
+        [
+          "18px",
+          9
+        ],
+        [
+          "13px",
+          8
+        ],
+        [
+          "12px",
+          5
+        ],
+        [
+          "10px",
+          5
+        ],
+        [
+          "26px",
+          4
+        ],
+        [
+          "24px",
+          3
+        ]
+      ],
+      "topShadows": [
+        [
+          "rgba(0, 0, 0, 0.22) 0px 8px 20px 0px",
+          40
+        ],
+        [
+          "rgba(40, 12, 20, 0.06) 0px 10px 30px 0px",
+          11
+        ],
+        [
+          "rgba(40, 12, 20, 0.05) 0px 4px 16px 0px, rgba(40, 12, 20, 0.07) 0px 18px 44px 0px",
+          3
+        ],
+        [
+          "rgba(228, 0, 43, 0.2) 0px 12px 28px 0px",
+          1
+        ],
+        [
+          "rgba(20, 16, 40, 0.06) 0px 3px 12px 0px",
+          1
+        ],
+        [
+          "rgba(40, 12, 20, 0.1) 0px 24px 60px 0px",
+          1
+        ],
+        [
+          "rgba(40, 12, 20, 0.14) 0px 30px 70px 0px",
+          1
+        ],
+        [
+          "rgba(40, 12, 20, 0.2) 0px 36px 80px 0px",
+          1
+        ],
+        [
+          "rgba(0, 0, 0, 0.16) 0px 6px 18px 0px",
+          1
+        ],
+        [
+          "rgba(40, 12, 20, 0.05) 0px 14px 40px 0px",
+          1
+        ]
+      ],
+      "topBgs": [
+        [
+          "rgb(255, 255, 255)",
+          198
+        ],
+        [
+          "rgba(228, 0, 43, 0.08)",
+          34
+        ],
+        [
+          "rgba(228, 0, 43, 0.06)",
+          16
+        ],
+        [
+          "rgb(216, 180, 106)",
+          10
+        ],
+        [
+          "rgb(250, 247, 246)",
+          6
+        ],
+        [
+          "rgb(236, 231, 229)",
+          4
+        ],
+        [
+          "rgb(26, 22, 32)",
+          3
+        ],
+        [
+          "rgba(228, 0, 43, 0.07)",
+          2
+        ],
+        [
+          "rgba(255, 255, 255, 0.26)",
+          2
+        ],
+        [
+          "rgba(255, 255, 255, 0.82)",
+          1
+        ],
+        [
+          "rgb(255, 251, 250)",
+          1
+        ],
+        [
+          "rgb(42, 12, 19)",
+          1
+        ],
+        [
+          "rgba(255, 255, 255, 0.18)",
+          1
+        ],
+        [
+          "rgba(255, 255, 255, 0.15)",
+          1
+        ],
+        [
+          "rgba(255, 255, 255, 0.17)",
+          1
+        ],
+        [
+          "rgba(255, 255, 255, 0.2)",
+          1
+        ]
+      ],
+      "maxWidths": [
+        [
+          "720px",
+          15
+        ],
+        [
+          "1200px",
+          13
+        ],
+        [
+          "300px",
+          11
+        ],
+        [
+          "1240px",
+          1
+        ],
+        [
+          "900px",
+          1
+        ],
+        [
+          "780px",
+          1
+        ],
+        [
+          "640px",
+          1
+        ],
+        [
+          "1120px",
+          1
+        ],
+        [
+          "340px",
+          1
+        ]
+      ],
+      "docHeight": 20938
+    },
+    "mobile": {
+      "body": {
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)",
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "lineHeight": "normal"
+      },
+      "rootFontSize": "14px",
+      "vars": {
+        "--framer-will-change-override": "none",
+        "--framer-will-change-filter-override": "none"
+      },
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "",
+          "fontSize": "0px",
+          "fontWeight": "700",
+          "lineHeight": "0px",
+          "letterSpacing": "normal",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "The meeting point for the people building Europe's next great companies.",
+          "fontSize": "28px",
+          "fontWeight": "800",
+          "lineHeight": "31.92px",
+          "letterSpacing": "-0.7px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "A day designed for momentum, not just talks.",
+          "fontSize": "29px",
+          "fontWeight": "800",
+          "lineHeight": "32.48px",
+          "letterSpacing": "-0.725px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "A room built around the people who build, fund, and scale.",
+          "fontSize": "29px",
+          "fontWeight": "800",
+          "lineHeight": "32.48px",
+          "letterSpacing": "-0.725px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Themes that matter to founders and investors right now.",
+          "fontSize": "29px",
+          "fontWeight": "800",
+          "lineHeight": "32.48px",
+          "letterSpacing": "-0.725px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Who should attend",
+          "fontSize": "22px",
+          "fontWeight": "800",
+          "lineHeight": "25.52px",
+          "letterSpacing": "-0.55px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Speakers",
+          "fontSize": "29px",
+          "fontWeight": "800",
+          "lineHeight": "32.48px",
+          "letterSpacing": "-0.725px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Planning Committee",
+          "fontSize": "29px",
+          "fontWeight": "800",
+          "lineHeight": "32.48px",
+          "letterSpacing": "-0.725px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Secure your place at TiECON Amsterdam",
+          "fontSize": "29px",
+          "fontWeight": "800",
+          "lineHeight": "32.48px",
+          "letterSpacing": "-0.725px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "The organisations behind TiECON Amsterdam 2026",
+          "fontSize": "29px",
+          "fontWeight": "800",
+          "lineHeight": "32.48px",
+          "letterSpacing": "-0.725px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Organisations that power TiE Global",
+          "fontSize": "29px",
+          "fontWeight": "800",
+          "lineHeight": "32.48px",
+          "letterSpacing": "-0.725px",
+          "color": "rgb(26, 22, 32)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        },
+        {
+          "tag": "H2",
+          "text": "Be part of the TiECON Amsterdam.",
+          "fontSize": "28px",
+          "fontWeight": "800",
+          "lineHeight": "30.8px",
+          "letterSpacing": "-0.7px",
+          "color": "rgb(255, 255, 255)",
+          "fontFamily": "Inter",
+          "textTransform": "none"
+        }
+      ],
+      "sections": [
+        {
+          "i": 0,
+          "tag": "STYLE",
+          "id": null,
+          "cls": "",
+          "paddingTop": "0px",
+          "paddingBottom": "0px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "bgImage": "none",
+          "height": 0,
+          "width": 0,
+          "heading": "",
+          "text": "html body { background: rgb(255, 255, 255); } @media (min-width: 810px) and (max-width: 1199.98px) { html { font-size: 93.75%; } } @media (max-width: 809.98px) { html { font-size: 87.5%; } }"
+        },
+        {
+          "i": 1,
+          "tag": "DIV",
+          "id": null,
+          "cls": "framer-V5545 framer-72rtr7",
+          "paddingTop": "0px",
+          "paddingBottom": "0px",
+          "bg": "rgb(255, 255, 255)",
+          "bgImage": "none",
+          "height": 24109,
+          "width": 390,
+          "heading": "",
+          "text": "TiECON Amsterdam 2026 · The flagship conference of TiE Amsterdam | One day in Amsterdam with the founders and investors shaping what comes next. | Conference · 24 September 2026 | Gala Dinner · 23 September 2026 | Hotel Novotel Amsterdam City, Amsterdam | Register Your Interest | Explore the Programme | 500,000"
+        },
+        {
+          "i": 2,
+          "tag": "DIV",
+          "id": "overlay",
+          "cls": "",
+          "paddingTop": "0px",
+          "paddingBottom": "0px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "bgImage": "none",
+          "height": 0,
+          "width": 390,
+          "heading": "",
+          "text": ""
+        }
+      ],
+      "anchors": [
+        "main",
+        "top",
+        "about",
+        "experience",
+        "experience",
+        "agenda",
+        "attend",
+        "tcad-Rqilp-h",
+        "speakers",
+        "speakers",
+        "planningcommittee",
+        "committee",
+        "agendatable",
+        "agenda",
+        "tickets",
+        "sponsors",
+        "partners",
+        "contact",
+        "overlay",
+        "svg-templates",
+        "__framer-editorbar"
+      ],
+      "nav": {
+        "position": "relative",
+        "bg": "rgb(255, 251, 250)",
+        "backdrop": "none",
+        "height": 793,
+        "border": "0px none rgb(26, 22, 32)",
+        "links": [
+          {
+            "t": "Register Your Interest",
+            "h": "/tickets/registration-form"
+          },
+          {
+            "t": "Explore the Programme",
+            "h": "#experience"
+          }
+        ]
+      },
+      "buttons": [
+        {
+          "text": "About",
+          "href": "https://tieconamsterdam.org/#about",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Experience",
+          "href": "https://tieconamsterdam.org/#experience",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Agenda",
+          "href": "https://tieconamsterdam.org/#agendatable",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Speakers",
+          "href": "https://tieconamsterdam.org/#speakers",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Committee",
+          "href": "https://tieconamsterdam.org/#planningcommittee",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Tickets",
+          "href": "https://tieconamsterdam.org/#tickets",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Partnership",
+          "href": "https://tieconamsterdam.org/partnership",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register",
+          "href": "/tickets/registration-form",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "radius": "999px",
+          "padding": "12px 24px",
+          "fontSize": "15px",
+          "fontWeight": "600",
+          "border": "0px none rgb(255, 255, 255)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "About",
+          "href": "https://tieconamsterdam.org/#about",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "13px 20px",
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Experience",
+          "href": "https://tieconamsterdam.org/#experience",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "13px 20px",
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Agenda",
+          "href": "https://tieconamsterdam.org/#agendatable",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "13px 20px",
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Speakers",
+          "href": "https://tieconamsterdam.org/#speakers",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "13px 20px",
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Committee",
+          "href": "https://tieconamsterdam.org/#planningcommittee",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "13px 20px",
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Tickets",
+          "href": "https://tieconamsterdam.org/#tickets",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "13px 20px",
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Partnership",
+          "href": "https://tieconamsterdam.org/partnership",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "0px",
+          "padding": "13px 20px",
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register",
+          "href": "/tickets/registration-form",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "radius": "999px",
+          "padding": "12px 24px",
+          "fontSize": "15px",
+          "fontWeight": "600",
+          "border": "0px none rgb(255, 255, 255)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register Your Interest",
+          "href": "/tickets/registration-form",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "radius": "999px",
+          "padding": "14px 28px",
+          "fontSize": "15.5px",
+          "fontWeight": "600",
+          "border": "0px none rgb(255, 255, 255)",
+          "boxShadow": "rgba(228, 0, 43, 0.2) 0px 12px 28px 0px"
+        },
+        {
+          "text": "Explore the Programme",
+          "href": "#experience",
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "999px",
+          "padding": "14px 28px",
+          "fontSize": "15.5px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "rgba(20, 16, 40, 0.06) 0px 3px 12px 0px"
+        },
+        {
+          "text": "Add to calendar",
+          "href": null,
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(216, 180, 106)",
+          "radius": "2px",
+          "padding": "11px 18px",
+          "fontSize": "13px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(216, 180, 106)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Full Day",
+          "href": null,
+          "bg": "rgb(216, 180, 106)",
+          "color": "rgb(42, 12, 19)",
+          "radius": "999px",
+          "padding": "7px 14px",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(216, 180, 106)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Plenary",
+          "href": null,
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(216, 180, 106)",
+          "radius": "999px",
+          "padding": "7px 14px",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "border": "1px solid rgba(216, 180, 106, 0.42)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Breakouts",
+          "href": null,
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(216, 180, 106)",
+          "radius": "999px",
+          "padding": "7px 14px",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "border": "1px solid rgba(216, 180, 106, 0.42)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Breaks & Networking",
+          "href": null,
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(216, 180, 106)",
+          "radius": "999px",
+          "padding": "7px 14px",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "border": "1px solid rgba(216, 180, 106, 0.42)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register Now",
+          "href": "/tickets/registration-form",
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "14px",
+          "padding": "15px 20px",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register Now",
+          "href": "/tickets/registration-form",
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(228, 0, 43)",
+          "radius": "14px",
+          "padding": "15px 20px",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "border": "1px solid rgb(255, 255, 255)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register Now",
+          "href": "/tickets/registration-form",
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "14px",
+          "padding": "15px 20px",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register as a charter member",
+          "href": "https://events.tie.org/TiECONAmsterdam2026",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(228, 0, 43)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "14.5px",
+          "fontWeight": "700",
+          "border": "0px none rgb(228, 0, 43)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "All8",
+          "href": null,
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "radius": "999px",
+          "padding": "9px 16px",
+          "fontSize": "13px",
+          "fontWeight": "600",
+          "border": "1px solid rgba(0, 0, 0, 0)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Knowledge Partner Sponsor2",
+          "href": null,
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(107, 101, 113)",
+          "radius": "999px",
+          "padding": "9px 16px",
+          "fontSize": "13px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Silver Partner5",
+          "href": null,
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(107, 101, 113)",
+          "radius": "999px",
+          "padding": "9px 16px",
+          "fontSize": "13px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Exhibitor1",
+          "href": null,
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(107, 101, 113)",
+          "radius": "999px",
+          "padding": "9px 16px",
+          "fontSize": "13px",
+          "fontWeight": "600",
+          "border": "1px solid rgb(236, 231, 229)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Explore partnership options",
+          "href": "#",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(228, 0, 43)",
+          "radius": "0px",
+          "padding": "0px 4px",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "border": "0px none rgb(228, 0, 43)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Register Your Interest",
+          "href": "https://tieconamsterdam.org/tickets/registration-form",
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(26, 22, 32)",
+          "radius": "999px",
+          "padding": "14px 28px",
+          "fontSize": "15.5px",
+          "fontWeight": "600",
+          "border": "0px none rgb(26, 22, 32)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "About",
+          "href": "https://tieconamsterdam.org/#about",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "The Experience",
+          "href": "https://tieconamsterdam.org/#experience",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Speakers",
+          "href": "https://tieconamsterdam.org/#speakers",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Planning Committee",
+          "href": "https://tieconamsterdam.org/#planningcommittee",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Tickets",
+          "href": "https://tieconamsterdam.org/#tickets",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "Partner With Us",
+          "href": "https://tieconamsterdam.org/partnership",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "border": "0px none rgba(255, 255, 255, 0.85)",
+          "boxShadow": "none"
+        },
+        {
+          "text": "tieconamsterdam.org/",
+          "href": "https://tieconamsterdam.org/",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "radius": "0px",
+          "padding": "0px",
+          "fontSize": "13.5px",
+          "fontWeight": "600",
+          "border": "0px none rgb(255, 255, 255)",
+          "boxShadow": "none"
+        }
+      ],
+      "topRadii": [
+        [
+          "999px",
+          142
+        ],
+        [
+          "11px",
+          75
+        ],
+        [
+          "50%",
+          62
+        ],
+        [
+          "2px",
+          54
+        ],
+        [
+          "16px",
+          41
+        ],
+        [
+          "14px",
+          18
+        ],
+        [
+          "22px",
+          17
+        ],
+        [
+          "10px",
+          14
+        ],
+        [
+          "15px",
+          8
+        ],
+        [
+          "12px",
+          5
+        ],
+        [
+          "20px",
+          5
+        ],
+        [
+          "26px",
+          4
+        ],
+        [
+          "18px",
+          4
+        ],
+        [
+          "24px",
+          3
+        ]
+      ],
+      "topShadows": [
+        [
+          "rgba(0, 0, 0, 0.22) 0px 8px 20px 0px",
+          40
+        ],
+        [
+          "rgba(40, 12, 20, 0.06) 0px 10px 30px 0px",
+          11
+        ],
+        [
+          "rgba(40, 12, 20, 0.05) 0px 4px 16px 0px, rgba(40, 12, 20, 0.07) 0px 18px 44px 0px",
+          3
+        ],
+        [
+          "rgba(228, 0, 43, 0.2) 0px 12px 28px 0px",
+          1
+        ],
+        [
+          "rgba(20, 16, 40, 0.06) 0px 3px 12px 0px",
+          1
+        ],
+        [
+          "rgba(40, 12, 20, 0.1) 0px 24px 60px 0px",
+          1
+        ],
+        [
+          "rgba(40, 12, 20, 0.14) 0px 30px 70px 0px",
+          1
+        ],
+        [
+          "rgba(40, 12, 20, 0.2) 0px 36px 80px 0px",
+          1
+        ],
+        [
+          "rgba(0, 0, 0, 0.16) 0px 6px 18px 0px",
+          1
+        ],
+        [
+          "rgba(40, 12, 20, 0.05) 0px 14px 40px 0px",
+          1
+        ]
+      ],
+      "topBgs": [
+        [
+          "rgb(255, 255, 255)",
+          198
+        ],
+        [
+          "rgba(228, 0, 43, 0.08)",
+          34
+        ],
+        [
+          "rgba(228, 0, 43, 0.06)",
+          16
+        ],
+        [
+          "rgb(216, 180, 106)",
+          8
+        ],
+        [
+          "rgb(250, 247, 246)",
+          6
+        ],
+        [
+          "rgb(236, 231, 229)",
+          4
+        ],
+        [
+          "rgb(26, 22, 32)",
+          3
+        ],
+        [
+          "rgba(228, 0, 43, 0.07)",
+          2
+        ],
+        [
+          "rgba(255, 255, 255, 0.26)",
+          2
+        ],
+        [
+          "rgba(255, 255, 255, 0.82)",
+          1
+        ],
+        [
+          "rgb(255, 251, 250)",
+          1
+        ],
+        [
+          "rgb(42, 12, 19)",
+          1
+        ],
+        [
+          "rgba(255, 255, 255, 0.18)",
+          1
+        ],
+        [
+          "rgba(255, 255, 255, 0.15)",
+          1
+        ],
+        [
+          "rgba(255, 255, 255, 0.17)",
+          1
+        ],
+        [
+          "rgba(255, 255, 255, 0.2)",
+          1
+        ]
+      ],
+      "maxWidths": [
+        [
+          "720px",
+          15
+        ],
+        [
+          "1200px",
+          13
+        ],
+        [
+          "1240px",
+          1
+        ],
+        [
+          "900px",
+          1
+        ],
+        [
+          "780px",
+          1
+        ],
+        [
+          "640px",
+          1
+        ],
+        [
+          "1120px",
+          1
+        ],
+        [
+          "340px",
+          1
+        ]
+      ],
+      "docHeight": 24109
+    }
+  },
+  "navScrollState": {
+    "atTop": {
+      "bg": "rgb(255, 251, 250)",
+      "backdrop": "none",
+      "shadow": "none",
+      "border": "0px none rgb(26, 22, 32)",
+      "transform": "none",
+      "transition": "all",
+      "h": 800
+    },
+    "scrolled": {
+      "bg": "rgb(255, 251, 250)",
+      "backdrop": "none",
+      "shadow": "none",
+      "border": "0px none rgb(26, 22, 32)",
+      "transform": "none",
+      "transition": "all",
+      "h": 800
+    }
+  }
+}

@@ -1,0 +1,44 @@
+
+    .tnv-R3m6lp{width:100%;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;box-sizing:border-box;-webkit-font-smoothing:antialiased;
+        background:rgba(255,255,255,.82);backdrop-filter:blur(14px);
+        border-bottom:1px solid rgb(236, 231, 229);}
+    .tnv-R3m6lp *{box-sizing:border-box;}
+    .tnv-R3m6lp a{text-decoration:none;color:inherit;}
+    .tnv-R3m6lp .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,56px);}
+    .tnv-R3m6lp .in{display:flex;align-items:center;justify-content:space-between;gap:18px;height:76px;}
+    .tnv-R3m6lp .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:21px;letter-spacing:-.02em;color:rgb(26, 22, 32);flex:none;}
+    .tnv-R3m6lp .brand img{height:40px;width:auto;display:block;}
+    .tnv-R3m6lp .links{display:flex;align-items:center;gap:clamp(18px,2.2vw,30px);}
+
+    /* :not(.cta) is load-bearing. The Register button is an <a> inside .links,
+       so a bare ".links a:hover{color:accent}" turned its white label red — on a
+       red gradient — and the text vanished on hover. */
+    .tnv-R3m6lp .links a:not(.cta){color:rgb(26, 22, 32);opacity:.78;font-size:15px;font-weight:500;white-space:nowrap;transition:opacity .2s,color .2s;}
+    .tnv-R3m6lp .links a:not(.cta):hover{opacity:1;color:rgb(228, 0, 43);}
+    .tnv-R3m6lp .links a:not(.cta):focus-visible{outline:2px solid rgb(228, 0, 43);outline-offset:4px;border-radius:4px;}
+
+    .tnv-R3m6lp .cta{display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:15px;border-radius:999px;padding:12px 24px;
+        color:#fff;white-space:nowrap;flex:none;
+        background:linear-gradient(135deg,rgb(228, 0, 43),rgb(194, 14, 77));box-shadow:0 10px 24px rgb(228, 0, 43)33;transition:transform .2s,box-shadow .2s;}
+    /* colour restated so no ancestor rule can ever repaint the label */
+    .tnv-R3m6lp .cta:hover,.tnv-R3m6lp .cta:focus-visible{color:#fff;transform:translateY(-2px);box-shadow:0 16px 32px rgb(228, 0, 43)45;}
+    .tnv-R3m6lp .cta:focus-visible{outline:2px solid rgb(26, 22, 32);outline-offset:3px;}
+
+    .tnv-R3m6lp .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;}
+    .tnv-R3m6lp .burger span{width:23px;height:2px;background:rgb(26, 22, 32);border-radius:2px;transition:.2s;}
+    .tnv-R3m6lp .mobile{display:none;}
+    @media (min-width:1600px){ .tnv-R3m6lp .wrap{max-width:1360px;} }
+
+    /* Seven links + logo + CTA stop fitting below ~1100px. Measured, not
+       guessed: at 1024 with a 260px logo the row has 4px of slack left, so
+       any wider logo collides with the links. At 1100 the same worst case
+       keeps ~97px. Raised from 1024 when Agenda was added. */
+    @media (max-width:1100px){
+        .tnv-R3m6lp .links{display:none;}
+        .tnv-R3m6lp .burger{display:flex;}
+        .tnv-R3m6lp .mobile{display:none;background:rgb(255, 255, 255);border-top:1px solid rgb(236, 231, 229);padding:10px 0 16px;}
+        .tnv-R3m6lp .mobile a:not(.cta){display:block;padding:13px clamp(20px,5vw,56px);font-weight:500;color:rgb(26, 22, 32);}
+        .tnv-R3m6lp .mobile a:not(.cta):hover{color:rgb(228, 0, 43);}
+        .tnv-R3m6lp .mobile .cta{margin:12px clamp(20px,5vw,56px) 0;display:inline-flex;color:#fff;}
+    }
+    

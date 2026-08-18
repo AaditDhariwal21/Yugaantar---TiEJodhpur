@@ -1,0 +1,146 @@
+
+    .tch-R3n2lp{width:100%;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:rgb(26, 22, 32);background:rgb(255, 255, 255);box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+    .tch-R3n2lp *{box-sizing:border-box;}
+    .tch-R3n2lp a{text-decoration:none;color:inherit;}
+    .tch-R3n2lp .wrap{max-width:1200px;margin:0 auto;padding:0 clamp(22px,5vw,56px);}
+    .tch-R3n2lp .badge{display:inline-block;background:rgb(228, 0, 43)12;color:rgb(228, 0, 43);font-size:12.5px;font-weight:600;letter-spacing:.03em;padding:8px 17px;border-radius:999px;}
+
+    .tch-R3n2lp .head{max-width:720px;margin:0 auto;text-align:center;}
+    .tch-R3n2lp .head h2{font-size:clamp(29px,3.8vw,46px);font-weight:800;letter-spacing:-.025em;line-height:1.12;margin:18px 0 0;}
+    .tch-R3n2lp .head .sub{font-size:clamp(16px,1.4vw,18px);line-height:1.6;color:rgb(107, 101, 113);margin:16px auto 0;max-width:600px;}
+    .tch-R3n2lp .phase{display:inline-flex;align-items:center;gap:9px;margin:22px auto 0;padding:9px 16px;border-radius:999px;background:rgb(228, 0, 43)0D;border:1px solid rgb(228, 0, 43)26;color:rgb(228, 0, 43);font-size:13px;font-weight:700;}
+    .tch-R3n2lp .phase .dot{width:8px;height:8px;border-radius:50%;background:rgb(228, 0, 43);box-shadow:0 0 0 4px rgb(228, 0, 43)22;}
+
+    .tch-R3n2lp .sec{padding:clamp(64px,8vw,112px) 0;}
+
+    /* CHARTER MEMBERS — deliberately loud enough that a member doesn't pay by
+       mistake, but below the cards so it never competes with the buy flow. */
+    .tch-R3n2lp .charter{display:flex;gap:16px;align-items:flex-start;margin-top:46px;padding:22px clamp(18px,2.4vw,26px);
+        border:1.5px solid rgb(228, 0, 43)33;background:rgb(228, 0, 43)08;border-radius:18px;}
+    .tch-R3n2lp .charter .cic{flex:none;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+        background:linear-gradient(135deg,rgb(228, 0, 43),rgb(194, 14, 77));color:#fff;box-shadow:0 8px 20px rgb(228, 0, 43)33;}
+    .tch-R3n2lp .charter .ct{font-size:16px;font-weight:800;letter-spacing:-.01em;color:rgb(26, 22, 32);}
+    .tch-R3n2lp .charter .cb{font-size:14px;line-height:1.6;color:rgb(107, 101, 113);margin-top:5px;}
+    .tch-R3n2lp .charter a{display:inline-flex;align-items:center;gap:7px;margin-top:11px;font-size:14.5px;font-weight:700;color:rgb(228, 0, 43);}
+    .tch-R3n2lp .charter a:hover{text-decoration:underline;}
+    @media (max-width:560px){ .tch-R3n2lp .charter{flex-direction:column;gap:12px;} }
+    .tch-R3n2lp .tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px;margin-top:56px;align-items:stretch;}
+
+    /* WRAP — perspective + entry (fill-mode: both so cards stay VISIBLE if the
+       animation never runs on the published build — avoids a blank section) */
+    .tch-R3n2lp .tkw{position:relative;perspective:1100px;animation:tkEnter-R3n2lp .7s cubic-bezier(.22,1,.36,1) both;}
+
+    /* GLOW halo behind the card */
+    .tch-R3n2lp .glow{position:absolute;inset:-2px;border-radius:26px;z-index:0;opacity:0;filter:blur(9px);transition:opacity .45s ease;pointer-events:none;
+        background:linear-gradient(145deg,rgb(228, 0, 43)66,rgb(194, 14, 77)33 50%,rgb(228, 0, 43)66);}
+    .tch-R3n2lp .tkw:hover .glow{opacity:.75;}
+
+    /* CARD — tilts with cursor */
+    .tch-R3n2lp .tk{position:relative;z-index:1;height:100%;min-height:480px;display:flex;background:rgb(255, 255, 255);border:1px solid rgb(236, 231, 229);border-radius:24px;overflow:hidden;
+        transform-style:preserve-3d;will-change:transform;
+        transform:rotateX(var(--rx)) rotateY(var(--ry));
+        transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease,border-color .3s ease;
+        box-shadow:0 4px 16px rgba(40,12,20,.05),0 18px 44px rgba(40,12,20,.07);}
+    .tch-R3n2lp .tkw:hover .tk{transform:rotateX(var(--rx)) rotateY(var(--ry)) scale(1.03) translateY(-6px);
+        transition:transform .08s linear,box-shadow .3s ease,border-color .3s ease;
+        border-color:rgb(228, 0, 43)33;box-shadow:0 16px 36px rgba(40,12,20,.12),0 34px 78px rgba(40,12,20,.14);}
+
+    /* decorative layers */
+    .tch-R3n2lp .glass{position:absolute;top:0;left:22px;right:22px;height:1px;z-index:5;pointer-events:none;
+        background:linear-gradient(90deg,transparent,rgb(228, 0, 43)55 20%,rgb(228, 0, 43)88 50%,rgb(228, 0, 43)55 80%,transparent);}
+    .tch-R3n2lp .grain{position:absolute;inset:0;z-index:1;opacity:.4;pointer-events:none;background-size:180px 180px;
+        background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");}
+    .tch-R3n2lp .spot{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:var(--hover);transition:opacity .35s ease;
+        background:radial-gradient(460px circle at var(--mx) var(--my),rgb(228, 0, 43)16,transparent 50%);}
+    .tch-R3n2lp .shim{position:absolute;top:0;left:-105%;width:58%;height:100%;z-index:2;pointer-events:none;
+        background:linear-gradient(105deg,transparent 36%,rgba(255,255,255,.10) 50%,transparent 64%);animation:shimmer-R3n2lp 5.5s ease-in-out infinite;}
+    .tch-R3n2lp .flag{position:absolute;top:0;right:26px;z-index:10;background:#fff;color:rgb(228, 0, 43);font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+        padding:6px 13px 7px;border-radius:0 0 10px 10px;box-shadow:0 6px 18px rgba(0,0,0,.16);}
+
+    /* content sits above the layers */
+    .tch-R3n2lp .content{position:relative;z-index:3;display:flex;flex-direction:column;flex:1;padding:34px 28px 28px;}
+    .tch-R3n2lp .lab{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgb(228, 0, 43);}
+    .tch-R3n2lp .datechip{display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:7px 13px;border-radius:999px;background:rgb(228, 0, 43)0F;border:1px solid rgb(228, 0, 43)30;color:rgb(228, 0, 43);font-size:13.5px;font-weight:800;letter-spacing:.01em;}
+    .tch-R3n2lp .datechip svg{flex:none;}
+    .tch-R3n2lp .datechip + .tt{margin-top:12px;}
+    .tch-R3n2lp .tt{font-size:22px;font-weight:800;letter-spacing:-.015em;margin-top:12px;line-height:1.18;}
+    .tch-R3n2lp .ds{font-size:14px;color:rgb(107, 101, 113);line-height:1.6;margin-top:10px;min-height:66px;}
+    .tch-R3n2lp .inc{display:flex;align-items:flex-start;gap:10px;margin-top:16px;padding:12px 13px;border:1px solid rgb(236, 231, 229);background:rgb(228, 0, 43)08;border-radius:14px;font-size:13px;line-height:1.5;color:rgb(26, 22, 32);}
+    .tch-R3n2lp .inc .ck{flex:none;width:20px;height:20px;border-radius:50%;background:rgb(228, 0, 43)1A;color:rgb(228, 0, 43);display:flex;align-items:center;justify-content:center;margin-top:1px;}
+    .tch-R3n2lp .inc b{font-weight:700;}
+
+    /* MEMBERSHIP PERK — deliberately a separate object, not another line inside
+       "Included". Buried in that sentence it reads as small print; the whole
+       point is that a year's membership is worth a chunk of the ticket price. */
+    .tch-R3n2lp .perk{position:relative;display:flex;gap:11px;align-items:center;margin-top:10px;padding:13px 14px 13px 17px;
+        border-radius:14px;overflow:hidden;
+        border:1.5px solid rgb(228, 0, 43)3D;background:linear-gradient(135deg,rgb(228, 0, 43)14,rgb(228, 0, 43)05);}
+    .tch-R3n2lp .perk::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+        background:linear-gradient(180deg,rgb(228, 0, 43),rgb(194, 14, 77));}
+    .tch-R3n2lp .perk .pi{flex:none;width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+        background:linear-gradient(135deg,rgb(228, 0, 43),rgb(194, 14, 77));color:#fff;box-shadow:0 5px 14px rgb(228, 0, 43)45;}
+    .tch-R3n2lp .perk .pk{font-size:9.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:rgb(228, 0, 43);}
+    .tch-R3n2lp .perk .pv{font-size:13.5px;font-weight:800;line-height:1.32;letter-spacing:-.012em;color:rgb(26, 22, 32);margin-top:2px;}
+    /* Struck membership fee + "Included". The strike carries the value claim,
+       so the word next to it says Included rather than Free — free reads as
+       cheap, included reads as part of what you already paid for. */
+    .tch-R3n2lp .perk .pw{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-top:6px;}
+    .tch-R3n2lp .perk .pw s{font-size:12.5px;font-weight:700;color:rgb(107, 101, 113);text-decoration:line-through;text-decoration-thickness:1.5px;}
+    .tch-R3n2lp .perk .pw em{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:rgb(228, 0, 43);
+        background:rgb(228, 0, 43)14;border:1px solid rgb(228, 0, 43)38;padding:3px 8px;border-radius:999px;}
+
+    .tch-R3n2lp .dv{height:1px;background:rgb(236, 231, 229);margin:22px 0 18px;}
+    .tch-R3n2lp .plab{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgb(228, 0, 43);}
+    .tch-R3n2lp .price{font-size:clamp(34px,4vw,42px);font-weight:800;letter-spacing:-.02em;line-height:1;margin-top:6px;}
+    .tch-R3n2lp .pnote{font-size:13px;color:rgb(107, 101, 113);margin-top:8px;line-height:1.45;}
+    .tch-R3n2lp .cta{margin-top:auto;padding-top:24px;}
+    .tch-R3n2lp .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px 20px;border-radius:14px;font-weight:700;font-size:15px;border:1px solid rgb(236, 231, 229);background:rgb(255, 255, 255);color:rgb(26, 22, 32);
+        transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s ease,border-color .2s ease,background .2s ease;}
+    .tch-R3n2lp .btn:hover{transform:translateY(-3px);border-color:rgb(228, 0, 43)55;box-shadow:0 12px 26px rgba(40,12,20,.10);}
+    .tch-R3n2lp .btn svg{transition:transform .25s ease;}
+    .tch-R3n2lp .btn:hover svg{transform:translateX(3px);}
+
+    /* FEATURED — Best Value (red gradient) */
+    .tch-R3n2lp .tk.feat{background:linear-gradient(150deg,rgb(228, 0, 43),rgb(194, 14, 77));border-color:transparent;color:#fff;
+        box-shadow:0 20px 50px rgb(228, 0, 43)33,0 34px 80px rgb(228, 0, 43)2E;}
+    .tch-R3n2lp .tkw:hover .tk.feat{border-color:transparent;box-shadow:0 26px 60px rgb(228, 0, 43)45,0 44px 96px rgb(228, 0, 43)3A;}
+    .tch-R3n2lp .tk.feat .glass{background:linear-gradient(90deg,transparent,rgba(255,255,255,.4) 20%,rgba(255,255,255,.75) 50%,rgba(255,255,255,.4) 80%,transparent);}
+    .tch-R3n2lp .tk.feat .spot{background:radial-gradient(520px circle at var(--mx) var(--my),rgba(255,255,255,.20),transparent 50%);}
+    .tch-R3n2lp .tk.feat .lab,.tch-R3n2lp .tk.feat .plab{color:#fff;opacity:.92;}
+    .tch-R3n2lp .tk.feat .datechip{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.34);color:#fff;}
+    .tch-R3n2lp .tk.feat .tt{color:#fff;padding-right:70px;}
+    .tch-R3n2lp .tk.feat .ds{color:rgba(255,255,255,.86);}
+    .tch-R3n2lp .tk.feat .inc{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.26);color:#fff;}
+    .tch-R3n2lp .tk.feat .inc .ck{background:rgba(255,255,255,.26);color:#fff;}
+    .tch-R3n2lp .tk.feat .inc b{color:#fff;}
+    .tch-R3n2lp .tk.feat .perk{border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.17);}
+    .tch-R3n2lp .tk.feat .perk::before{background:#fff;}
+    .tch-R3n2lp .tk.feat .perk .pi{background:#fff;color:rgb(228, 0, 43);box-shadow:none;}
+    .tch-R3n2lp .tk.feat .perk .pk{color:rgba(255,255,255,.92);}
+    .tch-R3n2lp .tk.feat .perk .pv{color:#fff;}
+    .tch-R3n2lp .tk.feat .perk .pw s{color:rgba(255,255,255,.72);}
+    .tch-R3n2lp .tk.feat .perk .pw em{color:#fff;background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5);}
+    .tch-R3n2lp .tk.feat .dv{background:rgba(255,255,255,.26);}
+    .tch-R3n2lp .tk.feat .price{color:#fff;}
+    .tch-R3n2lp .tk.feat .pnote{color:rgba(255,255,255,.85);}
+    .tch-R3n2lp .tk.feat .btn{background:#fff;color:rgb(228, 0, 43);border-color:#fff;}
+    .tch-R3n2lp .tk.feat .btn:hover{box-shadow:0 14px 30px rgba(0,0,0,.20);}
+    .tch-R3n2lp .tk.feat .glow-on{}
+    .tch-R3n2lp .tkw.featw .glow{opacity:.5;inset:-3px;background-size:200% 200%;
+        background:linear-gradient(145deg,rgb(228, 0, 43)aa,rgba(255,255,255,.25) 32%,rgb(194, 14, 77)66 64%,rgb(228, 0, 43)aa);animation:glowShift-R3n2lp 4s ease-in-out infinite alternate;}
+    .tch-R3n2lp .tkw.featw:hover .glow{opacity:.95;}
+
+    @keyframes tkEnter-R3n2lp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+    @keyframes shimmer-R3n2lp{0%{left:-105%}30%{left:160%}100%{left:160%}}
+    @keyframes glowShift-R3n2lp{0%{background-position:0% 0%}100%{background-position:100% 100%}}
+
+    @media (min-width:1600px){ .tch-R3n2lp .wrap{max-width:1320px;} }
+    @media (max-width:600px){
+        .tch-R3n2lp .tk{min-height:auto;flex-direction:column;}
+        .tch-R3n2lp .tk.feat .tt{padding-right:0;}
+        .tch-R3n2lp .flag{position:static;width:fit-content;margin:0 0 -8px auto;border-radius:10px;}
+    }
+    @media (hover:none){
+        .tch-R3n2lp .tk{transform:none!important;}
+    }
+    

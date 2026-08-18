@@ -1,0 +1,191 @@
+/* Planning Committee — reference: .tch-Rqqlp
+   White ground, 96px rhythm (tighter than the 112px used elsewhere).
+   2-up on phones, then a tight uniform auto-fit grid. */
+
+.sec {
+  padding: var(--sec-pad-committee) 0;
+  background: var(--c-white);
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.head {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--badge-bg);
+  color: var(--c-red);
+  font-size: var(--fs-badge);
+  font-weight: 600;
+  letter-spacing: var(--ls-badge);
+  padding: 8px 17px;
+  border-radius: var(--rad-pill);
+}
+
+.head h2 {
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  letter-spacing: var(--ls-tight);
+  line-height: 1.12;
+  margin: 16px 0 0;
+}
+
+.sub {
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.6;
+  color: var(--c-muted);
+  margin: 14px auto 0;
+  max-width: 560px;
+}
+
+.yearchip {
+  display: inline-block;
+  background: var(--grad);
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--fs-badge);
+  padding: 6px 15px;
+  border-radius: 8px;
+  margin-top: 16px;
+  letter-spacing: 0.02em;
+}
+
+.cgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.cm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: var(--rad-partner);
+  padding: 24px 14px 22px;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.cm:hover {
+  transform: translateY(-6px);
+  border-color: var(--card-hover-border);
+  box-shadow: 0 20px 44px rgba(40, 12, 20, 0.12);
+}
+
+.av {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--avatar-ph-bg);
+  box-shadow: var(--avatar-ring);
+  transition: box-shadow 0.3s ease;
+}
+
+.cm:hover .av {
+  box-shadow: var(--avatar-ring-hover);
+}
+
+.avPh {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--c-red);
+}
+
+.nm {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: var(--ls-card);
+  margin-top: 13px;
+}
+
+.role {
+  display: inline-block;
+  margin-top: 10px;
+  background: var(--role-chip-bg);
+  color: var(--c-red);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 4px 11px;
+  border-radius: var(--rad-pill);
+  line-height: 1.3;
+}
+
+.li {
+  margin-top: 15px;
+  /* 34px is the reference size; padded out to a 44px tap target on touch */
+  width: 34px;
+  height: 34px;
+  border-radius: var(--rad-xs);
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  color: var(--c-red);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.li:hover {
+  transform: translateY(-2px);
+  background: #0a66c2;
+  color: #fff;
+  border-color: #0a66c2;
+}
+
+@media (min-width: 561px) {
+  .cgrid {
+    grid-template-columns: repeat(auto-fit, minmax(196px, 1fr));
+    gap: 20px;
+    margin-top: 44px;
+  }
+  .cm {
+    padding: 30px 22px 26px;
+    border-radius: var(--rad-md);
+  }
+  .av {
+    width: 98px;
+    height: 98px;
+  }
+  .avPh {
+    font-size: 36px;
+  }
+  .nm {
+    font-size: 17.5px;
+    margin-top: 16px;
+  }
+  .role {
+    font-size: 12px;
+    padding: 5px 13px;
+  }
+}
+
+@media (hover: none) {
+  .li {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .wrap {
+    max-width: var(--wrap-nav);
+  }
+}

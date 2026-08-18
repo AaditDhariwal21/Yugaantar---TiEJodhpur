@@ -1,0 +1,198 @@
+/* Navbar — reference: .tnv-R3m6lp
+   Sticky, permanently translucent + blurred (it does NOT change on scroll),
+   burger below 1100px. Authored mobile-first. */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--c-line);
+}
+
+.wrap {
+  max-width: var(--wrap-nav);
+  margin: 0 auto;
+  padding: 0 var(--gutter-nav);
+}
+
+.in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  height: var(--nav-h);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 21px;
+  letter-spacing: var(--ls-h);
+  color: var(--c-ink);
+  flex: none;
+}
+
+.brand img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+/* Wordmark fallback until the real logo asset lands. */
+.mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--rad-sm);
+  background: var(--grad);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  flex: none;
+}
+
+.brandText {
+  white-space: nowrap;
+}
+
+/* ---- desktop link row: hidden until 1101px --------------------------------
+   The reference collapses at 1100 because seven links + logo + CTA stop
+   fitting below it. */
+.links {
+  display: none;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: var(--rad-pill);
+  padding: 12px 24px;
+  color: #fff;
+  white-space: nowrap;
+  flex: none;
+  background: var(--grad);
+  box-shadow: var(--sh-nav-cta);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* colour restated on hover so no ancestor rule can repaint the label —
+   the reference hit exactly this bug and left a note about it */
+.cta:hover,
+.cta:focus-visible {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--sh-nav-cta-hover);
+}
+
+.desktopCta {
+  display: none;
+}
+
+.burger {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  /* 44px touch target */
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+}
+
+.burger span {
+  width: 23px;
+  height: 2px;
+  background: var(--c-ink);
+  border-radius: 2px;
+  transition: transform 0.22s var(--ease-out), opacity 0.18s ease;
+}
+
+.burger[data-open="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.burger[data-open="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.burger[data-open="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---- mobile drop panel ---------------------------------------------------- */
+.mobile {
+  display: block;
+  overflow: hidden;
+  background: var(--c-white);
+  border-top: 1px solid var(--c-line);
+  padding: 10px 0 16px;
+}
+
+.mobile a:not(.cta) {
+  display: block;
+  padding: 13px var(--gutter-nav);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--c-ink);
+  transition: color 0.2s;
+}
+
+.mobile a:not(.cta):hover {
+  color: var(--c-red);
+}
+
+.mobileCta {
+  margin: 12px var(--gutter-nav) 0;
+  display: inline-flex;
+  color: #fff;
+}
+
+@media (min-width: 1101px) {
+  .links {
+    display: flex;
+    align-items: center;
+    gap: clamp(18px, 2.2vw, 30px);
+  }
+
+  .links a:not(.cta) {
+    color: var(--c-ink);
+    opacity: 0.78;
+    font-size: 15px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  .links a:not(.cta):hover {
+    opacity: 1;
+    color: var(--c-red);
+  }
+
+  .desktopCta {
+    display: inline-flex;
+  }
+
+  .burger,
+  .mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 1600px) {
+  .wrap {
+    max-width: var(--wrap-nav-xl);
+  }
+}

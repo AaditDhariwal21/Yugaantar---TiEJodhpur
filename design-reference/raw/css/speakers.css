@@ -1,0 +1,102 @@
+
+    .tch-Rqmlp{width:100%;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:rgb(26, 22, 32);background:rgb(250, 247, 246);box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+    .tch-Rqmlp *{box-sizing:border-box;}
+    .tch-Rqmlp a{text-decoration:none;color:inherit;}
+    .tch-Rqmlp .wrap{max-width:1200px;margin:0 auto;padding:0 clamp(22px,5vw,56px);}
+    .tch-Rqmlp .badge{display:inline-block;background:rgb(228, 0, 43)12;color:rgb(228, 0, 43);font-size:12.5px;font-weight:600;letter-spacing:.03em;padding:8px 17px;border-radius:999px;}
+
+    .tch-Rqmlp .head{max-width:720px;margin:0 auto;text-align:center;}
+    .tch-Rqmlp .head h2{font-size:clamp(29px,3.8vw,46px);font-weight:800;letter-spacing:-.025em;line-height:1.12;margin:18px 0 0;}
+    .tch-Rqmlp .head .sub{font-size:clamp(16px,1.4vw,18px);line-height:1.6;color:rgb(107, 101, 113);margin:16px auto 0;max-width:600px;}
+
+    .tch-Rqmlp .sec{padding:clamp(64px,8vw,112px) 0;}
+
+    /* GROUP LABEL — an eyebrow with a hairline running off to the right.
+       Only rendered when the section is actually split. */
+    .tch-Rqmlp .glabel{display:flex;align-items:center;gap:18px;margin-top:clamp(56px,6vw,76px);}
+    .tch-Rqmlp .glabel span{font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgb(228, 0, 43);white-space:nowrap;}
+    .tch-Rqmlp .glabel i{flex:1;height:1px;background:rgb(236, 231, 229);display:block;}
+
+    .tch-Rqmlp .sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:clamp(18px,2.4vw,28px);margin-top:56px;}
+    /* Key speakers get more room per card — bigger photo, bigger name.
+       Flex, not grid: an auto-fit grid stretches its tracks to fill the row,
+       so two key speakers would each blow up to ~520px. A centred flex row
+       keeps the card a fixed size and just centres however many there are. */
+    .tch-Rqmlp .sgrid.key{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(20px,2.8vw,32px);}
+    .tch-Rqmlp .sgrid.key .sp{flex:0 1 262px;max-width:300px;}
+    /* Sits directly under a group label, so it needs far less air above. */
+    .tch-Rqmlp .sgrid.tight{margin-top:26px;}
+
+    /* CARD — photo-forward, gentle lift (staggered entry) */
+    .tch-Rqmlp .sp{position:relative;height:100%;display:flex;flex-direction:column;background:rgb(255, 255, 255);border:1px solid rgb(236, 231, 229);border-radius:20px;padding:13px 13px 6px;
+        animation:spEnter-Rqmlp .6s cubic-bezier(.22,1,.36,1) both;
+        transition:transform .32s cubic-bezier(.22,1,.36,1),box-shadow .32s ease,border-color .32s ease;}
+    .tch-Rqmlp .sp:hover{transform:translateY(-8px);border-color:rgb(228, 0, 43)30;box-shadow:0 22px 50px rgba(40,12,20,.14);}
+    .tch-Rqmlp .sgrid.key .sp{border-color:rgb(228, 0, 43)26;box-shadow:0 10px 30px rgba(40,12,20,.06);border-radius:22px;}
+    .tch-Rqmlp .sgrid.key .sp:hover{box-shadow:0 26px 58px rgba(40,12,20,.16);}
+
+    /* PHOTO */
+    .tch-Rqmlp .sp-ph{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/5;background:linear-gradient(135deg,rgb(228, 0, 43)14,rgb(194, 14, 77)14);}
+    .tch-Rqmlp .sp-ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(.22,1,.36,1);}
+    .tch-Rqmlp .sp:hover .sp-ph img{transform:scale(1.06);}
+    .tch-Rqmlp .sp-ph .init{display:flex;align-items:center;justify-content:center;height:100%;font-size:46px;font-weight:800;color:rgb(228, 0, 43);}
+    .tch-Rqmlp .sgrid.key .sp-ph{border-radius:16px;}
+    .tch-Rqmlp .sgrid.key .sp-ph .init{font-size:58px;}
+
+    /* hover gradient that rises from the bottom of the photo */
+    .tch-Rqmlp .sp-ph .ovl{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s ease;
+        background:linear-gradient(to top,rgba(26,22,32,.62) 0%,rgba(26,22,32,.10) 42%,transparent 62%);}
+    .tch-Rqmlp .sp:hover .sp-ph .ovl{opacity:1;}
+
+    /* corner tag (e.g. Keynote) — always visible */
+    .tch-Rqmlp .sp-tag{position:absolute;top:11px;left:11px;z-index:3;background:linear-gradient(135deg,rgb(228, 0, 43),rgb(194, 14, 77));color:#fff;font-size:11px;font-weight:700;letter-spacing:.03em;padding:5px 11px;border-radius:999px;box-shadow:0 6px 16px rgb(228, 0, 43)40;}
+
+    /* LinkedIn action — revealed on hover over the photo */
+    .tch-Rqmlp .li{position:absolute;right:12px;bottom:12px;z-index:4;width:40px;height:40px;border-radius:50%;background:#fff;color:rgb(228, 0, 43);display:inline-flex;align-items:center;justify-content:center;
+        box-shadow:0 8px 20px rgba(0,0,0,.22);opacity:0;transform:translateY(10px) scale(.9);transition:opacity .3s ease,transform .3s cubic-bezier(.34,1.56,.64,1);}
+    .tch-Rqmlp .sp:hover .li{opacity:1;transform:none;}
+    .tch-Rqmlp .li:hover{background:rgb(228, 0, 43);color:#fff;}
+
+    /* CAPTION */
+    .tch-Rqmlp .content{text-align:center;padding:16px 6px 14px;}
+    .tch-Rqmlp .nm{font-weight:700;font-size:17px;letter-spacing:-.01em;color:rgb(26, 22, 32);}
+    .tch-Rqmlp .bar{width:0;height:2px;border-radius:2px;margin:9px auto 0;background:linear-gradient(90deg,rgb(228, 0, 43),rgb(194, 14, 77));transition:width .38s cubic-bezier(.22,1,.36,1);}
+    .tch-Rqmlp .sp:hover .bar{width:30px;}
+    .tch-Rqmlp .rl{font-size:13px;color:rgb(228, 0, 43);margin-top:11px;line-height:1.45;font-weight:600;}
+    .tch-Rqmlp .co{font-size:12.5px;color:rgb(107, 101, 113);margin-top:3px;line-height:1.4;}
+    .tch-Rqmlp .sgrid.key .nm{font-size:19.5px;}
+    .tch-Rqmlp .sgrid.key .rl{font-size:13.5px;}
+    .tch-Rqmlp .sgrid.key .co{font-size:13px;}
+    .tch-Rqmlp .sgrid.key .sp:hover .bar{width:38px;}
+
+    @keyframes spEnter-Rqmlp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+    @media (min-width:1600px){ .tch-Rqmlp .wrap{max-width:1320px;} }
+
+    /* phones — 2 per row so people don't scroll forever. The .sgrid.key
+       selector has to be named explicitly here: it is a two-class selector,
+       so a bare .sgrid in this block would lose the specificity contest. */
+    @media (max-width:560px){
+        .tch-Rqmlp .sgrid, .tch-Rqmlp .sgrid.key{grid-template-columns:repeat(2,1fr);gap:14px;margin-top:40px;}
+        /* the key row is flex, so it needs a basis rather than a column count */
+        .tch-Rqmlp .sgrid.key .sp{flex:0 1 calc(50% - 7px);max-width:none;}
+        .tch-Rqmlp .sgrid.tight{margin-top:22px;}
+        .tch-Rqmlp .glabel{margin-top:44px;gap:12px;}
+        .tch-Rqmlp .glabel span{font-size:11.5px;}
+        .tch-Rqmlp .sp{padding:9px 9px 4px;border-radius:16px;}
+        .tch-Rqmlp .sgrid.key .sp{border-radius:16px;}
+        .tch-Rqmlp .sp-ph, .tch-Rqmlp .sgrid.key .sp-ph{border-radius:11px;}
+        .tch-Rqmlp .content{padding:12px 4px 12px;}
+        .tch-Rqmlp .nm, .tch-Rqmlp .sgrid.key .nm{font-size:14.5px;}
+        .tch-Rqmlp .rl, .tch-Rqmlp .sgrid.key .rl{font-size:12px;margin-top:9px;}
+        .tch-Rqmlp .co, .tch-Rqmlp .sgrid.key .co{font-size:11.5px;}
+        .tch-Rqmlp .sp-tag{font-size:10px;padding:4px 9px;top:9px;left:9px;}
+        .tch-Rqmlp .sgrid.key .sp-ph .init{font-size:46px;}
+    }
+
+    /* touch devices — no hover, so keep LinkedIn tappable & always visible */
+    @media (hover:none){
+        .tch-Rqmlp .sp-ph .ovl{opacity:1;}
+        .tch-Rqmlp .sp .li{opacity:1;transform:none;width:40px;height:40px;right:10px;bottom:10px;}
+    }
+    

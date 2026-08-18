@@ -1,0 +1,293 @@
+/* Partners — reference: .tch-Rr6lp
+   Filter chips carry live counts, then tiers render as labelled groups.
+   Logos always render in full colour — no greyscale, no dimming. Partner marks
+   are brand assets; muting them until hover hides the very thing the section
+   exists to show, and on touch there is no hover to reveal them. */
+
+.sec {
+  padding: var(--sec-pad) 0;
+  background: var(--c-cream);
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.head {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--badge-bg);
+  color: var(--c-red);
+  font-size: var(--fs-badge);
+  font-weight: 600;
+  letter-spacing: var(--ls-badge);
+  padding: 8px 17px;
+  border-radius: var(--rad-pill);
+}
+
+.head h2 {
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  letter-spacing: var(--ls-tight);
+  line-height: 1.12;
+  margin: 18px 0 0;
+}
+
+.sub {
+  font-size: var(--fs-sub);
+  line-height: 1.6;
+  color: var(--c-muted);
+  margin: 16px auto 0;
+  max-width: 600px;
+}
+
+/* ---- filter chips -------------------------------------------------------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.chip {
+  appearance: none;
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  color: var(--c-muted);
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 9px 16px;
+  border-radius: var(--rad-pill);
+  transition: color 0.22s ease, border-color 0.22s ease, background 0.22s ease,
+    transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.chip:hover {
+  color: var(--c-ink);
+  border-color: var(--r-26);
+  transform: translateY(-1px);
+}
+
+.chip[data-on="true"] {
+  background: var(--grad);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 8px 20px var(--r-20);
+}
+
+.chip .n {
+  opacity: 0.6;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+/* ---- tier groups --------------------------------------------------------- */
+.tier {
+  margin-top: clamp(44px, 5vw, 64px);
+}
+
+.tier:first-of-type {
+  margin-top: clamp(34px, 4vw, 48px);
+}
+
+.tierHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.tname {
+  font-size: clamp(15px, 1.5vw, 18px);
+  font-weight: 800;
+  letter-spacing: var(--ls-card);
+  color: var(--c-ink);
+  white-space: nowrap;
+}
+
+.tierHead i {
+  flex: 1;
+  height: 1px;
+  background: var(--c-line);
+  display: block;
+}
+
+.grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.sp {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: 15px;
+  padding: 10px 10px 11px;
+  transition: transform 0.32s var(--ease-out), box-shadow 0.32s ease,
+    border-color 0.32s ease;
+}
+
+a.sp:hover {
+  transform: translateY(-6px);
+  border-color: var(--card-hover-border);
+  box-shadow: 0 20px 44px rgba(40, 12, 20, 0.13);
+}
+
+.lgbox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  border: 1px solid var(--c-line);
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px;
+  overflow: hidden;
+  transition: border-color 0.32s ease;
+}
+
+.lgbox img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.32s var(--ease-out);
+}
+
+a.sp:hover .lgbox {
+  border-color: var(--r-26);
+}
+
+a.sp:hover .lgbox img {
+  transform: scale(1.04);
+}
+
+.init {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--c-red);
+  opacity: 0.5;
+  letter-spacing: var(--ls-h);
+}
+
+.pname {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin-top: 11px;
+  color: var(--c-ink);
+}
+
+.bar {
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  margin-top: 7px;
+  background: linear-gradient(90deg, var(--c-red), var(--c-crimson));
+  transition: width 0.38s var(--ease-out);
+}
+
+a.sp:hover .bar {
+  width: 26px;
+}
+
+.excl {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  background: var(--grad);
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: var(--rad-pill);
+}
+
+/* ---- closing CTA --------------------------------------------------------- */
+.foot {
+  margin-top: clamp(44px, 5vw, 64px);
+  text-align: center;
+}
+
+.footLine {
+  font-size: var(--fs-sub);
+  color: var(--c-muted);
+}
+
+.footCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--c-red);
+}
+
+.footCta svg {
+  transition: transform 0.25s ease;
+}
+
+.footCta:hover svg {
+  transform: translateX(4px);
+}
+
+.footCta:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 561px) {
+  .sp {
+    padding: 14px 14px 13px;
+    border-radius: var(--rad-partner);
+  }
+  .lgbox {
+    padding: 13px;
+    border-radius: 11px;
+  }
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(14px, 2vw, 22px);
+  }
+  .init {
+    font-size: 30px;
+  }
+  .pname {
+    font-size: 15.5px;
+    line-height: 1.3;
+  }
+}
+
+@media (min-width: 1041px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1600px) {
+  .wrap {
+    max-width: var(--wrap-xl);
+  }
+}

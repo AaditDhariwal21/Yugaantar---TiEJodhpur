@@ -1,0 +1,157 @@
+/* Final CTA band + footer — reference: .tft-Rrelp
+   One component, one gradient: the CTA band and the footer columns sit on the
+   same maroon→crimson field, divided by a hairline rather than a colour change. */
+
+.foot {
+  width: 100%;
+  background: var(--grad-footer);
+  color: #fff;
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ---- 3.14 final CTA ------------------------------------------------------ */
+.fcta {
+  padding: var(--sec-pad-fcta) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  text-align: center;
+}
+
+.fcta h2 {
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 800;
+  letter-spacing: var(--ls-tight);
+  line-height: 1.1;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.fcta p {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 16px auto 0;
+  max-width: 560px;
+}
+
+.ctaBtn {
+  margin-top: 28px;
+}
+
+/* ---- 3.15 footer columns ------------------------------------------------- */
+.cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 34px;
+  padding: clamp(48px, 6vw, 72px) 0 0;
+}
+
+.fbrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 21px;
+}
+
+.fbrand img {
+  height: 38px;
+  width: auto;
+}
+
+.mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--rad-sm);
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  flex: none;
+}
+
+.ftag {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 15px;
+  line-height: 1.65;
+  margin-top: 16px;
+  max-width: 340px;
+}
+
+.ftitle {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 700;
+}
+
+.flist {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.flist a,
+.crow {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  transition: color 0.2s ease;
+}
+
+.flist a:hover {
+  color: #fff;
+}
+
+.crow {
+  align-items: flex-start;
+}
+
+.ci {
+  opacity: 0.7;
+  flex: none;
+  margin-top: 3px;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 34px 0;
+  margin-top: clamp(40px, 5vw, 64px);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.bottom a {
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (min-width: 861px) {
+  .cols {
+    grid-template-columns: 1.5fr 1fr 1.2fr;
+    gap: 40px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .wrap {
+    max-width: var(--wrap-xl);
+  }
+}

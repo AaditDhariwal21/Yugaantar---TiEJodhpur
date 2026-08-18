@@ -1,0 +1,177 @@
+/* ============================================================================
+   Design tokens — extracted from tieconamsterdam.org in Phase Zero.
+   Every value here is measured, not chosen. See design-reference/design-audit.md.
+   ========================================================================== */
+
+:root {
+  /* ---- Colour ------------------------------------------------------------ */
+  --c-red: #e4002b;              /* TiE brand red */
+  --c-crimson: #c20e4d;          /* gradient partner to red */
+  --c-gold: #d8b46a;             /* agenda section accent only */
+  --c-ink: #1a1620;              /* primary text */
+  --c-muted: #6b6571;            /* secondary text */
+  --c-line: #ece7e5;             /* hairline border */
+  --c-cream: #faf7f6;            /* alternating section ground */
+  --c-hero: #fffbfa;             /* hero gradient base */
+  --c-white: #ffffff;
+  --c-dark: #2a0c13;             /* agenda ground */
+  --c-dark-glow: #8e2032;        /* agenda radial glow */
+
+  /* red tint ladder — used for soft fills throughout */
+  --r-05: rgba(228, 0, 43, 0.05);
+  --r-06: rgba(228, 0, 43, 0.06);
+  --r-07: rgba(228, 0, 43, 0.07);
+  --r-08: rgba(228, 0, 43, 0.08);
+  --r-12: rgba(228, 0, 43, 0.12);
+  --r-14: rgba(228, 0, 43, 0.14);
+  --r-20: rgba(228, 0, 43, 0.2);
+  --r-22: rgba(228, 0, 43, 0.22);
+  --r-26: rgba(228, 0, 43, 0.26);
+  --r-30: rgba(228, 0, 43, 0.3);
+  --r-33: rgba(228, 0, 43, 0.33);
+  --r-38: rgba(228, 0, 43, 0.38);
+  --r-45: rgba(228, 0, 43, 0.45);
+  --r-55: rgba(228, 0, 43, 0.55);
+
+  /* the signature gradient — every CTA, chip, rule and avatar ring */
+  --grad: linear-gradient(135deg, var(--c-red), var(--c-crimson));
+  --grad-text: linear-gradient(120deg, var(--c-red), var(--c-crimson));
+  --grad-feat: linear-gradient(150deg, var(--c-red), var(--c-crimson));
+  --grad-footer: linear-gradient(125deg, #2a0a12 0%, #7c0c24 55%, #b11030 100%);
+
+  /* ---- Typography -------------------------------------------------------- */
+  --font: "TiEconInterVariable", Inter, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+
+  --fs-h2: clamp(29px, 3.8vw, 46px);
+  --fs-h2-split: clamp(28px, 3.6vw, 44px);
+  --fs-h2-banner: clamp(24px, 3.2vw, 40px);
+  --fs-h2-attend: clamp(22px, 2.1vw, 27px);
+  --fs-sub: clamp(16px, 1.4vw, 18px);
+  --fs-sub-hero: clamp(16.5px, 1.6vw, 20px);
+  --fs-price: clamp(34px, 4vw, 42px);
+  --fs-stat: clamp(30px, 3.4vw, 44px);
+  --fs-badge: 12.5px;
+  --fs-card-t: 19px;
+  --fs-card-d: 14.5px;
+
+  --ls-tight: -0.025em;
+  --ls-h: -0.02em;
+  --ls-card: -0.01em;
+  --ls-badge: 0.03em;
+  --ls-label: 0.12em;
+  --ls-track: 0.14em;
+
+  /* ---- Layout ------------------------------------------------------------ */
+  --wrap: 1200px;
+  --wrap-nav: 1240px;
+  --wrap-xl: 1320px;
+  --wrap-nav-xl: 1360px;
+  --gutter: clamp(22px, 5vw, 56px);
+  --gutter-nav: clamp(20px, 5vw, 56px);
+
+  --sec-pad: clamp(64px, 8vw, 112px);
+  --sec-pad-committee: clamp(56px, 7vw, 96px);
+  --sec-pad-attend: clamp(44px, 5.5vw, 74px);
+  --sec-pad-fcta: clamp(56px, 7vw, 92px);
+
+  --nav-h: 76px;
+
+  /* ---- Radii ------------------------------------------------------------- */
+  --rad-pill: 999px;
+  --rad-ticket: 24px;
+  --rad-card: 22px;
+  --rad-md: 20px;
+  --rad-partner: 18px;
+  --rad-tile: 14px;
+  --rad-chip: 13px;
+  --rad-sm: 12px;
+  --rad-xs: 10px;
+
+  /* ---- Shadows ----------------------------------------------------------- */
+  --sh-card: 0 10px 30px rgba(40, 12, 20, 0.06);
+  --sh-ticket: 0 4px 16px rgba(40, 12, 20, 0.05), 0 18px 44px rgba(40, 12, 20, 0.07);
+  --sh-hover: 0 22px 52px rgba(40, 12, 20, 0.1);
+  --sh-pill: 0 24px 60px rgba(40, 12, 20, 0.1);
+  --sh-banner: 0 36px 80px rgba(40, 12, 20, 0.2);
+  --sh-imgcard: 0 30px 70px rgba(40, 12, 20, 0.14);
+  --sh-cta: 0 12px 28px rgba(228, 0, 43, 0.2);
+  --sh-cta-hover: 0 18px 38px rgba(228, 0, 43, 0.27);
+  --sh-nav-cta: 0 10px 24px rgba(228, 0, 43, 0.2);
+  --sh-nav-cta-hover: 0 16px 32px rgba(228, 0, 43, 0.27);
+  --sh-agenda-row: 0 8px 20px rgba(0, 0, 0, 0.22);
+  --sh-soft: 0 3px 12px rgba(20, 16, 40, 0.06);
+
+  /* ---- Easing ------------------------------------------------------------ */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);   /* the house curve */
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);   /* agenda only */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* badge / button pop */
+
+  /* ---- Soft surfaces ------------------------------------------------------
+     These are the tinted fills, borders and rings behind badges, chips, icon
+     tiles and avatars.
+
+     Heads-up if you are diffing against tieconamsterdam.org: the reference
+     does NOT render most of these. Its Framer build emits the token
+     substitution `rgb(228, 0, 43)12` where the designer wrote `#E4002B12`
+     (red at 7%). That is invalid CSS, so the browser discards the whole
+     declaration and the surface paints bare — verified against computed
+     styles, not inferred.
+
+     We ship the values their CSS was written to produce. The alpha levels
+     below are the ones stranded in the reference's own source, so this is
+     restoration, not reinterpretation. Nothing here affects layout or
+     spacing; it is purely the missing backgrounds and borders.
+
+     To reproduce the reference's rendering bug-for-bug — e.g. for a strict
+     side-by-side — add class="reference-parity" to <html>. */
+  --badge-bg: var(--r-07);
+  --icon-tile-bg: linear-gradient(135deg, var(--r-08), rgba(194, 14, 77, 0.08));
+  --role-chip-bg: var(--r-06);
+  --avatar-ring: 0 0 0 3px #fff, 0 0 0 4px var(--r-20);
+  --avatar-ring-hover: 0 0 0 3px #fff, 0 0 0 4px var(--c-red);
+  --avatar-ph-bg: linear-gradient(135deg, var(--r-08), rgba(194, 14, 77, 0.08));
+  --datechip-bg: var(--r-06);
+  --datechip-border: var(--r-20);
+  --perk-bg: linear-gradient(135deg, var(--r-08), var(--r-05));
+  --perk-border: var(--r-22);
+  --inc-bg: var(--r-05);
+  --card-hover-border: var(--r-20);
+  --charter-bg: var(--r-05);
+  --charter-border: var(--r-20);
+  --photo-ph-bg: linear-gradient(135deg, var(--r-08), rgba(194, 14, 77, 0.08));
+  --perk-em-bg: var(--r-08);
+  --perk-em-border: var(--r-22);
+}
+
+/* Opt-in: drop the same declarations the reference's build drops, so the page
+   renders exactly as tieconamsterdam.org does today. Diffing aid only. */
+.reference-parity {
+  --badge-bg: transparent;
+  --icon-tile-bg: none;
+  --role-chip-bg: transparent;
+  --avatar-ring: none;
+  --avatar-ring-hover: none;
+  --avatar-ph-bg: none;
+  --datechip-bg: transparent;
+  --datechip-border: transparent;
+  --perk-bg: none;
+  --perk-border: transparent;
+  --inc-bg: transparent;
+  --card-hover-border: var(--c-line);
+  --charter-bg: transparent;
+  --charter-border: transparent;
+  --photo-ph-bg: none;
+  --perk-em-bg: transparent;
+  --perk-em-border: transparent;
+}
+
+/* Inter Variable, self-hosted the same way the reference does it. */
+@font-face {
+  font-family: "TiEconInterVariable";
+  src: url("https://rsms.me/inter/font-files/InterVariable.woff2?v=4.0")
+    format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}

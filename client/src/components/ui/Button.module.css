@@ -1,0 +1,61 @@
+/* Shared pill button — reference: .btn / .btn-grad / .btn-soft.
+   Height lands at ~48px, clearing the 44px touch-target floor on mobile. */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 15.5px;
+  border-radius: var(--rad-pill);
+  padding: 14px 28px;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+
+.grad {
+  background: var(--grad);
+  color: #fff;
+  box-shadow: var(--sh-cta);
+}
+
+.grad:hover,
+.grad:focus-visible {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--sh-cta-hover);
+}
+
+.soft {
+  background: var(--c-white);
+  color: var(--c-ink);
+  border: 1px solid var(--c-line);
+  box-shadow: var(--sh-soft);
+}
+
+.soft:hover,
+.soft:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--r-33);
+}
+
+/* white-on-gradient, used inside the footer band */
+.light {
+  background: #fff;
+  color: var(--c-ink);
+}
+
+.light:hover,
+.light:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}

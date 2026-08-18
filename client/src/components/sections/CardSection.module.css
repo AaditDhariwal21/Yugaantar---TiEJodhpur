@@ -1,0 +1,168 @@
+/* Shared card-grid system — reference: .tch-Rqelp
+   Used by Experience (3.4), Who's in the Room (3.5) and Themes (3.6).
+   Mobile-first: 1 column → 2 → 3 (or 4 for the wider .g4 tracks). */
+
+.sec {
+  padding: var(--sec-pad) 0;
+  background: var(--c-white);
+}
+
+.alt {
+  background: var(--c-cream);
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.head {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--badge-bg);
+  color: var(--c-red);
+  font-size: var(--fs-badge);
+  font-weight: 600;
+  letter-spacing: var(--ls-badge);
+  padding: 8px 17px;
+  border-radius: var(--rad-pill);
+}
+
+.head h2 {
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  letter-spacing: var(--ls-tight);
+  line-height: 1.12;
+  margin: 18px 0 0;
+}
+
+.sub {
+  font-size: var(--fs-sub);
+  line-height: 1.6;
+  color: var(--c-muted);
+  margin: 16px auto 0;
+  max-width: 600px;
+}
+
+.grid {
+  display: grid;
+  gap: 22px;
+  margin-top: 52px;
+  grid-template-columns: 1fr;
+}
+
+.card {
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: var(--rad-card);
+  padding: 30px;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sh-hover);
+  border-color: var(--card-hover-border);
+}
+
+.ic {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--rad-tile);
+  background: var(--icon-tile-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-red);
+}
+
+.t {
+  font-size: var(--fs-card-t);
+  font-weight: 700;
+  margin-top: 20px;
+  letter-spacing: var(--ls-card);
+}
+
+.d {
+  font-size: var(--fs-card-d);
+  color: var(--c-muted);
+  margin-top: 9px;
+  line-height: 1.6;
+}
+
+/* ---- full-width image banner (Experience only) --------------------------- */
+.moment {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  min-height: clamp(300px, 42vw, 460px);
+  display: flex;
+  align-items: flex-end;
+  background: var(--grad);
+  box-shadow: var(--sh-banner);
+}
+
+.moment img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ov {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 8, 12, 0.05) 30%, rgba(20, 8, 12, 0.72) 100%);
+}
+
+.mtxt {
+  position: relative;
+  padding: clamp(28px, 4vw, 52px);
+  color: #fff;
+  max-width: 640px;
+}
+
+.meye {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.mh {
+  font-size: var(--fs-h2-banner);
+  font-weight: 800;
+  letter-spacing: var(--ls-h);
+  line-height: 1.15;
+  margin-top: 12px;
+}
+
+@media (min-width: 561px) {
+  .g3,
+  .g4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 981px) {
+  .g3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .g4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1600px) {
+  .wrap {
+    max-width: var(--wrap-xl);
+  }
+}

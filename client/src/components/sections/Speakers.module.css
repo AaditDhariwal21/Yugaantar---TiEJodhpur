@@ -1,0 +1,344 @@
+/* Speakers — reference: .tch-Rqmlp
+   Cream ground. Two tiers: a centred flex row of larger "key" cards, and a
+   denser auto-fit grid for the rest.
+
+   Key speakers use flex, not grid, on purpose — an auto-fit grid stretches its
+   tracks to fill the row, so two key speakers would each blow up to ~520px. */
+
+.sec {
+  padding: var(--sec-pad) 0;
+  background: var(--c-cream);
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.head {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--badge-bg);
+  color: var(--c-red);
+  font-size: var(--fs-badge);
+  font-weight: 600;
+  letter-spacing: var(--ls-badge);
+  padding: 8px 17px;
+  border-radius: var(--rad-pill);
+}
+
+.head h2 {
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  letter-spacing: var(--ls-tight);
+  line-height: 1.12;
+  margin: 18px 0 0;
+}
+
+.sub {
+  font-size: var(--fs-sub);
+  line-height: 1.6;
+  color: var(--c-muted);
+  margin: 16px auto 0;
+  max-width: 600px;
+}
+
+/* group label: an eyebrow with a hairline running off to the right */
+.glabel {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: clamp(56px, 6vw, 76px);
+}
+
+.glabel span {
+  font-size: var(--fs-badge);
+  font-weight: 700;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-red);
+  white-space: nowrap;
+}
+
+.glabel i {
+  flex: 1;
+  height: 1px;
+  background: var(--c-line);
+  display: block;
+}
+
+.sgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 40px;
+}
+
+/* the 14px gap is load-bearing: it pairs with the 7px in the card's
+   `calc(50% - 7px)` basis so two cards land exactly on the row. Widen the gap
+   without widening the basis and they overflow and wrap to one per row. */
+.key {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* 2-up on phones, matching the general grid beside it — the reference sizes
+   these by percentage below 561px and only switches to a fixed 262px basis
+   once there is room for the larger card. */
+.key .sp {
+  flex: 0 1 calc(50% - 7px);
+  max-width: none;
+}
+
+.tight {
+  margin-top: 26px;
+}
+
+/* ---- card ---------------------------------------------------------------- */
+.sp {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: var(--rad-md);
+  padding: 13px 13px 6px;
+  transition: transform 0.32s var(--ease-out), box-shadow 0.32s ease,
+    border-color 0.32s ease;
+}
+
+.sp:hover {
+  transform: translateY(-8px);
+  border-color: var(--card-hover-border);
+  box-shadow: 0 22px 50px rgba(40, 12, 20, 0.14);
+}
+
+.key .sp {
+  box-shadow: var(--sh-card);
+  border-radius: var(--rad-card);
+}
+
+.key .sp:hover {
+  box-shadow: 0 26px 58px rgba(40, 12, 20, 0.16);
+}
+
+/* ---- photo --------------------------------------------------------------- */
+.ph {
+  position: relative;
+  border-radius: var(--rad-tile);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--photo-ph-bg);
+}
+
+.ph img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s var(--ease-out);
+}
+
+.sp:hover .ph img {
+  transform: scale(1.06);
+}
+
+.init {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 46px;
+  font-weight: 800;
+  color: var(--c-red);
+}
+
+.key .ph {
+  border-radius: 16px;
+}
+
+/* gradient that rises from the bottom of the photo on hover */
+.ovl {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: linear-gradient(
+    to top,
+    rgba(26, 22, 32, 0.62) 0%,
+    rgba(26, 22, 32, 0.1) 42%,
+    transparent 62%
+  );
+}
+
+.sp:hover .ovl {
+  opacity: 1;
+}
+
+/* country tag — always visible */
+.tag {
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  z-index: 3;
+  background: var(--grad);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 4px 9px;
+  border-radius: var(--rad-pill);
+}
+
+/* LinkedIn action — revealed on hover over the photo */
+.li {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 4;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--c-red);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+  opacity: 0;
+  transform: translateY(10px) scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s var(--ease-spring),
+    background 0.2s ease, color 0.2s ease;
+}
+
+.sp:hover .li {
+  opacity: 1;
+  transform: none;
+}
+
+.li:hover {
+  background: var(--c-red);
+  color: #fff;
+}
+
+/* ---- caption ------------------------------------------------------------- */
+.content {
+  text-align: center;
+  padding: 16px 6px 14px;
+}
+
+.nm {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: var(--ls-card);
+  color: var(--c-ink);
+}
+
+.bar {
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  margin: 9px auto 0;
+  background: linear-gradient(90deg, var(--c-red), var(--c-crimson));
+  transition: width 0.38s var(--ease-out);
+}
+
+.sp:hover .bar {
+  width: 30px;
+}
+
+.rl {
+  font-size: 12px;
+  color: var(--c-red);
+  margin-top: 9px;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.co {
+  font-size: 11.5px;
+  color: var(--c-muted);
+  margin-top: 3px;
+  line-height: 1.4;
+}
+
+.key .sp:hover .bar {
+  width: 38px;
+}
+
+@media (min-width: 561px) {
+  .sgrid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: clamp(18px, 2.4vw, 28px);
+    margin-top: 56px;
+  }
+  .tight {
+    margin-top: 26px;
+  }
+  .nm {
+    font-size: 17px;
+  }
+  .rl {
+    font-size: 13px;
+    margin-top: 11px;
+  }
+  .co {
+    font-size: 12.5px;
+  }
+  .key .nm {
+    font-size: 19.5px;
+  }
+  .key .rl {
+    font-size: 13.5px;
+  }
+  .key .co {
+    font-size: 13px;
+  }
+  .key {
+    gap: clamp(20px, 2.8vw, 32px);
+  }
+  .key .sp {
+    flex: 0 1 262px;
+    max-width: 300px;
+  }
+  .key .init {
+    font-size: 58px;
+  }
+  .tag {
+    font-size: 11px;
+    padding: 5px 11px;
+    top: 11px;
+    left: 11px;
+  }
+  .li {
+    right: 12px;
+    bottom: 12px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .wrap {
+    max-width: var(--wrap-xl);
+  }
+}
+
+/* touch devices — no hover, so keep the overlay and LinkedIn tappable */
+@media (hover: none) {
+  .ovl {
+    opacity: 1;
+  }
+  .li {
+    opacity: 1;
+    transform: none;
+  }
+}

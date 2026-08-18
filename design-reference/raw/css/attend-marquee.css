@@ -1,0 +1,79 @@
+
+    .tcad-Rqilp{width:100%;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:rgb(26, 22, 32);
+        background:rgb(250, 247, 246);box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+    .tcad-Rqilp *{box-sizing:border-box;}
+    .tcad-Rqilp .wrap{max-width:1200px;margin:0 auto;padding:0 clamp(22px,5vw,56px);position:relative;z-index:1;}
+    /* the section is the positioning context for the field, and the field is
+       full-bleed inside it — it should run to the screen edges, not stop at
+       the content gutter */
+    .tcad-Rqilp .sec{padding:clamp(44px,5.5vw,74px) 0;position:relative;isolation:isolate;}
+    .tcad-Rqilp .field{position:absolute;inset:0;width:100%;height:100%;z-index:0;
+        display:block;pointer-events:none;image-rendering:pixelated;}
+
+    .tcad-Rqilp .bar{display:flex;align-items:center;gap:clamp(24px,3.4vw,48px);}
+    .tcad-Rqilp .lab{flex:none;width:232px;}
+    .tcad-Rqilp .lab h2{font-size:clamp(22px,2.1vw,27px);font-weight:800;letter-spacing:-.025em;line-height:1.16;margin:0;}
+    .tcad-Rqilp .lab .rule{width:30px;height:2px;border-radius:2px;margin:13px 0 0;
+        background:linear-gradient(90deg,rgb(228, 0, 43),rgb(194, 14, 77));}
+    .tcad-Rqilp .lab .sub{font-size:13.5px;line-height:1.55;color:rgb(107, 101, 113);margin:12px 0 0;}
+
+    /* the two lanes. Fade masks rather than a hard clip, so titles dissolve at
+       both edges instead of being chopped. */
+    .tcad-Rqilp .lanes{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;
+        -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);
+        mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);}
+    /* the 4px of padding is headroom for the pill hover lift — overflow:hidden
+       clips vertically too, so without it the raised pill gets its top shaved */
+    .tcad-Rqilp .lane{overflow:hidden;padding:4px 0;}
+    .tcad-Rqilp .track{display:flex;align-items:stretch;width:max-content;will-change:transform;
+        animation-name:mq-Rqilp;animation-timing-function:linear;animation-iteration-count:infinite;}
+    .tcad-Rqilp .track.rev{animation-direction:reverse;}
+    .tcad-Rqilp .lanes:hover .track{animation-play-state:paused;}
+
+    .tcad-Rqilp .pill{flex:none;margin-right:13px;display:inline-flex;align-items:center;
+        padding:11px 19px;border-radius:999px;white-space:nowrap;
+        border:1px solid rgb(236, 231, 229);background:rgb(255, 255, 255);color:rgb(26, 22, 32);
+        font-size:14.5px;font-weight:600;letter-spacing:-.005em;
+        transition:transform .2s ease,border-color .2s ease,color .2s ease;}
+    .tcad-Rqilp .pill:hover{transform:translateY(-2px);border-color:rgba(228,0,43,0.35);color:rgb(228, 0, 43);}
+    .tcad-Rqilp .pill.hot{background:rgba(228,0,43,0.06);border-color:rgba(228,0,43,0.2);color:rgb(228, 0, 43);}
+    .tcad-Rqilp .pill .dot{width:5px;height:5px;border-radius:50%;margin-right:9px;flex:none;
+        background:linear-gradient(135deg,rgb(228, 0, 43),rgb(194, 14, 77));}
+
+    /* DITHER CHIP — a rounded rect among round pills, so it reads as a
+       different kind of object rather than a pill that failed to load. The
+       tinted background is what shows for the one frame before the pattern
+       rasterises, and if canvas is unavailable it is simply what you get. */
+    .tcad-Rqilp .chip{flex:none;margin-right:13px;width:40px;align-self:stretch;
+        border-radius:13px;overflow:hidden;border:1px solid rgba(228,0,43,0.22);
+        background:rgba(228,0,43,0.08);}
+    .tcad-Rqilp .chip img{display:block;width:100%;height:100%;object-fit:cover;
+        image-rendering:pixelated;}
+
+    @keyframes mq-Rqilp{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+
+    @media (min-width:1600px){ .tcad-Rqilp .wrap{max-width:1320px;} }
+
+    /* stacked: the label sits above the lanes, and the lanes go full-bleed so
+       titles run off both screen edges instead of stopping at the padding */
+    @media (max-width:860px){
+        .tcad-Rqilp .bar{flex-direction:column;align-items:flex-start;gap:22px;}
+        .tcad-Rqilp .lab{width:100%;}
+        .tcad-Rqilp .lanes{width:100vw;margin-left:calc(50% - 50vw);}
+        .tcad-Rqilp .pill{font-size:13.5px;padding:10px 16px;}
+        .tcad-Rqilp .chip{width:33px;border-radius:11px;}
+    }
+
+    /* no motion: the duplicate copy is dropped and the titles simply wrap into a
+       static cloud, so the content is all still there and nothing moves. The
+       chips go with it — with the lane wrapped into a block they would be
+       punctuation in a paragraph that no longer has a direction to punctuate. */
+    @media (prefers-reduced-motion:reduce){
+        .tcad-Rqilp .track{animation:none;width:auto;flex-wrap:wrap;align-items:center;}
+        .tcad-Rqilp .pill.dup,.tcad-Rqilp .chip{display:none;}
+        .tcad-Rqilp .lanes{-webkit-mask-image:none;mask-image:none;}
+        .tcad-Rqilp .lane{overflow:visible;}
+        .tcad-Rqilp .pill{margin-bottom:13px;}
+        .tcad-Rqilp .pill:hover{transform:none;}
+    }
+    
