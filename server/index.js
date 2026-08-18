@@ -5,7 +5,22 @@ import registerRoutes from "./routes/register.js";
 const app = express();
 const PORT = process.env.PORT || 5181;
 
-app.use(cors({ origin: process.env.CORS_ORIGIN || "http://localhost:5173" }));
+/* CORS_ORIGIN is a comma-separated allowlist so production, preview and local
+   can share one deployment. Requests with no Origin header (curl, health
+   checks, server-to-server) are allowed through. */
+const allowed = (process.env.CORS_ORIGIN || "http://localhost:5173")
+  .split(",")
+  .map((o) => o.trim())
+  .filter(Boolean);
+
+app.use(
+  cors({
+    origin(origin, cb) {
+      if (!origin || allowed.includes(origin)) return cb(null, true);
+      cb(new Error(`Origin ${origin} not allowed by CORS`));
+    },
+  })
+);
 app.use(express.json({ limit: "32kb" }));
 
 app.get("/api/health", (_req, res) => res.json({ ok: true }));
