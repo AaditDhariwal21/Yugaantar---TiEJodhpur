@@ -19,8 +19,8 @@ Reference: <https://tieconamsterdam.org/> · Audit: [`design-reference/design-au
 | 3.1 | Navbar | — | ✅ sticky, translucent+blur, burger < 1100px |
 | 3.2 | Hero | `#top` | ✅ canvas grid headline, meta row, 2 CTAs, count-up stat pill |
 | 3.3 | About | `#about` | ✅ split + 4-stat gradient-text grid |
-| 3.4 | Experience | `#experience` | ✅ 6-card grid on cream + full-width image banner |
-| 3.5 | Who's in the Room | — | ✅ 4-card grid on cream |
+| 3.4 | Experience | `#experience` | ✅ 9-card grid on cream + full-width image banner |
+| 3.5 | Who's in the Room | — | ✅ 8-card grid on cream |
 | 3.6 | On the Agenda (themes) | `#agenda` | ✅ 6-card grid |
 | 3.7 | Who should attend | `#attend` | ✅ label column + 2 counter-scrolling lanes, dither field & chips |
 | 3.8 | Speakers | `#speakers` | ✅ key (flex) + general (grid) tiers, hover LinkedIn, group labels |
@@ -61,8 +61,18 @@ Reference: <https://tieconamsterdam.org/> · Audit: [`design-reference/design-au
 - "Conference" became "festival" in the badge, page title, meta description and
   footer tagline, matching the wording you gave for the badge.
 
+**Round 2 (final copy supplied)**
+
+- Hero sub-line, and the date row now reads **Startup Festival · 22–23 October 2026**
+- **The Experience** expanded 6 → **9 cards**, all copy final (added Masterclasses,
+  Global Market Access, Showcase & Expo; new `graduation` and `bulb` icons)
+- Red banner: "Two days that connect the people, capital and ideas shaping
+  Jodhpur's startup economy."
+- **Who's in the Room** expanded 4 → **8 cards**, all copy final
+
 **Still placeholder** — speakers, committee, session titles, prices, partner
-logos, community stats, chapter address, supporting photography, logo asset.
+logos, community stats, chapter address, supporting photography, logo asset,
+About body, Themes cards, audience sub-line.
 
 ## Not started
 

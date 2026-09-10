@@ -20,7 +20,7 @@
 export const agendaMeta = {
   badge: "Innovation & Beyond",
   headingLines: ["The", "Agenda"],
-  sub: "[PLACEHOLDER] Two days, deliberately paced — from the opening address to the closing awards. Plenary conversations, parallel breakout tracks, and the breaks where most of the deals actually start.",
+  sub: "Two days, deliberately paced — from the opening address to the closing night. Main-stage conversations, parallel private sessions, pitch rooms and master classes, and the breaks where most of the deals actually start.",
   // labels only; the numbers are derived from `agenda` below
   statLabels: {
     plenary: "Plenary sessions",
@@ -42,10 +42,24 @@ export const agendaMeta = {
   },
 };
 
-/* 22 Oct 2026 is a Thursday, 23 Oct a Friday. */
+/* 22 Oct 2026 is a Thursday, 23 Oct a Friday.
+   `theme` is the main-stage theme for that day, shown under the date. */
 export const agendaDays = [
-  { key: 1, label: "Day 1", short: "22 Oct", date: "Thursday, 22 October 2026" },
-  { key: 2, label: "Day 2", short: "23 Oct", date: "Friday, 23 October 2026" },
+  {
+    key: 1,
+    label: "Day 1",
+    short: "22 Oct",
+    date: "Thursday, 22 October 2026",
+    theme: "Main stage · Local Roots (Build Local)",
+  },
+  {
+    key: 2,
+    label: "Day 2",
+    short: "23 Oct",
+    date: "Friday, 23 October 2026",
+    // TODO(content): confirm the day-two main-stage theme.
+    theme: null,
+  },
 ];
 
 export const agendaFilters = [
@@ -57,12 +71,15 @@ export const agendaFilters = [
 
 export const agenda = [
   // ---------------------------------------------------------------- DAY 1
+  // Main stage theme: Local Roots (Build Local). Confirmed schedule.
+  // `parallel: true` marks sessions that run alongside the main stage rather
+  // than in sequence with it; they are ordered here by start time.
   {
     day: 1,
     type: "break",
-    start: "09:00 AM",
+    start: "08:30 AM",
     end: "09:45 AM",
-    title: "Registrations & Welcome Coffee",
+    title: "Morning Registrations & Welcome Coffee",
     subtitle: "",
   },
   {
@@ -77,113 +94,116 @@ export const agenda = [
     day: 1,
     type: "plenary",
     start: "10:00 AM",
-    end: "10:40 AM",
-    title: "[PLACEHOLDER] India's Next Trillion",
+    end: "10:45 AM",
+    title: "Yugaantar: Minds That Shape Marwar",
     subtitle:
-      "[PLACEHOLDER] Expanding horizons: unlocking India's domestic market at scale.",
-  },
-  {
-    day: 1,
-    type: "plenary",
-    start: "10:40 AM",
-    end: "11:20 AM",
-    title: "[PLACEHOLDER] From Payments to Platforms",
-    subtitle: "[PLACEHOLDER] The future of financial innovation and commerce.",
-  },
-  {
-    day: 1,
-    type: "plenary",
-    start: "11:20 AM",
-    end: "12:00 PM",
-    title: "[PLACEHOLDER] AI as Propeller of EBITDA",
-    subtitle: "[PLACEHOLDER] Beyond the buzz: can AI really move the EBITDA needle?",
+      "Three institutions. One region. A shared future. What does Marwar need to become a knowledge, innovation and human-capital powerhouse?",
   },
   {
     day: 1,
     type: "breakout",
+    parallel: true,
+    start: "10:30 AM",
+    end: "11:30 AM",
+    title: "Yugaantar: The Inner Circle",
+    subtitle:
+      "Private conversations. Powerful connections. What does your business need next?",
+  },
+  {
+    day: 1,
+    type: "plenary",
+    start: "10:45 AM",
+    end: "11:30 AM",
+    title: "The Fun of Being in a Startup",
+    subtitle:
+      "What does it really take to build something from nothing — and enjoy the chaos along the way?",
+  },
+  {
+    day: 1,
+    type: "plenary",
+    start: "11:30 AM",
+    end: "12:00 PM",
+    title: "AI: Build or Be Built",
+    subtitle:
+      "If AI gives every entrepreneur access to extraordinary intelligence, what will Marwar choose to build with it?",
+  },
+  {
+    day: 1,
+    type: "breakout",
+    parallel: true,
+    start: "11:30 AM",
+    end: "12:30 PM",
+    title: "Yugaantar: The Inner Circle",
+    subtitle:
+      "Private conversations. Powerful connections. What does your business need next?",
+  },
+  {
+    day: 1,
+    type: "plenary",
     start: "12:00 PM",
     end: "01:00 PM",
-    title: "Breakout Sessions",
-    subtitle: "",
-    tracks: [
-      {
-        label: "Track 01",
-        title: "[PLACEHOLDER] Beyond Harvest: Agri-Tech & Food Supply Chains",
-        subtitle:
-          "[PLACEHOLDER] From farm to market: building resilient agri-supply chains under climate and regulatory pressure.",
-      },
-      {
-        label: "Track 02",
-        title: "[PLACEHOLDER] Profit vs. Access in Next-Gen Healthcare",
-        subtitle:
-          "[PLACEHOLDER] Healthcare economics: balancing innovation, pricing and market access.",
-      },
-      {
-        label: "Track 03",
-        title: "[PLACEHOLDER] Unlocking Diversity in Capital Access",
-        subtitle:
-          "[PLACEHOLDER] Bridging the funding gap for women founders: DFIs, VCs and corporate venture arms.",
-      },
-    ],
+    title: "TiE U Semi Finals",
+    subtitle: "TiE University semi-finals.",
   },
-  { day: 1, type: "break", start: "01:00 PM", end: "02:30 PM", title: "Lunch", subtitle: "" },
+  { day: 1, type: "break", start: "01:00 PM", end: "02:00 PM", title: "Lunch", subtitle: "" },
   {
     day: 1,
     type: "plenary",
-    start: "02:30 PM",
-    end: "03:15 PM",
-    title: "[PLACEHOLDER] Building for Billions",
-    subtitle: "[PLACEHOLDER] The GTM strategies behind breakthrough companies.",
+    start: "02:00 PM",
+    end: "02:45 PM",
+    title: "Fireside Chat: The Businesses That Built Marwar",
+    subtitle:
+      "From tradition to transformation. What can the next generation do differently without losing what made these businesses successful?",
   },
   {
     day: 1,
     type: "plenary",
-    start: "03:15 PM",
-    end: "04:00 PM",
-    title: "[PLACEHOLDER] Where the Big Money Is Betting",
-    subtitle: "[PLACEHOLDER] The investor's eye: discovering tomorrow's market leaders.",
+    start: "02:45 PM",
+    end: "03:30 PM",
+    title: "Yugaantar Round Tables",
+    subtitle:
+      "One table. One question. One idea for Marwar. One mentor, one investor — purpose-driven networking.",
   },
   {
     day: 1,
     type: "break",
-    start: "04:00 PM",
-    end: "04:30 PM",
+    start: "03:30 PM",
+    end: "04:00 PM",
     title: "Networking & Tea Break",
     subtitle: "",
   },
   {
     day: 1,
-    type: "breakout",
-    start: "04:30 PM",
-    end: "05:30 PM",
-    title: "Breakout Sessions",
+    type: "plenary",
+    start: "04:00 PM",
+    end: "05:00 PM",
+    title: "The Marwar Pitch Room — Semi Finals",
     subtitle: "",
-    tracks: [
-      {
-        label: "Track 01",
-        title: "[PLACEHOLDER] Launching the Marwar Accelerator",
-        subtitle:
-          "[PLACEHOLDER] A regional accelerator for innovative entrepreneurs, with its first cohort companies.",
-      },
-      {
-        label: "Track 02",
-        title: "[PLACEHOLDER] Beyond the Ledger: The AI Accounting Revolution",
-        subtitle: "[PLACEHOLDER] Transforming the future of accounting with AI.",
-      },
-      {
-        label: "Track 03",
-        title: "[PLACEHOLDER] Beyond Earth: Defence & Space-Tech",
-        subtitle:
-          "[PLACEHOLDER] Strategic assets for economic growth and global competitiveness.",
-      },
-    ],
+  },
+  {
+    day: 1,
+    type: "plenary",
+    start: "05:00 PM",
+    end: "06:30 PM",
+    title: "Master Class: Cracking the GTM Code",
+    subtitle: "The GTM code and the sales funnel.",
+  },
+  { day: 1, type: "break", start: "06:30 PM", end: "07:15 PM", title: "Break", subtitle: "" },
+  {
+    day: 1,
+    type: "plenary",
+    start: "07:15 PM",
+    end: "08:00 PM",
+    title: "The Connection Hut",
+    subtitle:
+      "Gamified speed dating with investors, customers, industry partners, founders and emerging sectors.",
   },
   {
     day: 1,
     type: "break",
-    start: "07:00 PM",
-    end: "10:00 PM",
-    title: "Gala Dinner",
+    start: "08:00 PM",
+    end: "Onward",
+    title: "Cultural Night / Open Networking / Dinner",
     subtitle: "",
   },
 

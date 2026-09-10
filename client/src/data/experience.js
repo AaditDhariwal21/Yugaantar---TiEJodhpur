@@ -7,43 +7,60 @@ export const experience = {
   badge: "The Experience",
   heading: "Two days designed for momentum, not just talks.",
   sub: "Every format is built to help you learn, raise, hire, and partner.",
+  /* Nine cards, rendered 1 / 2 / 3 up — so the grid stays square at every
+     breakpoint. Order matches the supplied layout. */
   cards: [
     {
       icon: "mic",
       title: "Keynotes & Fireside Chats",
-      body: "[PLACEHOLDER] Marquee founders and investors on what's working now in building and funding companies.",
+      body: "Conversations with marquee founders and investors on what's working now in building and funding companies.",
     },
     {
       icon: "rocket",
       title: "Startup Pitch & Demo Day",
-      body: "[PLACEHOLDER] Watch the most promising startups pitch live to a room of active investors.",
+      body: "Watch the most promising startups pitch live to a room of active investors.",
     },
     {
       icon: "handshake",
       title: "Investor Connect",
-      body: "[PLACEHOLDER] Curated introductions between founders and TiE Angels and institutional investors.",
+      body: "Curated introductions between founders and TiE Angels and institutional investors.",
     },
     {
       icon: "table",
       title: "Roundtables & Workshops",
-      body: "[PLACEHOLDER] Small-room, practitioner-led sessions on scaling across borders.",
+      body: "Small-room, practitioner-led sessions on scaling across borders.",
     },
     {
       icon: "users",
       title: "Networking That Counts",
-      body: "[PLACEHOLDER] Meet founders, investors, and operators from across India and the wider TiE network.",
+      body: "Meet founders, investors, and operators from across India and the wider TiE network.",
     },
     {
       icon: "compass",
       title: "Mentorship Sessions",
-      body: "[PLACEHOLDER] One-on-one and small-group time with seasoned founders and mentors from the TiE network.",
+      body: "One-on-one and small-group time with seasoned founders and mentors from the TiE network.",
+    },
+    {
+      icon: "graduation",
+      title: "Masterclasses",
+      body: "Small-group sessions on Go-to-Market Strategy, Valuation, AI and Fundraising.",
+    },
+    {
+      icon: "globe",
+      title: "Global Market Access",
+      body: "Insights and connections to help startups expand from local roots to global routes.",
+    },
+    {
+      icon: "bulb",
+      title: "Showcase & Expo",
+      body: "Explore innovative solutions, meet ecosystem partners and discover new opportunities.",
     },
   ],
   banner: {
     image: null, // TODO(content): full-width venue / city photograph
     eyebrow: "Jodhpur · 2026",
     heading:
-      "[PLACEHOLDER] Two days that connect the people, capital, and ideas shaping India's startup economy.",
+      "Two days that connect the people, capital and ideas shaping Jodhpur's startup economy.",
   },
 };
 
@@ -51,26 +68,47 @@ export const audience = {
   badge: "Who's in the Room",
   heading: "A room built around the people who build, fund, and scale.",
   sub: "[PLACEHOLDER] Yugaantar convenes the full ecosystem — not just one corner of it.",
+  /* Eight segments, rendered 1 / 2 / 4 up — two clean rows on desktop. */
   cards: [
     {
       icon: "rocket",
       title: "Founders & Startups",
-      body: "[PLACEHOLDER] Early-stage and scaling teams looking for capital, mentors, and customers.",
+      body: "Early-stage and scaling companies building the next wave of innovation.",
+    },
+    {
+      icon: "star",
+      title: "Unicorns & Scale-ups",
+      body: "High-growth companies and unicorn leaders sharing hard-won lessons on scaling and global ambition.",
     },
     {
       icon: "trend",
       title: "Investors & VCs",
-      body: "[PLACEHOLDER] Angels, funds, and TiE Angels actively deploying across India.",
+      body: "Angels, venture funds, family offices and institutional investors looking for the next big opportunity.",
     },
     {
       icon: "building",
       title: "Corporate & Enterprise Leaders",
-      body: "[PLACEHOLDER] Decision-makers scouting innovation, partnerships, and talent.",
+      body: "Decision-makers seeking innovation, partnerships, talent and new growth opportunities.",
+    },
+    {
+      icon: "handshake",
+      title: "Industry Leaders & Partners",
+      body: "Sector leaders opening doors to pilots, customers, partnerships and market access.",
+    },
+    {
+      icon: "compass",
+      title: "Mentors & Experts",
+      body: "Seasoned entrepreneurs, operators and domain specialists offering experience and perspective.",
+    },
+    {
+      icon: "shield",
+      title: "Ecosystem & Policy",
+      body: "Government, academia, accelerators, advisors and institutions shaping the innovation ecosystem.",
     },
     {
       icon: "globe",
-      title: "Ecosystem & Policy",
-      body: "[PLACEHOLDER] Accelerators, advisors, academia, and public-sector innovation leaders.",
+      title: "Global & Strategic Leaders",
+      body: "International investors, businesses and ecosystem leaders enabling cross-border connections and global expansion.",
     },
   ],
 };

@@ -51,6 +51,9 @@ function AgendaRow({ block, index }) {
     <>
       <div className={s.title}>{block.title}</div>
       {block.subtitle && <p className={s.subtitle}>{block.subtitle}</p>}
+      {block.parallel && (
+        <div className={s.meta}>Parallel session · runs alongside the main stage</div>
+      )}
     </>
   );
 
@@ -131,7 +134,11 @@ export default function Agenda() {
      never leave the stat tiles claiming the wrong numbers. */
   const stats = useMemo(() => {
     const plenary = agenda.filter((b) => b.type === "plenary").length;
-    const tracks = agenda.reduce((n, b) => n + (b.tracks ? b.tracks.length : 0), 0);
+    // a breakout row either fans out into tracks, or is itself one session
+    const tracks = agenda.reduce(
+      (n, b) => n + (b.tracks ? b.tracks.length : b.type === "breakout" ? 1 : 0),
+      0
+    );
     return [
       { value: String(plenary), label: agendaMeta.statLabels.plenary },
       { value: String(tracks), label: agendaMeta.statLabels.breakout },
@@ -203,6 +210,7 @@ export default function Agenda() {
               <div className={s.date}>{activeDay.date}</div>
               <div className={s.venue}>{agendaMeta.venue}</div>
             </div>
+            {activeDay.theme && <div className={s.dayTheme}>{activeDay.theme}</div>}
 
             <div className={s.filters} role="tablist" aria-label="Filter by session type">
               {agendaFilters.map((f) => (

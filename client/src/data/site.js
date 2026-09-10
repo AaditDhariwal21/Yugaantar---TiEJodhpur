@@ -7,6 +7,12 @@
    layout can be QA'd against it before real copy lands.
    ========================================================================== */
 
+/* Live ticketing page on TiE's events platform. Defined once and referenced
+   everywhere a Register button points, so switching it later is a one-line
+   change. External URL — HashLink opens it in a new tab. */
+export const registrationUrl =
+  "https://events.tie.org/Yugaantar-TiEJodhpurlaunch-TheStartupFestival";
+
 export const site = {
   eventName: "Yugaantar 2026",
   organiser: "TiE Jodhpur",
@@ -29,7 +35,7 @@ export const nav = {
     { label: "Tickets", href: "/#tickets" },
     { label: "Partnership", href: "/partnership" },
   ],
-  cta: { label: "Register", href: "/tickets/registration-form" },
+  cta: { label: "Register", href: registrationUrl },
 };
 
 export const hero = {
@@ -40,15 +46,15 @@ export const hero = {
   gridHeadline: {
     phrases: ["Local Roots", "Global Routes"],
   },
-  sub: "Two days in Jodhpur with the founders and investors shaping what comes next.",
+  sub: "Two days in Jodhpur with the unicorns, startup founders, investors, and industrialists shaping what comes next.",
   meta: [
     // TODO(content): confirm how the two days split — see `festival` below.
-    { icon: "calendar", label: "Festival", value: "22–23 October 2026" },
+    { icon: "calendar", label: "Startup Festival", value: "22–23 October 2026" },
     { icon: "sparkle", label: "Gala Dinner", value: "22 October 2026" },
     { icon: "pin", label: "Venue", value: "Hotel Radisson, Jodhpur" },
   ],
   ctas: [
-    { label: "Register Your Interest", href: "/tickets/registration-form", variant: "grad" },
+    { label: "Register Your Interest", href: registrationUrl, variant: "grad" },
     { label: "Explore the Programme", href: "#experience", variant: "soft" },
   ],
   // TODO(content): real TiE Global / TiE Jodhpur figures.
@@ -79,7 +85,7 @@ export const about = {
 export const finalCta = {
   heading: "Be part of Yugaantar.",
   body: "Register your interest to receive programme updates and early-access tickets.",
-  cta: { label: "Register Your Interest", href: "/tickets/registration-form" },
+  cta: { label: "Register Your Interest", href: registrationUrl },
 };
 
 export const footer = {

@@ -66,6 +66,10 @@ const ok = (n, pass, note = '') => results.push(`${pass ? 'PASS' : 'FAIL'}  ${n}
   ok('add-to-calendar downloads a valid .ics', icsOk, icsNote);
 
   // --- breakout expand
+  // Day 1's breakouts are parallel sessions with no sub-tracks; the expandable
+  // multi-track rows live on Day 2, so switch there first.
+  await page.getByRole('tab', { name: /Day 2/ }).click();
+  await page.waitForTimeout(700);
   const expander = page.locator('#agendatable button[aria-expanded]').first();
   const before = await page.locator('#agendatable [class*="track"]:not([class*="tracks"])').count();
   await expander.click();
@@ -78,6 +82,8 @@ const ok = (n, pass, note = '') => results.push(`${pass ? 'PASS' : 'FAIL'}  ${n}
   }) });
   await expander.click();
   await page.waitForTimeout(500);
+  await page.getByRole('tab', { name: /Day 1/ }).click();
+  await page.waitForTimeout(400);
 
   // --- partner filters
   await page.locator('#sponsors').scrollIntoViewIfNeeded();
