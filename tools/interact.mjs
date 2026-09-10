@@ -100,22 +100,43 @@ const ok = (n, pass, note = '') => results.push(`${pass ? 'PASS' : 'FAIL'}  ${n}
   // --- anchors
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.waitForTimeout(400);
-  await page.locator('header a', { hasText: 'Speakers' }).first().click();
+  await page.locator('header a', { hasText: 'Delegates' }).first().click();
   await page.waitForTimeout(1400);
-  const atSpeakers = await page.evaluate(() => {
-    const el = document.getElementById('speakers');
+  const atDelegates = await page.evaluate(() => {
+    const el = document.getElementById('delegates');
     return Math.abs(el.getBoundingClientRect().top) < 130;
   });
-  ok('nav anchor scrolls to #speakers', atSpeakers);
+  ok('nav anchor scrolls to #delegates', atDelegates);
 
-  // --- ticket tilt sets custom props
+  // --- pass belt scrolls, pauses on hover, and carries no per-card CTA
   await page.locator('#tickets').scrollIntoViewIfNeeded();
-  await page.waitForTimeout(600);
-  const card = page.locator('#tickets [class*="tk "], #tickets [class*="tk_"]').first();
-  await card.hover({ position: { x: 40, y: 40 } });
-  await page.waitForTimeout(300);
-  const rx = await card.evaluate((el) => el.style.getPropertyValue('--rx'));
-  ok('ticket card tilts on hover', rx !== '' && rx !== '0deg', `--rx=${rx || 'unset'}`);
+  await page.waitForTimeout(700);
+  const beltTx = () => page.evaluate(() =>
+    getComputedStyle(document.querySelector('#tickets [class*="track"]')).transform);
+  const p1 = await beltTx();
+  await page.waitForTimeout(1100);
+  const p2 = await beltTx();
+  ok('pass belt scrolls', p1 !== p2);
+
+  // hover a point, not a card — the cards never hold still for actionability
+  const beltBox = await page.locator('#tickets [class*="belt"]').boundingBox();
+  await page.mouse.move(beltBox.x + beltBox.width / 2, beltBox.y + beltBox.height / 2);
+  await page.waitForTimeout(500);
+  const h1 = await beltTx();
+  await page.waitForTimeout(1100);
+  ok('pass belt pauses on hover', h1 === (await beltTx()));
+  await page.mouse.move(5, 5);
+
+  const passInfo = await page.evaluate(() => ({
+    unique: [...document.querySelectorAll('#tickets [class*="card"]')]
+      .filter((c) => c.getAttribute('aria-hidden') !== 'true').length,
+    perCardCtas: [...document.querySelectorAll('#tickets article a, #tickets article button')].length,
+    footCta: document.querySelector('#tickets a[href*="buyTickets"]')?.getAttribute('target'),
+  }));
+  ok('every pass shown, none with its own CTA',
+     passInfo.unique === 12 && passInfo.perCardCtas === 0,
+     `${passInfo.unique} passes, ${passInfo.perCardCtas} card CTAs`);
+  ok('pass CTA deep-links to the ticket selector', passInfo.footCta === '_blank');
 
   // --- marquee is actually moving
   await page.locator('#attend').scrollIntoViewIfNeeded();

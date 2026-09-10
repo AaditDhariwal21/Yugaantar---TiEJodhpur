@@ -1,10 +1,13 @@
 /* ============================================================================
-   Section 3.8 — Speakers.
+   Section 3.8 — Delegates.
+
+   Not everyone listed here speaks — the section covers speakers, mentors,
+   investors and industry guests alike, which is why it reads "Delegates".
 
    Shape: { name, photo, country, linkedin, role, org, tier }
-     tier: "key"     → the featured, larger flex row ("Key Speakers")
-           "general" → the denser auto-fit grid ("Speakers")
-     photo: null     → card falls back to the speaker's initial on a red tint,
+     tier: "key"     → the featured, larger flex row ("Featured Delegates")
+           "general" → the denser auto-fit grid ("Delegates")
+     photo: null     → card falls back to the person's initial on a red tint,
                        which is exactly what the reference does for missing art.
 
    TODO(content): the entire roster below is placeholder. Replace wholesale —
@@ -12,11 +15,11 @@
    ========================================================================== */
 
 export const speakersMeta = {
-  badge: "The Voices on Stage",
-  heading: "Speakers",
-  sub: "Founders, investors, and global leaders sharing what's working now. More speakers to be announced.",
-  keyLabel: "Key Speakers",
-  generalLabel: "Speakers",
+  badge: "Who You'll Meet",
+  heading: "Delegates",
+  sub: "Founders, investors, mentors and industry leaders joining us in Jodhpur. The line-up is still coming together — names are indicative and subject to change.",
+  keyLabel: "Featured Delegates",
+  generalLabel: "Delegates",
 };
 
 const ph = (n, role, org, country = "India", tier = "general", tag = null) => ({

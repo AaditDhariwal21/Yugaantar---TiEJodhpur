@@ -30,7 +30,7 @@ export const nav = {
     { label: "About", href: "/#about" },
     { label: "Experience", href: "/#experience" },
     { label: "Agenda", href: "/#agendatable" },
-    { label: "Speakers", href: "/#speakers" },
+    { label: "Delegates", href: "/#delegates" },
     { label: "Committee", href: "/#planningcommittee" },
     { label: "Tickets", href: "/#tickets" },
     { label: "Partnership", href: "/partnership" },
@@ -42,9 +42,16 @@ export const hero = {
   badge: "Yugaantar 2026 · The flagship entrepreneurship festival of TiE Jodhpur",
   /* The H1 is drawn on a canvas as blocky grid-type; the phrases cycle with a
      per-cell dissolve. They share one type size so the headline never resizes
-     mid-cycle, and each splits on its space to stack on narrow screens. */
+     mid-cycle, and each splits on its space to stack on narrow screens.
+
+     `lead` is the connector word shown above the band and swapped in step with
+     the dissolve, so across the cycle the full tagline reads
+     "From Local Roots to Global Routes". */
   gridHeadline: {
-    phrases: ["Local Roots", "Global Routes"],
+    phrases: [
+      { lead: "From", text: "Local Roots" },
+      { lead: "to", text: "Global Routes" },
+    ],
   },
   sub: "Two days in Jodhpur with the unicorns, startup founders, investors, and industrialists shaping what comes next.",
   meta: [
@@ -95,7 +102,7 @@ export const footer = {
   explore: [
     { label: "About", href: "/#about" },
     { label: "The Experience", href: "/#experience" },
-    { label: "Speakers", href: "/#speakers" },
+    { label: "Delegates", href: "/#delegates" },
     { label: "Planning Committee", href: "/#planningcommittee" },
     { label: "Tickets", href: "/#tickets" },
     { label: "Partner With Us", href: "/partnership" },

@@ -23,10 +23,10 @@ Reference: <https://tieconamsterdam.org/> · Audit: [`design-reference/design-au
 | 3.5 | Who's in the Room | — | ✅ 8-card grid on cream |
 | 3.6 | On the Agenda (themes) | `#agenda` | ✅ 6-card grid |
 | 3.7 | Who should attend | `#attend` | ✅ label column + 2 counter-scrolling lanes, dither field & chips |
-| 3.8 | Speakers | `#speakers` | ✅ key (flex) + general (grid) tiers, hover LinkedIn, group labels |
+| 3.8 | Delegates | `#delegates` | ✅ featured (flex) + general (grid) tiers, hover LinkedIn, group labels · `#speakers` kept as a legacy anchor |
 | 3.9 | Planning Committee | `#planningcommittee` | ✅ avatar grid, year chip |
 | 3.10 | Agenda | `#agendatable` | ✅ dark section, Day 1/Day 2 switcher, type filters, timeline, expandable breakouts, working .ics download |
-| 3.11 | Tickets | `#tickets` | ✅ 3 cards w/ cursor tilt, glow, grain, shimmer; featured gradient card |
+| 3.11 | Passes | `#tickets` | ✅ 12-pass auto-scrolling belt, pauses on hover, display-only cards + one deep-linked CTA |
 | 3.12 | Partners | `#sponsors` | ✅ counted filter chips, tier groups, logo tiles |
 | 3.13 | Global Community | `#partners` | ✅ 30s logo marquee |
 | 3.14 | Final CTA band | `#contact` | ✅ |
@@ -70,7 +70,23 @@ Reference: <https://tieconamsterdam.org/> · Audit: [`design-reference/design-au
   Jodhpur's startup economy."
 - **Who's in the Room** expanded 4 → **8 cards**, all copy final
 
-**Still placeholder** — speakers, committee, session titles, prices, partner
+**Round 3**
+
+- Hero tagline now reads in full across the cycle: a quiet connector word
+  ("From" / "to") sits above the pixel band and swaps in step with the
+  dissolve, so it spells *From Local Roots to Global Routes*. The `aria-label`
+  carries the whole tagline in one string.
+- **Speakers → Delegates** — nav, footer, heading, group labels and copy.
+  Sub-line now says the line-up is indicative and subject to change. Anchor
+  moved to `#delegates`, with `#speakers` retained so old links still land.
+- **Passes section rebuilt.** All **12** published passes now show, read from
+  the TiE events ticket API on 10 Sep 2026 — real names, early-bird and
+  regular prices, inclusions, exclusions and seat caps. Cards are display-only
+  (no per-card buy button); one CTA under the belt deep-links to the pass
+  selector. The old 3-card tilt/glow treatment and the separate charter
+  callout are gone — Charter Members is now one of the twelve.
+
+**Still placeholder** — delegates, committee, Day 2 sessions, partner
 logos, community stats, chapter address, supporting photography, logo asset,
 About body, Themes cards, audience sub-line.
 

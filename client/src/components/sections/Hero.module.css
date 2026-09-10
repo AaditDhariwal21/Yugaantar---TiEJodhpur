@@ -38,6 +38,34 @@
   line-height: 0;
 }
 
+/* The connector word above the band. Deliberately quiet — it carries the
+   grammar of the tagline without competing with the pixel type under it. */
+.lead {
+  display: block;
+  text-align: center;
+  font-size: clamp(13px, 1.3vw, 17px);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  /* the indent balances the trailing letter-space so it optically centres */
+  text-indent: 0.34em;
+  margin-bottom: clamp(2px, 0.6vw, 8px);
+  animation: leadIn 0.5s var(--ease-out) both;
+}
+
+@keyframes leadIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .gh :global(.gband) {
   position: relative;
   display: block;

@@ -48,7 +48,10 @@ export default function Speakers() {
   const split = key.length > 0 && general.length > 0;
 
   return (
-    <section className={s.sec} id="speakers">
+    /* #delegates is the live anchor; #speakers is kept so any link already
+       shared against the old id still lands here */
+    <section className={s.sec} id="delegates">
+      <span id="speakers" />
       <div className={s.wrap}>
         <Reveal className={s.head} y={20} duration={0.6}>
           <span className={s.badge}>{speakersMeta.badge}</span>

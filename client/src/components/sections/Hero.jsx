@@ -52,7 +52,11 @@ export default function Hero() {
           </motion.span>
         </div>
 
-        <GridHeadline className={s.gh} phrases={hero.gridHeadline.phrases} />
+        <GridHeadline
+          className={s.gh}
+          leadClassName={s.lead}
+          phrases={hero.gridHeadline.phrases}
+        />
 
         <div className={s.heroBot}>
           <motion.p

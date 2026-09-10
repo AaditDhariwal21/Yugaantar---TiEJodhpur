@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /* The hero H1, reproduced from the reference.
 
@@ -13,6 +13,12 @@ import { useEffect, useRef } from "react";
    phrase stacks onto two lines rather than shrinking to nothing, which is what
    the reference does on phones.
 
+   Each phrase can carry a `lead` — the small connector word ("From" / "to")
+   rendered above the band and swapped in step with the dissolve, so the full
+   tagline reads across the cycle. Setting the connectors in the pixel grid
+   instead would roughly double the character count per line, and the glyphs
+   are already only ~10 cells tall on desktop and ~6 on a phone.
+
    Accessible text lives on the <h1>'s aria-label — the canvas is aria-hidden. */
 
 const CELL = 12;
@@ -20,9 +26,10 @@ const GAP = 1; // the grid line that shows between blocks
 const HOLD = 2600; // ms a phrase rests before the next dissolve
 const MORPH = 900; // ms the dissolve itself takes
 
-export default function GridHeadline({ phrases, className }) {
+export default function GridHeadline({ phrases, className, leadClassName }) {
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -98,7 +105,7 @@ export default function GridHeadline({ phrases, className }) {
        so they stay visually consistent as they cycle. */
     const buildMasks = () => {
       const probe = document.createElement("canvas").getContext("2d");
-      const upper = phrases.map((p) => p.toUpperCase());
+      const upper = phrases.map((p) => p.text.toUpperCase());
       const oneLine = upper.map((p) => [p]);
       const twoLine = upper.map((p) => p.split(/\s+/).filter(Boolean));
 
@@ -195,6 +202,8 @@ export default function GridHeadline({ phrases, className }) {
           rollDelays();
           phase = "morph";
           t0 = now;
+          // swap the connector as the dissolve starts, not after it
+          setActive(idx);
         }
       } else {
         const p = Math.min(1, dt / MORPH);
@@ -236,8 +245,18 @@ export default function GridHeadline({ phrases, className }) {
     };
   }, [phrases]);
 
+  // the whole tagline, in order, for screen readers and search
+  const label = phrases
+    .map((p) => [p.lead, p.text].filter(Boolean).join(" "))
+    .join(" ");
+
   return (
-    <h1 className={className} aria-label={phrases.join(". ")}>
+    <h1 className={className} aria-label={label}>
+      {phrases[active] && phrases[active].lead && (
+        <span className={leadClassName} aria-hidden="true" key={active}>
+          {phrases[active].lead}
+        </span>
+      )}
       <span className="gband" ref={wrapRef} aria-hidden="true">
         <span className="glines" />
         <canvas ref={canvasRef} />
