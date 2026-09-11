@@ -744,8 +744,8 @@ export const seedData = {
       "type": "plenary",
       "start": "10:15 AM",
       "end": "11:00 AM",
-      "title": "[PLACEHOLDER] Going Global from Jodhpur",
-      "subtitle": "[PLACEHOLDER] How founders outside the metros reach international markets.",
+      "title": "Going Global from Jodhpur",
+      "subtitle": "How founders outside the metros reach international markets.",
       "parallel": false,
       "tracks": [],
       "order": 2
@@ -755,8 +755,8 @@ export const seedData = {
       "type": "plenary",
       "start": "11:00 AM",
       "end": "11:45 AM",
-      "title": "[PLACEHOLDER] Building Enduring Companies",
-      "subtitle": "[PLACEHOLDER] Lessons from operators who have gone the distance.",
+      "title": "Building Enduring Companies",
+      "subtitle": "Lessons from operators who have gone the distance.",
       "parallel": false,
       "tracks": [],
       "order": 3
@@ -772,18 +772,18 @@ export const seedData = {
       "tracks": [
         {
           "label": "Track 01",
-          "title": "[PLACEHOLDER] Preserving the Elixir: Re-Engineering Water Security",
-          "subtitle": "[PLACEHOLDER] Building water resilience, from corporate operations to social impact."
+          "title": "Preserving the Elixir: Re-Engineering Water Security",
+          "subtitle": "Building water resilience, from corporate operations to social impact."
         },
         {
           "label": "Track 02",
-          "title": "[PLACEHOLDER] Crafts to Commerce: Scaling Rajasthan's Makers",
-          "subtitle": "[PLACEHOLDER] Turning heritage industries into modern, exportable businesses."
+          "title": "Crafts to Commerce: Scaling Rajasthan's Makers",
+          "subtitle": "Turning heritage industries into modern, exportable businesses."
         },
         {
           "label": "Track 03",
-          "title": "[PLACEHOLDER] Tourism, Hospitality & the Experience Economy",
-          "subtitle": "[PLACEHOLDER] Building ventures around Rajasthan's biggest sector."
+          "title": "Tourism, Hospitality & the Experience Economy",
+          "subtitle": "Building ventures around Rajasthan's biggest sector."
         }
       ],
       "order": 4
@@ -804,8 +804,8 @@ export const seedData = {
       "type": "plenary",
       "start": "02:00 PM",
       "end": "03:00 PM",
-      "title": "[PLACEHOLDER] Startup Pitch & Demo Day",
-      "subtitle": "[PLACEHOLDER] The most promising startups pitch live to active investors.",
+      "title": "Startup Pitch & Demo Day",
+      "subtitle": "The most promising startups pitch live to active investors.",
       "parallel": false,
       "tracks": [],
       "order": 6
@@ -815,8 +815,8 @@ export const seedData = {
       "type": "plenary",
       "start": "03:00 PM",
       "end": "03:45 PM",
-      "title": "[PLACEHOLDER] Investor Connect",
-      "subtitle": "[PLACEHOLDER] Curated introductions between founders and TiE Angels and institutional investors.",
+      "title": "Investor Connect",
+      "subtitle": "Curated introductions between founders and TiE Angels and institutional investors.",
       "parallel": false,
       "tracks": [],
       "order": 7
@@ -843,13 +843,13 @@ export const seedData = {
       "tracks": [
         {
           "label": "Track 01",
-          "title": "[PLACEHOLDER] Mentorship Clinic: One-on-One with TiE Charter Members",
-          "subtitle": "[PLACEHOLDER] Small-group time with seasoned founders and mentors."
+          "title": "Mentorship Clinic: One-on-One with TiE Charter Members",
+          "subtitle": "Small-group time with seasoned founders and mentors."
         },
         {
           "label": "Track 02",
-          "title": "[PLACEHOLDER] Family Business to Founder-Led Growth",
-          "subtitle": "[PLACEHOLDER] Professionalising the next generation of Marwari enterprise."
+          "title": "Family Business to Founder-Led Growth",
+          "subtitle": "Professionalising the next generation of Marwari enterprise."
         }
       ],
       "order": 9

@@ -3,6 +3,8 @@
    Who should attend marquee.
    ========================================================================== */
 
+import bannerUrl from "../assets/mehrangarh-fort-jodhpur-rajasthan-hero.jpg";
+
 export const experience = {
   badge: "The Experience",
   heading: "Two days designed for momentum, not just talks.",
@@ -57,7 +59,7 @@ export const experience = {
     },
   ],
   banner: {
-    image: null, // TODO(content): full-width venue / city photograph
+    image: bannerUrl, // Mehrangarh Fort and Jaswant Thada at dusk
     eyebrow: "Jodhpur · 2026",
     heading:
       "Two days that connect the people, capital and ideas shaping Jodhpur's startup economy.",
@@ -67,7 +69,7 @@ export const experience = {
 export const audience = {
   badge: "Who's in the Room",
   heading: "A room built around the people who build, fund, and scale.",
-  sub: "[PLACEHOLDER] Yugaantar convenes the full ecosystem — not just one corner of it.",
+  sub: "Yugaantar convenes the full ecosystem — not just one corner of it.",
   /* Eight segments, rendered 1 / 2 / 4 up — two clean rows on desktop. */
   cards: [
     {
@@ -116,37 +118,37 @@ export const audience = {
 export const themes = {
   badge: "On the Agenda",
   heading: "Themes that matter to founders and investors right now.",
-  sub: "[PLACEHOLDER] A programme shaped around the conversations defining the next decade of tech.",
+  sub: "A programme shaped around the conversations defining the next decade of tech.",
   cards: [
     {
       icon: "map",
       title: "Scaling Across India",
-      body: "[PLACEHOLDER] Playbooks for taking a company from one Indian market to the next.",
+      body: "Playbooks for taking a company from one Indian market to the next.",
     },
     {
       icon: "coins",
       title: "Capital & Dealmaking",
-      body: "[PLACEHOLDER] How founders raise — and how investors decide — in today's climate.",
+      body: "How founders raise — and how investors decide — in today's climate.",
     },
     {
       icon: "chip",
       title: "AI & the Next Wave",
-      body: "[PLACEHOLDER] Where AI is creating real businesses, not just demos.",
+      body: "Where AI is creating real businesses, not just demos.",
     },
     {
       icon: "globe",
       title: "Going Global from India",
-      body: "[PLACEHOLDER] How Indian founders expand into international markets.",
+      body: "How Indian founders expand into international markets.",
     },
     {
       icon: "shield",
       title: "Building Enduring Companies",
-      body: "[PLACEHOLDER] Lessons from operators who've gone the distance.",
+      body: "Lessons from operators who've gone the distance.",
     },
     {
       icon: "spark",
       title: "Women & First-Time Founders",
-      body: "[PLACEHOLDER] Programmes and pathways for the next generation of builders.",
+      body: "Programmes and pathways for the next generation of builders.",
     },
   ],
 };

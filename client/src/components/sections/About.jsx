@@ -14,7 +14,15 @@ export default function About() {
             <p className={s.body}>{about.body}</p>
           </Reveal>
 
-          <Reveal className={s.imgcard} y={22} duration={0.6} delay={0.08}>
+          {/* `art` drops the card chrome: the stamp is a cut-out graphic with
+              its own scalloped edge, so a bordered rectangle behind it would
+              show through the notches. The placeholder still wants the card. */}
+          <Reveal
+            className={`${s.imgcard} ${about.image ? s.art : ""}`}
+            y={22}
+            duration={0.6}
+            delay={0.08}
+          >
             {about.image ? (
               <img src={about.image} alt={about.imageAlt} />
             ) : (

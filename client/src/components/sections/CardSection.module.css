@@ -104,7 +104,11 @@
   min-height: clamp(300px, 42vw, 460px);
   display: flex;
   align-items: flex-end;
-  background: var(--grad);
+  /* The photograph covers this entirely; it shows only in the moment before
+     the image decodes, or if it fails to load. Deliberately a dark neutral
+     rather than the old red fill — the caption is white, and it has to stay
+     readable against whatever is behind it. */
+  background: #241018;
   box-shadow: var(--sh-banner);
 }
 
@@ -116,10 +120,42 @@
   object-fit: cover;
 }
 
+/* Two gradients, because the caption is white and the photograph behind it is
+   not uniformly dark: the hazy city on the left is pale enough that the
+   eyebrow measured 2.3:1 against it, well under the 4.5:1 it needs.
+
+   The first gradient shades the caption column; the second keeps the original
+   bottom fade. Both stop well before the fort so the photograph still reads.
+   Verified with tools/banner-contrast.mjs. */
 .ov {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(20, 8, 12, 0.05) 30%, rgba(20, 8, 12, 0.72) 100%);
+  background:
+    linear-gradient(
+      100deg,
+      rgba(20, 8, 12, 0.78) 0%,
+      rgba(20, 8, 12, 0.5) 34%,
+      rgba(20, 8, 12, 0.12) 60%,
+      rgba(20, 8, 12, 0) 76%
+    ),
+    linear-gradient(180deg, rgba(20, 8, 12, 0.04) 22%, rgba(20, 8, 12, 0.66) 100%);
+}
+
+/* On a phone the caption spans almost the full width, so shading a left-hand
+   column cannot help it — the scrim has to come from below instead. Heavier
+   than it looks necessary because the sky behind the eyebrow is genuinely
+   pale: white text needs the background under 0.18 relative luminance to
+   clear 4.5:1, and that takes roughly 80% coverage here. */
+@media (max-width: 600px) {
+  .ov {
+    background: linear-gradient(
+      180deg,
+      rgba(20, 8, 12, 0.08) 0%,
+      rgba(20, 8, 12, 0.34) 30%,
+      rgba(20, 8, 12, 0.82) 56%,
+      rgba(20, 8, 12, 0.9) 100%
+    );
+  }
 }
 
 .mtxt {

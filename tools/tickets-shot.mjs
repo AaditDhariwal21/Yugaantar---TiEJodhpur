@@ -161,8 +161,7 @@ console.log("\n== prefers-reduced-motion ==");
    the widths actually measured. A narrower card wraps onto more lines and so
    needs MORE height, not less - checking only the extremes let a clipped
    bullet through at tablet width once already. */
-console.log("
-== every pass at every width ==");
+console.log("\n== every pass at every width ==");
 {
   const widths = [1600, 1440, 1280, 1100, 950, 900, 834, 760, 680, 600, 560, 480, 414, 390, 360];
   const bad = [];

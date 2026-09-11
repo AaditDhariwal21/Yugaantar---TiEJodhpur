@@ -60,8 +60,12 @@
    Full-bleed, with the far cards dissolving at the edges rather than being
    clipped against a hard line. */
 .stage {
-  --w: clamp(272px, 25vw, 344px);
-  --h: clamp(468px, 47vw, 558px);
+  /* The floor matters more than the ceiling. A narrow card wraps its
+     inclusions onto more lines, so the tightest desktop width needs the
+     MOST height - letting --w fall to 272px while --h fell to its own
+     minimum clipped a card by 100px at 950px wide. */
+  --w: clamp(330px, 25vw, 344px);
+  --h: 580px;
   /* Spacing has to clear the card in front, not just look layered. The centre
      card's half-width is 0.5w and a neighbour's is 0.41w (0.82 scale), so they
      only stop covering each other's text past ~0.91w. These sit just inside
@@ -506,7 +510,10 @@
 
 /* Below this the ±2 cards have nowhere to go, so they leave and the belt
    becomes centre-plus-neighbours. */
-@media (max-width: 900px) {
+/* Raised from 900px: between 900 and 1200 there is no room for five cards
+   at a width the centred one can actually hold its text at, so the
+   three-card layout takes over earlier. */
+@media (max-width: 1200px) {
   .stage {
     /* Once the outer pair is gone there is room to widen the centre card, and
        it needs it: a narrower card wraps its inclusions onto more lines, so

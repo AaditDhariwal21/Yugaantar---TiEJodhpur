@@ -38,8 +38,19 @@
   flex: none;
 }
 
+/* Sized so the wordmark reads at a glance without crowding the link row.
+   The asset is the strapline-free lockup (see tools/make-logo.mjs) — with the
+   strapline included, a fifth of this height went to five unreadable pixels. */
+/* Fluid, because the tightest moment for this row is 1101px — the breakpoint
+   where the seven desktop links appear but the viewport is at its narrowest.
+   A fixed 36px logo overflowed that row by 5px; scaling with the viewport
+   keeps the mark as large as the space genuinely allows and no larger.
+
+   It can afford to be larger than a horizontal lockup would need: the wordmark
+   now lives in the artwork rather than in text beside it, and this asset is a
+   stacked lockup, so height is what makes it legible. */
 .brand img {
-  height: 40px;
+  height: clamp(46px, 4.1vw, 58px);
   width: auto;
   display: block;
 }

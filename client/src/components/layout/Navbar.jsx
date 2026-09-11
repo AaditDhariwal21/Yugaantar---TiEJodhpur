@@ -22,15 +22,20 @@ export default function Navbar() {
     <header className={s.nav}>
       <div className={s.wrap}>
         <div className={s.in}>
+          {/* The logo carries the wordmark, so there is no separate text
+              beside it. The fallback still spells the name out, for the case
+              where the asset is missing. */}
           <HashLink to="/" className={s.brand} aria-label={site.logoAlt}>
             {site.logo ? (
               <img src={site.logo} alt={site.logoAlt} />
             ) : (
-              <span className={s.mark} aria-hidden="true">
-                TiE
-              </span>
+              <>
+                <span className={s.mark} aria-hidden="true">
+                  TiE
+                </span>
+                <span className={s.brandText}>Yugaantar</span>
+              </>
             )}
-            <span className={s.brandText}>Yugaantar</span>
           </HashLink>
 
           <nav className={s.links} aria-label="Primary">

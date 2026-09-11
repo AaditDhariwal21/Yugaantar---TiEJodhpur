@@ -2,9 +2,10 @@
    Site-wide copy: brand, nav, hero, about, final CTA, footer.
 
    CONFIRMED facts (safe to keep): event name, organiser.
-   Everything marked [PLACEHOLDER] / TODO awaits real Yugaantar data — the
-   strings are deliberately the same *length and shape* as the reference so the
-   layout can be QA'd against it before real copy lands.
+   The old [PLACEHOLDER] markers have been stripped from the copy — anything
+   still marked TODO awaits real Yugaantar data. Note that the delegates,
+   committee and agenda are no longer here at all: they live in the database
+   and are edited at /adminpanel.
    ========================================================================== */
 
 /* Live ticketing page on TiE's events platform. Defined once and referenced
@@ -13,11 +14,17 @@
 export const registrationUrl =
   "https://events.tie.org/Yugaantar-TiEJodhpurlaunch-TheStartupFestival";
 
+/* Navbar mark and the About panel's event stamp. Both are trimmed and
+   re-encoded from the supplied art by `node tools/make-logo.mjs` — the
+   sources are ~4500px square with large transparent margins, and the stamp
+   is a 6MB PNG. Re-run that script if either source changes. */
+import logoUrl from "../assets/yugaantar-logo.webp";
+import stampUrl from "../assets/yugaantar-stamp.webp";
+
 export const site = {
   eventName: "Yugaantar 2026",
   organiser: "TiE Jodhpur",
-  // TODO(content): real logo asset. Until then the wordmark renders as text.
-  logo: null,
+  logo: logoUrl,
   logoAlt: "Yugaantar 2026 — TiE Jodhpur",
   url: "yugaantar.tiejodhpur.org", // TODO(content): confirm final domain
   title: "Yugaantar 2026 | Flagship Entrepreneurship Festival",
@@ -78,9 +85,10 @@ export const hero = {
 export const about = {
   badge: "Welcome to Yugaantar",
   heading: "The meeting point for the people building India's next great companies.",
-  body: "[PLACEHOLDER] Yugaantar brings together founders, investors, and corporate leaders for two days of high-signal conversations, investor connections, and partnerships across India. It's part of TiE — a global community founded in 1992 that has helped create over $1 trillion in enterprise value.",
-  image: null, // TODO(content): hero-adjacent supporting photograph
-  imageAlt: "Yugaantar 2026 in Jodhpur",
+  body: "Yugaantar brings together founders, investors, and corporate leaders for two days of high-signal conversations, investor connections, and partnerships across India. It's part of TiE — a global community founded in 1992 that has helped create over $1 trillion in enterprise value.",
+  image: stampUrl,
+  imageAlt:
+    "Yugaantar 2026 event stamp — from local roots to global routes, 22–23 October 2026, Radisson Jodhpur",
   stats: [
     { value: "300+", label: "Founders, investors & leaders" },
     { value: "2 Days", label: "Of high-signal programming" },
@@ -108,9 +116,8 @@ export const footer = {
     { label: "Partner With Us", href: "/partnership" },
   ],
   contactTitle: "Contact",
-  // TODO(content): real chapter email + registered address.
-  email: "president@jodhpur.tie.org",
-  address: ["[Address line 1 TBC]", "Jodhpur, Rajasthan, India"],
+  email: "ed@jodhpur.tie.org",
+  address: ["Hotel Radisson", "Jodhpur, Rajasthan, India"],
   copyright: "© 2026 TiE Jodhpur. All rights reserved.",
   // Network-wide TiE hashtags — not chapter-specific, kept as-is.
   hashtags: "#TiEdTogether · #GoodfortheWorld",

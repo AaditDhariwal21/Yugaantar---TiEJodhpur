@@ -68,6 +68,29 @@
   display: block;
 }
 
+/* Artwork rather than a photograph: no crop, no frame. The drop-shadow filter
+   follows the alpha channel, so the stamp's scalloped edge casts the shadow
+   instead of the rectangle a box-shadow would draw. */
+.art {
+  aspect-ratio: auto;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+}
+
+.art img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: clamp(340px, 46vw, 520px);
+  object-fit: contain;
+  filter: drop-shadow(0 16px 34px rgba(40, 12, 20, 0.2));
+}
+
 /* placeholder shown until a real photograph is supplied */
 .imgph {
   display: flex;

@@ -11,7 +11,7 @@
 export const partnersMeta = {
   badge: "Our Partners",
   heading: "The organisations behind Yugaantar 2026",
-  sub: "[PLACEHOLDER] Brands backing the founders, investors, and leaders building India's next great companies.",
+  sub: "Brands backing the founders, investors, and leaders building India's next great companies.",
   ctaLine: "Interested in putting your brand in the room?",
   cta: { label: "Explore partnership options", href: "/partnership" },
 };
