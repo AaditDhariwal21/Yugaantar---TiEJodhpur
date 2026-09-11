@@ -1,12 +1,16 @@
-/* Passes — a display-only conveyor of every published pass.
+/* Passes — a depth carousel.
 
-   Same mechanism as the other two marquees on the page: the list is rendered
-   twice and the track animates translateX(0 → -50%), so the second copy sits
-   exactly where the first began when the cycle restarts and there is no
-   visible reset. Hovering anywhere in the belt pauses it.
+   Geometry lives here rather than in the component: JS only decides which slot
+   each card is in (-2 … 0 … 2, or "far"), and CSS turns that into a position.
+   Breakpoints can then reshape the whole belt — fewer visible cards, tighter
+   spacing — without the component knowing anything about it.
+
+   All cards share one fixed height so nothing reflows as the belt turns. The
+   centred card fills it with detail; the others centre their sparser content
+   in the same box.
 
    No per-card CTA — buying happens on the TiE platform, so there is a single
-   link under the whole belt. */
+   link under the whole carousel. */
 
 .sec {
   padding: var(--sec-pad) 0;
@@ -52,66 +56,144 @@
   max-width: 620px;
 }
 
-/* ---- the belt ------------------------------------------------------------
-   Full-bleed so cards run off both screen edges, with a mask rather than a
-   hard clip so they dissolve at the edges instead of being chopped. */
-.belt {
-  margin-top: clamp(38px, 4.5vw, 56px);
+/* ---- stage ---------------------------------------------------------------
+   Full-bleed, with the far cards dissolving at the edges rather than being
+   clipped against a hard line. */
+.stage {
+  --w: clamp(272px, 25vw, 344px);
+  --h: clamp(468px, 47vw, 558px);
+  /* Spacing has to clear the card in front, not just look layered. The centre
+     card's half-width is 0.5w and a neighbour's is 0.41w (0.82 scale), so they
+     only stop covering each other's text past ~0.91w. These sit just inside
+     that: enough overlap to read as depth, not so much that a name is sliced
+     in half. */
+  --g1: calc(var(--w) * 0.86);
+  --g2: calc(var(--w) * 1.52);
+  --gf: calc(var(--w) * 2.1);
+
+  position: relative;
   width: 100vw;
   margin-left: calc(50% - 50vw);
+  /* Padding is headroom for the card shadows; the belt is inset by the same
+     amount so the cards themselves still fill exactly --h. */
+  height: calc(var(--h) + 52px);
+  padding: 26px 0;
+  /* Essential, not cosmetic: the mask only hides the off-belt cards, it does
+     not stop them widening the document. Without this the page scrolls
+     sideways by the width of the far slots. */
   overflow: hidden;
-  /* headroom for the card hover lift — overflow:hidden clips vertically too */
-  padding: 6px 0;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+  margin-top: clamp(38px, 4.5vw, 58px);
+  /* the belt is a single focusable widget; the ring would otherwise trace the
+     full-bleed rectangle across the whole viewport */
+  outline: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+  touch-action: pan-y;
 }
 
-.track {
-  display: flex;
-  align-items: stretch;
-  width: max-content;
-  gap: 20px;
-  padding: 0 10px;
-  will-change: transform;
-  animation-name: beltScroll;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+.stage:focus-visible .card[data-active] {
+  border-color: var(--c-red);
+  box-shadow: 0 0 0 3px var(--r-22), 0 18px 44px rgba(40, 12, 20, 0.14);
 }
 
-.belt:hover .track,
-.belt:focus-within .track {
-  animation-play-state: paused;
-}
-
-@keyframes beltScroll {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    /* half, because the list is rendered twice */
-    transform: translate3d(calc(-50% - 10px), 0, 0);
-  }
+.belt {
+  position: absolute;
+  inset: 26px 0;
 }
 
 /* ---- card ---------------------------------------------------------------- */
 .card {
-  flex: none;
-  width: 300px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--w);
+  height: var(--h);
+  margin-left: calc(var(--w) / -2);
+
   display: flex;
   flex-direction: column;
+  /* sparse cards centre their content; the detailed one starts at the top */
+  justify-content: center;
+
   background: var(--c-white);
   border: 1px solid var(--c-line);
   border-radius: var(--rad-ticket);
   padding: 24px 22px 22px;
   box-shadow: var(--sh-ticket);
-  transition: transform 0.32s var(--ease-out), box-shadow 0.32s ease,
-    border-color 0.32s ease;
+
+  transition: transform 0.62s var(--ease-out), opacity 0.45s var(--ease-out),
+    box-shadow 0.45s ease, border-color 0.45s ease;
+  will-change: transform;
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  border-color: var(--r-33);
-  box-shadow: 0 16px 36px rgba(40, 12, 20, 0.12), 0 34px 78px rgba(40, 12, 20, 0.12);
+.card[data-active] {
+  justify-content: flex-start;
+  border-color: var(--r-26);
+  box-shadow: 0 18px 40px rgba(40, 12, 20, 0.1), 0 40px 90px rgba(40, 12, 20, 0.12);
+}
+
+/* ---- slots ---------------------------------------------------------------
+   One rule per position. Scale and fade together so depth reads as distance
+   rather than as a size change alone. */
+.card[data-slot="0"] {
+  transform: translate3d(0, 0, 0) scale(1);
+  opacity: 1;
+  z-index: 6;
+}
+
+.card[data-slot="1"],
+.card[data-slot="-1"] {
+  transform: translate3d(var(--g1), 0, 0) scale(0.82);
+  opacity: 0.94;
+  z-index: 5;
+}
+.card[data-slot="-1"] {
+  transform: translate3d(calc(-1 * var(--g1)), 0, 0) scale(0.82);
+}
+
+.card[data-slot="2"],
+.card[data-slot="-2"] {
+  transform: translate3d(var(--g2), 0, 0) scale(0.66);
+  opacity: 0.55;
+  z-index: 4;
+}
+.card[data-slot="-2"] {
+  transform: translate3d(calc(-1 * var(--g2)), 0, 0) scale(0.66);
+}
+
+.card[data-slot="far"],
+.card[data-slot="-far"] {
+  transform: translate3d(var(--gf), 0, 0) scale(0.58);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.card[data-slot="-far"] {
+  transform: translate3d(calc(-1 * var(--gf)), 0, 0) scale(0.58);
+}
+
+/* Click anywhere on a flanking card to bring it to the middle. Sits above the
+   card's own content, and steps aside entirely once that card is centred so
+   its text stays selectable. */
+.cardHit {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  border-radius: inherit;
+  cursor: pointer;
+}
+.cardHit:disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.cardTop {
+  position: relative;
+  z-index: 2;
 }
 
 .eyebrow {
@@ -189,6 +271,24 @@
   font-weight: 600;
 }
 
+/* ---- detail, centred card only ------------------------------------------ */
+.detail {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  animation: detailIn 0.5s var(--ease-out) both;
+}
+
+@keyframes detailIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
 .listLabel {
   margin-top: 16px;
   font-size: 10px;
@@ -207,12 +307,25 @@
   gap: 7px;
 }
 
+/* Two columns once there are more than three bullets: the centred card is wide
+   enough, and a single tall column would push the price out of the card. */
+.list[data-cols="2"] {
+  display: block;
+  columns: 2;
+  column-gap: 14px;
+}
+
+.list[data-cols="2"] li {
+  break-inside: avoid;
+  margin-bottom: 7px;
+}
+
 .list li {
   display: flex;
   gap: 8px;
   align-items: flex-start;
-  font-size: 12.5px;
-  line-height: 1.45;
+  font-size: 12px;
+  line-height: 1.4;
   color: var(--c-ink);
 }
 
@@ -229,8 +342,15 @@
   margin-top: 1px;
 }
 
+.more {
+  margin-top: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--c-red);
+}
+
 .excludes {
-  margin-top: 14px;
+  margin-top: 12px;
   font-size: 11.5px;
   line-height: 1.5;
   color: var(--c-muted);
@@ -243,16 +363,112 @@
 
 .note {
   margin-top: auto;
-  padding-top: 14px;
+  padding-top: 12px;
   font-size: 11px;
   line-height: 1.45;
   color: var(--c-muted);
   font-style: italic;
 }
 
+/* ---- summary, flanking cards -------------------------------------------- */
+.summary {
+  position: relative;
+  z-index: 2;
+  margin-top: 18px;
+}
+
+.incCount {
+  display: inline-block;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--c-muted);
+  background: var(--c-cream);
+  border: 1px solid var(--c-line);
+  padding: 6px 13px;
+  border-radius: var(--rad-pill);
+}
+
+/* ---- arrows -------------------------------------------------------------- */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 8;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  appearance: none;
+  border: 1px solid var(--c-line);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  color: var(--c-ink);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: var(--sh-soft);
+  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s var(--ease-out);
+}
+
+.arrow:hover {
+  color: var(--c-red);
+  border-color: var(--r-33);
+  box-shadow: var(--sh-hover);
+}
+
+.arrowPrev {
+  left: max(16px, calc(50% - var(--w) * 2.25));
+  rotate: 90deg;
+}
+
+.arrowNext {
+  right: max(16px, calc(50% - var(--w) * 2.25));
+  rotate: -90deg;
+}
+
+/* ---- dots ---------------------------------------------------------------- */
+.dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: clamp(26px, 3vw, 36px);
+}
+
+.dot {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--rad-pill);
+  background: var(--r-20);
+  cursor: pointer;
+  transition: width 0.35s var(--ease-out), background 0.25s ease;
+}
+
+/* 8px of paint is not a tap target. The hit area is extended invisibly rather
+   than by growing the dot, which would turn the row into a dashed line. */
+.dot::after {
+  content: "";
+  position: absolute;
+  inset: -13px -5px;
+}
+
+.dot:hover {
+  background: var(--r-45);
+}
+
+.dot[data-on="true"] {
+  width: 26px;
+  background: var(--grad);
+}
+
 /* ---- closing CTA --------------------------------------------------------- */
 .foot {
-  margin-top: clamp(36px, 4vw, 52px);
+  margin-top: clamp(30px, 3.4vw, 44px);
   text-align: center;
 }
 
@@ -274,9 +490,65 @@
   text-align: center;
 }
 
-@media (min-width: 561px) {
-  .card {
-    width: 330px;
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- narrow -------------------------------------------------------------- */
+
+/* Below this the ±2 cards have nowhere to go, so they leave and the belt
+   becomes centre-plus-neighbours. */
+@media (max-width: 900px) {
+  .stage {
+    /* Once the outer pair is gone there is room to widen the centre card, and
+       it needs it: a narrower card wraps its inclusions onto more lines, so
+       height has to go UP as the viewport comes down, not follow it. */
+    --w: min(58vw, 360px);
+    --h: 566px;
+    --g1: calc(var(--w) * 0.88);
+  }
+  .card[data-slot="2"],
+  .card[data-slot="-2"] {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .prev {
+    left: 12px;
+  }
+  .arrowNext {
+    right: 12px;
+  }
+}
+
+@media (max-width: 560px) {
+  .stage {
+    --w: min(78vw, 320px);
+    --h: 566px;
+    --g1: calc(var(--w) * 0.86);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  }
+  /* neighbours become a hint that there is more to swipe to, not content */
+  .card[data-slot="1"],
+  .card[data-slot="-1"] {
+    opacity: 0.4;
+  }
+  /* The arrows have nowhere to sit at this width without covering the centred
+     card's own text. Swiping works, and the dots below are the explicit
+     control, so they step out entirely rather than sit on top of the content. */
+  .arrow {
+    display: none;
+  }
+  .list[data-cols="2"] {
+    columns: 1;
   }
 }
 
@@ -286,27 +558,17 @@
   }
 }
 
-/* No motion: stop the belt and lay the passes out as a normal grid, so all of
-   them are reachable without anything moving. */
+/* No motion: hold every card still. The component already stops advancing on
+   its own, so the arrows and dots are the only way the belt moves, and it
+   moves instantly. */
 @media (prefers-reduced-motion: reduce) {
-  .belt {
-    width: auto;
-    margin-left: 0;
-    overflow: visible;
-    -webkit-mask-image: none;
-    mask-image: none;
+  .card {
+    transition: none;
   }
-  .track {
+  .detail {
     animation: none;
-    width: auto;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0;
   }
-  .dup {
-    display: none;
-  }
-  .card:hover {
-    transform: none;
+  .dot {
+    transition: none;
   }
 }

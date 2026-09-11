@@ -108,34 +108,37 @@ const ok = (n, pass, note = '') => results.push(`${pass ? 'PASS' : 'FAIL'}  ${n}
   });
   ok('nav anchor scrolls to #delegates', atDelegates);
 
-  // --- pass belt scrolls, pauses on hover, and carries no per-card CTA
+  // --- pass carousel advances, pauses on hover, and carries no per-card CTA
   await page.locator('#tickets').scrollIntoViewIfNeeded();
-  await page.waitForTimeout(700);
-  const beltTx = () => page.evaluate(() =>
-    getComputedStyle(document.querySelector('#tickets [class*="track"]')).transform);
-  const p1 = await beltTx();
-  await page.waitForTimeout(1100);
-  const p2 = await beltTx();
-  ok('pass belt scrolls', p1 !== p2);
+  await page.waitForTimeout(900);
+  const centred = () => page.evaluate(() =>
+    document.querySelector('#tickets [data-active] [class*="_name_"]')?.textContent.trim());
 
-  // hover a point, not a card — the cards never hold still for actionability
-  const beltBox = await page.locator('#tickets [class*="belt"]').boundingBox();
-  await page.mouse.move(beltBox.x + beltBox.width / 2, beltBox.y + beltBox.height / 2);
-  await page.waitForTimeout(500);
-  const h1 = await beltTx();
-  await page.waitForTimeout(1100);
-  ok('pass belt pauses on hover', h1 === (await beltTx()));
+  const p1 = await centred();
+  await page.waitForTimeout(6200);
+  ok('pass carousel advances', p1 !== (await centred()), `${p1} -> ${await centred()}`);
+
+  const stageBox = await page.locator('#tickets [class*="_stage_"]').boundingBox();
+  await page.mouse.move(stageBox.x + stageBox.width / 2, stageBox.y + 8);
+  await page.waitForTimeout(400);
+  const h1 = await centred();
+  await page.waitForTimeout(6200);
+  ok('pass carousel pauses on hover', h1 === (await centred()), h1);
   await page.mouse.move(5, 5);
 
   const passInfo = await page.evaluate(() => ({
-    unique: [...document.querySelectorAll('#tickets [class*="card"]')]
-      .filter((c) => c.getAttribute('aria-hidden') !== 'true').length,
-    perCardCtas: [...document.querySelectorAll('#tickets article a, #tickets article button')].length,
+    cards: document.querySelectorAll('#tickets article').length,
+    detailed: document.querySelectorAll('#tickets [class*="_list_"]').length,
+    /* Selecting a pass is navigation within the belt; buying is not offered
+       per card, so no card may contain a link. */
+    cardLinks: document.querySelectorAll('#tickets article a').length,
+    buyLinks: document.querySelectorAll('#tickets a[href*="buyTickets"]').length,
     footCta: document.querySelector('#tickets a[href*="buyTickets"]')?.getAttribute('target'),
   }));
-  ok('every pass shown, none with its own CTA',
-     passInfo.unique === 12 && passInfo.perCardCtas === 0,
-     `${passInfo.unique} passes, ${passInfo.perCardCtas} card CTAs`);
+  ok('all twelve passes rendered', passInfo.cards === 12, `${passInfo.cards}`);
+  ok('only the centred pass shows its inclusions', passInfo.detailed === 1, `${passInfo.detailed}`);
+  ok('no per-card CTA', passInfo.cardLinks === 0 && passInfo.buyLinks === 1,
+     `${passInfo.cardLinks} card links, ${passInfo.buyLinks} buy links`);
   ok('pass CTA deep-links to the ticket selector', passInfo.footCta === '_blank');
 
   // --- marquee is actually moving
