@@ -1,6 +1,7 @@
 import { Fragment, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { agenda, agendaDays, agendaFilters, agendaMeta } from "../../data/agenda";
+import { agendaFilters, agendaMeta } from "../../data/agenda";
+import { useContent } from "../../lib/content";
 import Icon from "../ui/Icon";
 import s from "./Agenda.module.css";
 
@@ -119,19 +120,31 @@ function AgendaRow({ block, index }) {
 }
 
 export default function Agenda() {
-  const [day, setDay] = useState(agendaDays[0].key);
+  /* Sessions and day headers come from the database and are edited at
+     /adminpanel. The badge, headings, filter labels and the .ics block are
+     still copy, and stay in data/agenda.js. */
+  const { agenda, agendaDays } = useContent();
+
+  const [day, setDay] = useState(null);
   const [filter, setFilter] = useState("all");
+
+  /* `day` starts null rather than agendaDays[0].key because the day list
+     itself is fetched - hard-coding the first key would break if the days
+     were ever renumbered. */
+  const activeDay = agendaDays.find((d) => d.key === day) || agendaDays[0];
+  const activeKey = activeDay?.key;
 
   const visible = useMemo(
     () =>
       agenda
-        .filter((b) => b.day === day)
+        .filter((b) => b.day === activeKey)
         .filter((b) => filter === "all" || b.type === filter),
-    [day, filter]
+    [agenda, activeKey, filter]
   );
 
-  /* Counted from the schedule rather than hardcoded, so editing agenda.js can
-     never leave the stat tiles claiming the wrong numbers. */
+  /* Counted from the schedule rather than hardcoded, so editing the programme
+     in the admin panel can never leave the stat tiles claiming the wrong
+     numbers. */
   const stats = useMemo(() => {
     const plenary = agenda.filter((b) => b.type === "plenary").length;
     // a breakout row either fans out into tracks, or is itself one session
@@ -144,9 +157,10 @@ export default function Agenda() {
       { value: String(tracks), label: agendaMeta.statLabels.breakout },
       { value: String(agendaDays.length), label: agendaMeta.statLabels.days },
     ];
-  }, []);
+  }, [agenda, agendaDays]);
 
-  const activeDay = agendaDays.find((d) => d.key === day) || agendaDays[0];
+  // deleting every day would otherwise leave a heading with no programme
+  if (agendaDays.length === 0) return null;
 
   return (
     <section className={s.sec} id="agendatable">
@@ -195,8 +209,8 @@ export default function Agenda() {
                   key={d.key}
                   type="button"
                   role="tab"
-                  aria-selected={day === d.key}
-                  data-on={day === d.key}
+                  aria-selected={activeKey === d.key}
+                  data-on={activeKey === d.key}
                   className={s.dayBtn}
                   onClick={() => setDay(d.key)}
                 >
@@ -207,10 +221,10 @@ export default function Agenda() {
             </div>
 
             <div className={s.dateRow}>
-              <div className={s.date}>{activeDay.date}</div>
+              <div className={s.date}>{activeDay?.date}</div>
               <div className={s.venue}>{agendaMeta.venue}</div>
             </div>
-            {activeDay.theme && <div className={s.dayTheme}>{activeDay.theme}</div>}
+            {activeDay?.theme && <div className={s.dayTheme}>{activeDay.theme}</div>}
 
             <div className={s.filters} role="tablist" aria-label="Filter by session type">
               {agendaFilters.map((f) => (
@@ -230,7 +244,7 @@ export default function Agenda() {
 
             <div className={s.rows}>
               {visible.map((block, i) => (
-                <Fragment key={`${day}-${block.start}-${block.title}`}>
+                <Fragment key={block.id}>
                   <AgendaRow block={block} index={i} />
                   {i < visible.length - 1 && (
                     <div className={s.divider} aria-hidden="true">

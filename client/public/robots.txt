@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Content editor. Unauthenticated by default - keep it out of search results.
+Disallow: /adminpanel

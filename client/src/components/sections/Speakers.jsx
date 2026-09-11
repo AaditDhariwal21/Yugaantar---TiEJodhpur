@@ -1,7 +1,11 @@
-import { speakers, speakersMeta } from "../../data/speakers";
+import { speakersMeta } from "../../data/speakers";
+import { useContent } from "../../lib/content";
 import { LinkedInIcon } from "../ui/Icon";
 import Reveal, { stagger } from "../ui/Reveal";
 import s from "./Speakers.module.css";
+
+/* The roster comes from the database and is edited at /adminpanel; the
+   headings around it are still copy, and live in data/speakers.js. */
 
 /* Strips the placeholder brackets so "[Speaker Name 01]" still yields a
    sensible initial in the photo fallback. */
@@ -35,17 +39,22 @@ function SpeakerCard({ p, index }) {
       <div className={s.content}>
         <div className={s.nm}>{p.name}</div>
         <div className={s.bar} />
-        {p.role && <div className={s.rl}>{p.role}</div>}
-        {p.org && <div className={s.co}>{p.org}</div>}
+        {p.position && <div className={s.rl}>{p.position}</div>}
+        {p.company && <div className={s.co}>{p.company}</div>}
       </div>
     </Reveal>
   );
 }
 
 export default function Speakers() {
-  const key = speakers.filter((p) => p.tier === "key");
-  const general = speakers.filter((p) => p.tier !== "key");
+  const { delegates } = useContent();
+
+  const key = delegates.filter((p) => p.tier === "key");
+  const general = delegates.filter((p) => p.tier !== "key");
   const split = key.length > 0 && general.length > 0;
+
+  // an empty roster should collapse the section, not leave a bare heading
+  if (delegates.length === 0) return null;
 
   return (
     /* #delegates is the live anchor; #speakers is kept so any link already
@@ -70,7 +79,7 @@ export default function Speakers() {
             )}
             <div className={`${s.sgrid} ${s.key} ${split ? s.tight : ""}`}>
               {key.map((p, i) => (
-                <SpeakerCard key={p.name} p={p} index={i} />
+                <SpeakerCard key={p.id} p={p} index={i} />
               ))}
             </div>
           </>
@@ -86,7 +95,7 @@ export default function Speakers() {
             )}
             <div className={`${s.sgrid} ${split ? s.tight : ""}`}>
               {general.map((p, i) => (
-                <SpeakerCard key={p.name} p={p} index={i} />
+                <SpeakerCard key={p.id} p={p} index={i} />
               ))}
             </div>
           </>

@@ -1,11 +1,19 @@
-import { committee, committeeMeta } from "../../data/committee";
+import { committeeMeta } from "../../data/committee";
+import { useContent } from "../../lib/content";
 import { LinkedInIcon } from "../ui/Icon";
 import Reveal, { stagger } from "../ui/Reveal";
 import s from "./Committee.module.css";
 
+/* Roster from the database (edited at /adminpanel); headings from
+   data/committee.js. */
+
 const initialOf = (n) => (n || "").replace(/[[\]]/g, "").trim().charAt(0).toUpperCase();
 
 export default function Committee() {
+  const { committee } = useContent();
+
+  if (committee.length === 0) return null;
+
   return (
     /* both anchors resolve here — the navbar links to #planningcommittee while
        the reference's own section carries id="committee" */
@@ -22,7 +30,7 @@ export default function Committee() {
         <div className={s.cgrid}>
           {committee.map((m, i) => (
             <Reveal
-              key={m.name}
+              key={m.id}
               className={s.cm}
               y={22}
               duration={0.55}
@@ -37,7 +45,10 @@ export default function Committee() {
                 </div>
               )}
               <div className={s.nm}>{m.name}</div>
-              <div className={s.role}>{m.role}</div>
+              <div className={s.role}>{m.position}</div>
+              {/* optional — most committee entries are volunteers with no
+                  separate organisation to name */}
+              {m.company && <div className={s.org}>{m.company}</div>}
               {m.linkedin && (
                 <a
                   className={s.li}

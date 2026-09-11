@@ -36,8 +36,12 @@ Reference: <https://tieconamsterdam.org/> · Audit: [`design-reference/design-au
 
 - [x] Vite + React (JS), React Router, CSS Modules, Framer Motion
 - [x] Design tokens in `client/src/styles/tokens.css` — no loose hex in components
-- [x] All copy in `client/src/data/*` — swapping real content is a data-only edit
+- [x] Static copy in `client/src/data/*`; delegates, committee and agenda moved to the database
 - [x] Express API: `POST /api/register`, `POST /api/partnership` (validated, stubbed to console)
+- [x] MongoDB Atlas (Mongoose) behind `GET /api/content` + `/api/admin/*` CRUD
+- [x] Cloudflare R2 for photos — presigned, browser uploads direct, square
+      crop and WebP re-encode happen client-side (R2 has no transform layer)
+- [x] `/adminpanel` — lazy-loaded chunk, 13 kB gzipped, not in the main bundle
 
 ## Content status
 
@@ -55,7 +59,7 @@ Reference: <https://tieconamsterdam.org/> · Audit: [`design-reference/design-au
   Festival Pass + Gala Dinner (Best Value) / Gala Dinner. **Names are inferred
   and all prices are still placeholder.**
 - Agenda now carries a Day 1 / Day 2 switcher; the three stat tiles are counted
-  from `agenda.js` at render time, so they cannot drift out of date.
+  from the sessions at render time, so they cannot drift out of date.
 - "One day" copy became "two days" throughout (hero sub, About body and stat
   tile, Experience heading and banner, Tickets sub, Agenda sub).
 - "Conference" became "festival" in the badge, page title, meta description and
@@ -89,6 +93,39 @@ Reference: <https://tieconamsterdam.org/> · Audit: [`design-reference/design-au
 **Still placeholder** — delegates, committee, Day 2 sessions, partner
 logos, community stats, chapter address, supporting photography, logo asset,
 About body, Themes cards, audience sub-line.
+
+Delegates, committee and the agenda are now editable at `/adminpanel` rather
+than in `client/src/data/` — those three no longer need a developer or a
+deploy. The rest are still code edits.
+
+## Admin panel (`/adminpanel`)
+
+Built 11 Sep 2026. No authentication by default, as specified.
+
+| Capability | Status |
+|---|---|
+| Delegates — add / edit / delete | ✅ photo, name, position, company, LinkedIn, country |
+| Delegates — ordering | ✅ drag, plus arrow buttons for keyboard and mobile |
+| Delegates — featured vs general tier | ✅ star button moves between the two lists |
+| Committee — full CRUD + ordering | ✅ same editor, single list |
+| Agenda — sessions per day | ✅ time, title, description, type, parallel flag |
+| Agenda — breakout tracks | ✅ repeatable; a non-empty list makes the row expandable |
+| Agenda — day headers | ✅ tab label, short label, date, main-stage theme |
+| Seed from current site content | ✅ in-panel button (Render free tier has no shell) |
+| Remove bracketed placeholders | ✅ one button, rather than 41 deletions |
+
+Verified by `tools/admin-e2e.mjs` — 32/32, zero console errors, no horizontal
+overflow at 390px. The server API was covered separately during the build:
+54 route assertions against an in-memory MongoDB, all passing.
+
+**Two things to do before the site is public:**
+
+1. **Set `ADMIN_KEY`.** Without it `/api/admin/*` is open to anyone who finds
+   the URL, including `media/sign`, which hands out write access to the R2
+   bucket. The gate is already built — it is one environment variable, no
+   redeploy of the frontend.
+2. **Set the R2 bucket's CORS policy.** Uploads go browser → R2 directly and
+   are blocked without it. The exact JSON is in `server/.env.example`.
 
 ## Not started
 

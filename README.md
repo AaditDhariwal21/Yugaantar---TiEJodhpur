@@ -18,8 +18,12 @@ cd client && npm install && npm run dev
 cd server && npm install && npm run dev
 ```
 
-The client runs standalone; the API is only needed once the registration form
-(route 3.16) is wired up.
+The client runs standalone: with no API reachable it paints from
+`src/data/snapshot.json` and simply never swaps in live content. Start the API
+too if you want the admin panel, or content that reflects the database.
+
+To point the client at an API somewhere else, set `VITE_API_BASE`
+(see `client/.env.example`).
 
 ## Stack
 
@@ -29,7 +33,9 @@ The client runs standalone; the API is only needed once the registration form
 | Routing | React Router |
 | Styling | CSS Modules over CSS custom properties (`src/styles/tokens.css`) |
 | Motion | Framer Motion for scroll reveals and stagger; CSS keyframes for the marquees and card effects (matching how the reference does it) |
-| Backend | Express — validation + stub logging for form intake |
+| Backend | Express — form intake, content API, admin CRUD |
+| Database | MongoDB Atlas via Mongoose |
+| Photo storage | Cloudflare R2 (S3 API), presigned direct-from-browser uploads |
 
 No WebGL/Three.js: the reference has none. Its hero background is a CSS
 radial-gradient mesh, and its only `<canvas>` uses are 2D — the pixel-grid
@@ -48,10 +54,15 @@ client/
     data/         ALL copy and content lives here
     hooks/        useCountUp, useInViewOnce
     styles/       tokens.css, globals.css
-  pages/          Home (Partnership + RegistrationForm still to come)
+    lib/          api client, content provider, browser-side image crop
+    pages/        Home, and admin/ — the /adminpanel editor
+  scripts/        snapshot.mjs
 server/
   index.js
-  routes/register.js
+  db/         mongo connection, Mongoose models, generated seed content
+  lib/        R2 presigning, optional admin-key gate
+  routes/     register.js, content.js (public read), admin.js (CRUD)
+  scripts/    seed.js
 design-reference/
   design-audit.md, audit-*.json, probe-*.json
   screenshots/    reference captures
@@ -62,23 +73,80 @@ tools/            Playwright scripts: audit, probe, measure, interact, clipsec
 
 ## Editing content
 
-Every string, speaker, session, price and partner lives under
-`client/src/data/`. Swapping in real Yugaantar data is a **data-only edit** —
-no component changes:
+Content is split in two. **Delegates, the planning committee and the agenda**
+live in MongoDB and are edited at `/adminpanel`. **Everything else** is still
+static copy under `client/src/data/`:
 
 | File | Drives |
 |---|---|
 | `site.js` | brand, nav, hero, about, final CTA, footer |
 | `experience.js` | experience cards, audience, themes, attend marquee pills |
-| `speakers.js` | speaker roster (`tier: "key"` promotes to the featured row) |
-| `committee.js` | committee roster |
-| `agenda.js` | timeline blocks; add `tracks: []` to make a row expandable |
+| `speakers.js` | delegates section *headings* (the roster itself is in the DB) |
+| `committee.js` | committee section *headings* (the roster is in the DB) |
+| `agenda.js` | agenda headings, filter labels, venue, `.ics` block (sessions are in the DB) |
 | `tickets.js` | pricing tiers; `featured: true` renders the gradient card |
 | `partners.js` | partners by tier (filter counts derive automatically) + logo strip |
+| `snapshot.json` | generated — the offline fallback, see below |
 
 Anything written `[LIKE THIS]` is a placeholder awaiting real content. Photos
 and logos accept `null` and fall back to an initial, which is what the
 reference does too.
+
+## The admin panel
+
+`/adminpanel` — no login by default. Two jobs: the people lists, and the
+programme.
+
+- **Delegates** — add, edit, delete. Photo, name, position, company, LinkedIn
+  and country. Drag (or use the arrow buttons) to set the order they appear in;
+  the star button promotes someone into the **Featured** tier, which is the
+  large-card row above the main grid.
+- **Committee** — the same, as one list.
+- **Agenda** — per day: the date and main-stage theme, then the sessions.
+  Times are free text, so `Onward` works. Adding one or more breakout tracks to
+  a session makes its row expandable on the site. The plenary/breakout counters
+  on the site are derived from these rows and cannot drift.
+
+### Setting it up
+
+1. **MongoDB Atlas** — create a free cluster, allow `0.0.0.0/0` in Network
+   Access (Render's free tier has no static outbound IP), and put the
+   connection string in `MONGODB_URI`, database name included.
+2. **Cloudflare R2** — create a bucket, enable its public URL, and make an
+   Object Read & Write API token. **Set the bucket's CORS policy** or uploads
+   will fail silently in the browser.
+3. Open `/adminpanel`. If the database is empty it offers to load the content
+   that is currently hardcoded, so you start from today's site rather than a
+   blank list. Locally you can do the same with `npm run seed` in `server/`.
+
+Every variable, and the exact R2 CORS JSON, is in `server/.env.example`.
+
+### About the lack of a login
+
+`/api/admin/*` is wide open, and that includes the endpoint that signs uploads
+to your R2 bucket. Before the site goes public, set `ADMIN_KEY` on the server
+to any long random string — the API starts requiring it, and the panel prompts
+for it once. No frontend redeploy is needed. `robots.txt` and a `noindex` tag
+already keep the page out of search results, but that is obscurity, not
+security.
+
+### How the site reads it
+
+The API is one call, `GET /api/content`. Because Render's free tier sleeps
+after 15 minutes and takes 30–50s to wake, the site never waits on it: it
+paints immediately from `localStorage`, or from the bundled
+`client/src/data/snapshot.json`, then swaps in live data when it arrives. Live
+data always wins once it lands, including when it is empty.
+
+Keep that fallback current before a deploy:
+
+```bash
+cd client && npm run snapshot -- https://your-api.onrender.com
+```
+
+Then commit the regenerated `snapshot.json`. Skipping this is not fatal — it
+just means a first-time visitor may see older content for a moment on a cold
+start.
 
 ## One deliberate difference from the reference
 
@@ -115,3 +183,12 @@ node tools/clipsec.mjs    # capture one section  (IDS=tickets W=390)
 
 `tools/measure.mjs` and `tools/interact.mjs` expect the dev server on
 `http://localhost:5180` (`npm run dev -- --port 5180`).
+
+```bash
+# admin panel end-to-end: seeds, edits, reorders, then checks the public site
+CONFIRM_WIPE=yes BASE=http://localhost:5183 API=http://localhost:5181   node tools/admin-e2e.mjs
+```
+
+`admin-e2e.mjs` **empties every collection** before it runs, so it refuses any
+API that is not on localhost and needs `CONFIRM_WIPE=yes`. Point it at a
+scratch database.
