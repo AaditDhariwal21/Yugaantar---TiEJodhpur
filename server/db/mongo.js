@@ -19,9 +19,12 @@ export async function connectDb() {
     mongoose.set("strictQuery", true);
     connecting = mongoose
       .connect(process.env.MONGODB_URI, {
-        // Fail fast instead of buffering commands for 30s when Atlas is
-        // unreachable — the admin panel would rather show an error than spin.
-        serverSelectionTimeoutMS: 8000,
+        /* Short enough that an unreachable Atlas surfaces as an error rather
+           than a 30s hang, long enough to survive a cold first connection —
+           the SRV lookup plus TLS handshake on a sleeping free-tier instance
+           can take well over 8s, and timing that out reports "database
+           unavailable" for what is really just a slow start. */
+        serverSelectionTimeoutMS: 20000,
       })
       .then((m) => {
         console.log("[mongo] connected");

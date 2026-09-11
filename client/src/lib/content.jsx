@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import snapshot from "../data/snapshot.json";
-import { api } from "./api";
+import { api, isApiConfigured } from "./api";
 
 /* Site content: delegates, committee and the agenda, all editable from
    /adminpanel and served by GET /api/content.
@@ -78,6 +78,15 @@ export function ContentProvider({ children }) {
   const alive = useRef(true);
 
   useEffect(() => {
+    /* No API in this build: serve the snapshot and make no request. Without
+       this guard a production deploy that forgot VITE_API_BASE would fetch
+       http://localhost:5181 from every visitor's browser - a request that
+       cannot succeed and that Chrome now raises a permission prompt for. */
+    if (!isApiConfigured()) {
+      if (import.meta.env.DEV) console.warn("[content] VITE_API_BASE unset - using the bundled snapshot");
+      return undefined;
+    }
+
     alive.current = true;
     const ctrl = new AbortController();
 

@@ -1,13 +1,23 @@
 /* Thin client for the Yugaantar API.
 
-   VITE_API_BASE points at the Express server. Left unset it falls back to the
-   local dev port, so `npm run dev` in both folders just works; on Vercel set
-   it to the Render URL (no trailing slash). */
+   VITE_API_BASE points at the Express server. On Vercel set it to the Render
+   URL, with no trailing slash, and redeploy — Vite inlines it at BUILD time,
+   so changing the variable alone does nothing.
 
-export const API_BASE = (import.meta.env.VITE_API_BASE || "http://localhost:5181").replace(
-  /\/+$/,
-  ""
-);
+   The localhost fallback is DEV ONLY, deliberately. A deployed page that falls
+   back to http://localhost:5181 is asking each visitor's browser to connect to
+   that visitor's own machine: it can never succeed, and Chrome now interrupts
+   them with a "wants to access other apps and services on this device"
+   permission prompt. So in a production build with no API configured we make
+   no request at all and the site serves its bundled snapshot instead. */
+
+const configured = (import.meta.env.VITE_API_BASE || "").trim();
+
+export const API_BASE = (
+  configured || (import.meta.env.DEV ? "http://localhost:5181" : "")
+).replace(/\/+$/, "");
+
+export const isApiConfigured = () => API_BASE !== "";
 
 /* The optional shared secret. Only ever sent to API_BASE, and only when the
    server has told us it wants one — see lib/adminGuard.js on the server. */
@@ -34,16 +44,26 @@ export const setAdminKey = (key) => {
    the server sent them, so forms can highlight the offending input; `needsKey`
    tells the panel to show the unlock prompt rather than a generic failure. */
 export class ApiError extends Error {
-  constructor(message, { status, errors, needsKey } = {}) {
+  constructor(message, { status, errors, needsKey, notConfigured } = {}) {
     super(message);
     this.name = "ApiError";
     this.status = status;
     this.errors = errors || null;
     this.needsKey = Boolean(needsKey);
+    /* No VITE_API_BASE in this build — a deployment problem, not a request
+       that failed, so the panel points at the fix instead of offering retry. */
+    this.notConfigured = Boolean(notConfigured);
   }
 }
 
 export async function api(path, { method = "GET", body, admin = false, signal } = {}) {
+  if (!isApiConfigured()) {
+    throw new ApiError(
+      "No API is configured. Set VITE_API_BASE to the server URL and redeploy.",
+      { status: 0, notConfigured: true }
+    );
+  }
+
   const headers = {};
   if (body !== undefined) headers["Content-Type"] = "application/json";
   if (admin) {

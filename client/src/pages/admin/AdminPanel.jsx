@@ -32,8 +32,16 @@ function Unlock({ onUnlocked }) {
       await adminApi("/api/admin/delegates");
       onUnlocked();
     } catch (err) {
-      setAdminKey("");
-      setError(err.needsKey ? "That key was not accepted." : err.message);
+      if (err.needsKey) {
+        // genuinely the wrong key — drop it so the next attempt starts clean
+        setAdminKey("");
+        setError("That key was not accepted.");
+      } else {
+        /* The key got through; something behind it failed. Keep the key -
+           discarding it here would make a database blip look like a rejected
+           password and force a retype. */
+        setError(`${err.message} The key itself was accepted — try again in a moment.`);
+      }
     } finally {
       setChecking(false);
     }
@@ -215,7 +223,26 @@ export default function AdminPanel() {
       </header>
 
       <main className={s.main}>
-        {fatal && (
+        {fatal?.notConfigured && (
+          <div className={s.setup}>
+            <h2>This build has no API address</h2>
+            <p>
+              The panel was built without <code>VITE_API_BASE</code>, so it does not know where the
+              server is and cannot load anything.
+            </p>
+            <p>
+              Set <code>VITE_API_BASE</code> to the API URL (for example{" "}
+              <code>https://yugaantar-api.onrender.com</code>, no trailing slash) in the hosting
+              environment, then <strong>redeploy</strong> — Vite bakes the value into the bundle at
+              build time, so saving the variable on its own changes nothing.
+            </p>
+            <p className={s.setupFoot}>
+              Until then the public site keeps serving the content snapshot bundled at build time.
+            </p>
+          </div>
+        )}
+
+        {fatal && !fatal.notConfigured && (
           <div className={s.banner} role="alert">
             <strong>{fatal.message}</strong>
             <br />
