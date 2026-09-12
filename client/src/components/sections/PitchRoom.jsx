@@ -1,163 +1,108 @@
 import { pitchRoom } from "../../data/pitchroom";
 import Icon from "../ui/Icon";
 import Button from "../ui/Button";
-import Reveal, { stagger } from "../ui/Reveal";
+import Reveal from "../ui/Reveal";
 import s from "./PitchRoom.module.css";
 
 /* The Marwar Pitch Room — the festival's flagship pitch competition.
 
-   Sits on cream between the white Committee section and the dark Agenda, so
-   the alternation still reads. It earns the page's one gradient panel: this is
-   the single section on the site whose job is to get an application submitted,
-   and the red block is what separates "here is what it is" above it from
-   "apply" inside it. The Agenda's dark ground follows immediately after, which
-   is why this is a panel on cream rather than a full dark section — two dark
-   bands back to back would merge into one.
+   One split card on cream: the poster flush down the left, and beside it only
+   the things the poster cannot say — who may apply, how, and by when. The
+   artwork already carries the name, the tagline, the dates and the strapline,
+   so none of that is set as text next to it.
 
-   The order is the order a founder needs it in: what it is, whether they
-   qualify, what to do, then the button. The fee disclaimer sits inside the
-   panel, immediately above the button, because it is the one thing here that
-   someone can lose money by not reading.
+   There is no red slab. The brand shows up as a hairline down the edge of the
+   card, the eyebrow, the numbered steps and the one gradient button, which is
+   enough to read as the same family as the rest of the page without turning a
+   supporting section into the loudest thing on it. The Agenda's dark ground
+   follows immediately after and now has the contrast to itself.
 
    Copy provenance is documented in data/pitchroom.js. */
 
 export default function PitchRoom() {
   const {
+    title,
+    image,
+    imageAlt,
     badge,
     heading,
-    headingParts,
-    sub,
-    highlights,
+    lead,
     eligibility,
     steps,
-    kicker,
-    meta,
-    feeNote,
     deadline,
     cta,
-    ctaNote,
+    feeNote,
   } = pitchRoom;
 
   return (
     <section className={s.sec} id="pitchroom">
       <div className={s.wrap}>
-        <Reveal className={s.head} y={20} duration={0.6}>
+        {/* Badge over heading — the same section head every other section on
+            the page uses. */}
+        <Reveal className={s.head} y={18} duration={0.55}>
           <span className={s.badge}>{badge}</span>
-          {/* The beats are separate spans so they can stack on narrow screens
-              the way the poster sets them, but the h2 still reads as one
-              sentence to a screen reader. */}
-          <h2 aria-label={heading}>
-            {(headingParts || [heading]).map((part, i) => (
-              <span key={part} className={s.part} data-accent={i === 2 ? "true" : undefined}>
-                {part}
-              </span>
-            ))}
-          </h2>
-          <p className={s.sub}>{sub}</p>
+          <h2>{title}</h2>
         </Reveal>
 
-        <div className={s.stages}>
-          {highlights.map((h, i) => (
-            <Reveal
-              key={h.title}
-              className={s.stage}
-              y={22}
-              duration={0.6}
-              delay={stagger(i)}
-              amount={0.12}
-            >
-              <span className={s.ic}>
-                <Icon name={h.icon} size={21} />
-              </span>
-              <span className={s.label}>{h.label}</span>
-              <h3>{h.title}</h3>
-              <p>{h.body}</p>
-            </Reveal>
-          ))}
-        </div>
-
-        {/* ---- eligibility ------------------------------------------------ */}
-        <Reveal className={s.block} y={22} duration={0.6} amount={0.12}>
-          <div className={s.blockHead}>
-            <span className={s.eyebrow}>{eligibility.label}</span>
-            <h3>{eligibility.heading}</h3>
+        <Reveal className={s.card} y={24} duration={0.7} amount={0.1}>
+          <div className={s.media}>
+            <img src={image} alt={imageAlt} loading="lazy" />
           </div>
-          <div className={s.eligGrid}>
-            {eligibility.stages.map((st) => (
-              <div className={s.elig} key={st.name}>
-                <span className={s.stageName}>{st.name}</span>
-                <p className={s.question}>{st.question}</p>
-                <ul className={s.focus}>
-                  {st.focus.map((f) => (
-                    <li key={f}>
+
+          <div className={s.content}>
+            {/* h3, not h2: the section's own heading above the card is the h2,
+                so this keeps the document outline in order. */}
+            <h3 className={s.title}>{heading}</h3>
+            <p className={s.lead}>{lead}</p>
+
+            <div className={s.cols}>
+              <div className={s.col}>
+                <span className={s.eyebrow}>{eligibility.label}</span>
+                <ul className={s.stages}>
+                  {eligibility.stages.map((st) => (
+                    <li key={st.name}>
                       <Icon name="check" size={15} strokeWidth={2.4} />
-                      <span>{f}</span>
+                      <span>
+                        <b>{st.name}</b> — {st.detail}
+                      </span>
                     </li>
                   ))}
                 </ul>
               </div>
-            ))}
-          </div>
-        </Reveal>
 
-        {/* ---- how to apply ----------------------------------------------- */}
-        <Reveal className={s.block} y={22} duration={0.6} amount={0.12}>
-          <div className={s.blockHead}>
-            <span className={s.eyebrow}>{steps.label}</span>
-          </div>
-          {/* The number is decorative: <ol> already conveys the order, and a
-              screen reader would otherwise announce "1 1. Register…". */}
-          <ol className={s.stepList}>
-            {steps.items.map((step, i) => (
-              <li className={s.step} key={step}>
-                <span className={s.num} aria-hidden="true">
-                  {i + 1}
-                </span>
-                <h4>{step}</h4>
-              </li>
-            ))}
-          </ol>
-        </Reveal>
-
-        {/* ---- apply ------------------------------------------------------ */}
-        <Reveal className={s.panel} y={26} duration={0.7} amount={0.12}>
-          <p className={s.kicker}>{kicker}</p>
-
-          <dl className={s.meta}>
-            {meta.map((m) => (
-              <div className={s.metaItem} key={m.label}>
-                <dt>
-                  <Icon name={m.icon} size={16} />
-                  {m.label}
-                </dt>
-                <dd>{m.value}</dd>
+              <div className={s.col}>
+                <span className={s.eyebrow}>{steps.label}</span>
+                {/* The numbers are decorative: <ol> already conveys the order,
+                    and a screen reader would otherwise say "1 1. Register…". */}
+                <ol className={s.steps}>
+                  {steps.items.map((step, i) => (
+                    <li key={step}>
+                      <span className={s.num} aria-hidden="true">
+                        {i + 1}
+                      </span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ol>
               </div>
-            ))}
-          </dl>
+            </div>
 
-          {feeNote && <p className={s.feeNote}>{feeNote}</p>}
-
-          <div className={s.act}>
-            <div className={s.actRow}>
+            <div className={s.act}>
+              <Button href={cta.href} variant="grad" className={s.cta}>
+                {cta.label}
+                <Icon name="arrowUpRight" size={17} strokeWidth={2.1} />
+              </Button>
               {deadline && (
                 <p className={s.deadline}>
                   <span className={s.dot} aria-hidden="true" />
-                  {/* One text node, not two flex items: as its own item the
-                      date was pushed to the far end of the chip, leaving a gap
-                      across the middle of it on a phone. */}
                   <span>
                     {deadline.label} <strong>{deadline.value}</strong>
                   </span>
                 </p>
               )}
-              {/* "light" is the existing white-on-gradient variant the footer
-                  band uses — the same problem, so the same button. */}
-              <Button href={cta.href} variant="light" className={s.cta}>
-                {cta.label}
-                <Icon name="arrowUpRight" size={17} strokeWidth={2.1} />
-              </Button>
             </div>
-            {ctaNote && <p className={s.note}>{ctaNote}</p>}
+
+            {feeNote && <p className={s.feeNote}>{feeNote}</p>}
           </div>
         </Reveal>
       </div>

@@ -1,9 +1,9 @@
 /* Marwar Pitch Room.
 
-   Cream ground, matching the alternation either side of it (white Committee
-   above, dark Agenda below). Authored mobile-first like the rest of the site:
-   one column by default, widening at 561px and 981px to match the breakpoints
-   CardSection already uses, so the card grids across the page line up. */
+   Cream ground, keeping the alternation either side of it (white Committee
+   above, dark Agenda below). Authored mobile-first: the poster stacks above
+   the copy on a phone and moves beside it at 981px, the same breakpoint
+   CardSection uses for its widest grid. */
 
 .sec {
   padding: var(--sec-pad) 0;
@@ -16,12 +16,7 @@
   padding: 0 var(--gutter);
 }
 
-/* ---- heading ------------------------------------------------------------- */
-.head {
-  max-width: 760px;
-  margin: 0 auto;
-  text-align: center;
-}
+/* ---- section heading ----------------------------------------------------- */
 
 .badge {
   display: inline-block;
@@ -34,6 +29,16 @@
   border-radius: var(--rad-pill);
 }
 
+
+/* Badge, then heading — the house section head, same as Delegates, Partners
+   and the rest. No standfirst under it: the card opens with its own lead, and
+   a third block of intro is what made this section feel heavy to begin with. */
+.head {
+  max-width: 760px;
+  margin: 0 auto clamp(34px, 4vw, 54px);
+  text-align: center;
+}
+
 .head h2 {
   font-size: var(--fs-h2);
   font-weight: 800;
@@ -42,104 +47,96 @@
   margin: 18px 0 0;
 }
 
-/* The three beats of the poster's tagline. Inline-block so each one breaks as
-   a unit — "Build the extraordinary." never splits across a line while the
-   beat before it sits half-empty — with the space between them restored as a
-   margin, since inline-block eats the whitespace at some zoom levels. */
-.part {
-  display: inline-block;
-  margin-right: 0.28em;
-}
+/* ---- the card ------------------------------------------------------------ */
 
-.part:last-child {
-  margin-right: 0;
-}
-
-.part[data-accent="true"] {
-  background: var(--grad-text);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.sub {
-  font-size: var(--fs-sub);
-  line-height: 1.6;
-  color: var(--c-muted);
-  margin: 16px auto 0;
-  max-width: 660px;
-}
-
-/* ---- the three beats ----------------------------------------------------- */
-.stages {
+/* One card, not a stack of them. The brand reads through the hairline on the
+   edge, the eyebrows and the button rather than through a filled block. */
+.card {
+  position: relative;
+  overflow: hidden;
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(14px, 1.8vw, 22px);
-  margin-top: clamp(38px, 4.4vw, 56px);
-}
-
-.stage {
   background: var(--c-white);
   border: 1px solid var(--c-line);
   border-radius: var(--rad-card);
-  padding: clamp(22px, 2.4vw, 30px);
   box-shadow: var(--sh-card);
-  transition: transform 0.32s var(--ease-out), box-shadow 0.32s ease,
-    border-color 0.32s ease;
 }
 
-.stage:hover {
-  transform: translateY(-6px);
-  border-color: var(--card-hover-border);
-  box-shadow: var(--sh-hover);
+/* A 4px gradient rule along the top on a phone, flipping to the left edge once
+   the card goes two-column. Inset by the radius at each end so it follows the
+   rounded corner instead of poking past it. */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: var(--rad-card);
+  right: var(--rad-card);
+  height: 4px;
+  background: var(--grad);
+  z-index: 2;
 }
 
-.ic {
-  width: 46px;
-  height: 46px;
-  border-radius: var(--rad-sm);
-  background: var(--icon-tile-bg);
-  color: var(--c-red);
-  display: inline-flex;
+/* ---- poster -------------------------------------------------------------- */
+
+/* The poster is mounted, not cropped and not stretched.
+
+   It is a composed piece of artwork, so `cover` would cut the type off it and
+   `contain` against a flush edge left grey letterbox bands wherever the column
+   ratio did not match the poster's 3:4. Instead the column is a cream mat —
+   the section's own ground, showing through the white card — and the poster
+   sits centred on it with its own radius and shadow. The space around it then
+   reads as framing rather than as a gap. */
+.media {
+  position: relative;
+  background: var(--c-cream);
+  border-bottom: 1px solid var(--c-line);
+  display: flex;
   align-items: center;
   justify-content: center;
+  padding: clamp(22px, 2.6vw, 34px);
 }
 
-.label {
+.media img {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
   display: block;
-  margin-top: 16px;
-  font-size: 11.5px;
+  border-radius: var(--rad-tile);
+  box-shadow: 0 16px 38px rgba(40, 12, 20, 0.16);
+}
+
+/* ---- copy ---------------------------------------------------------------- */
+.content {
+  padding: clamp(30px, 3.9vw, 54px);
+}
+
+/* A notch below the section heading above it — this one sits inside a card,
+   and matching --fs-h2 would give the section two competing headings. */
+.title {
+  font-size: clamp(26px, 3.1vw, 38px);
   font-weight: 800;
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--c-red);
+  letter-spacing: var(--ls-tight);
+  line-height: 1.15;
+  /* first thing in the column now the badge has moved up to the section head */
+  margin: 0;
 }
 
-.stage h3 {
-  font-size: var(--fs-card-t);
-  font-weight: 700;
-  letter-spacing: var(--ls-card);
-  line-height: 1.25;
-  margin: 7px 0 0;
-}
-
-.stage p {
-  font-size: var(--fs-card-d);
-  line-height: 1.6;
+.lead {
+  font-size: clamp(16.5px, 1.5vw, 19px);
+  line-height: 1.65;
   color: var(--c-muted);
-  margin-top: 9px;
+  margin: 15px 0 0;
 }
 
-/* ---- eligibility + how to apply ------------------------------------------
-   Two blocks that share a heading treatment: a red eyebrow, then either a
-   grid of qualifying stages or the numbered steps. */
-.block {
-  margin-top: clamp(34px, 4vw, 52px);
-}
-
-.blockHead {
-  text-align: center;
-  margin-bottom: clamp(18px, 2.2vw, 26px);
+/* ---- who / how ----------------------------------------------------------- */
+.cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(20px, 2.4vw, 30px);
+  margin-top: clamp(24px, 2.8vw, 32px);
+  padding-top: clamp(22px, 2.6vw, 28px);
+  border-top: 1px solid var(--c-line);
 }
 
 .eyebrow {
@@ -151,239 +148,83 @@
   color: var(--c-red);
 }
 
-.blockHead h3 {
-  font-size: var(--fs-h2-attend);
-  font-weight: 800;
-  letter-spacing: var(--ls-h);
-  line-height: 1.2;
-  margin: 10px 0 0;
-}
-
-.eligGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(14px, 1.8vw, 22px);
-}
-
-.elig {
-  background: var(--c-white);
-  border: 1px solid var(--c-line);
-  border-radius: var(--rad-card);
-  padding: clamp(22px, 2.4vw, 30px);
-  box-shadow: var(--sh-card);
-}
-
-.stageName {
-  display: inline-block;
-  background: var(--badge-bg);
-  color: var(--c-red);
-  font-size: var(--fs-badge);
-  font-weight: 700;
-  letter-spacing: var(--ls-badge);
-  padding: 6px 14px;
-  border-radius: var(--rad-pill);
-}
-
-.question {
-  font-size: var(--fs-card-t);
-  font-weight: 700;
-  letter-spacing: var(--ls-card);
-  line-height: 1.3;
-  margin: 14px 0 0;
-}
-
-.focus {
+.stages,
+.steps {
   list-style: none;
-  margin: 14px 0 0;
+  margin: 12px 0 0;
   padding: 0;
   display: grid;
-  gap: 9px;
+  gap: 10px;
 }
 
-.focus li {
+.stages li,
+.steps li {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: var(--fs-card-d);
-  line-height: 1.55;
+  font-size: 15.5px;
+  line-height: 1.5;
   color: var(--c-muted);
 }
 
-.focus svg {
+.stages b {
+  color: var(--c-ink);
+  font-weight: 700;
+}
+
+.stages svg {
   color: var(--c-red);
   flex: none;
-  /* nudged onto the first line's optical centre */
-  margin-top: 4px;
+  /* onto the first line's optical centre */
+  margin-top: 3px;
 }
 
-/* ---- the two application steps ------------------------------------------- */
-.stepList {
-  list-style: none;
-  counter-reset: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(14px, 1.8vw, 22px);
-}
-
-/* Centred rather than top-aligned now the card holds a single line — the
-   number and the label sit on one optical axis. `align-items: center` still
-   does the right thing if a long label wraps to two lines. */
-.step {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  background: var(--c-white);
-  border: 1px solid var(--c-line);
-  border-radius: var(--rad-card);
-  padding: clamp(18px, 2vw, 22px) clamp(20px, 2.2vw, 26px);
-  box-shadow: var(--sh-card);
-}
-
+/* Small enough to sit in a list rather than announce itself — the old version
+   of this section gave the steps a card each, which is what made them read as
+   a bigger deal than the button under them. */
 .num {
   flex: none;
-  width: 34px;
-  height: 34px;
+  width: 23px;
+  height: 23px;
   border-radius: 50%;
   background: var(--grad);
   color: #fff;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 800;
   display: grid;
   place-items: center;
-  /* tabular so "1" and "2" sit on the same optical centre */
   font-variant-numeric: tabular-nums;
+  margin-top: 1px;
 }
 
-.step h4 {
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: var(--ls-card);
-  line-height: 1.35;
-  margin: 0;
-}
-
-/* ---- the apply panel ----------------------------------------------------- */
-
-/* The one gradient block on the page. Everything inside it is white, so the
-   ground has to stay dark enough for 4.5:1 — the house gradient runs #E4002B
-   to #C20E4D, both of which clear it against white text at this size. */
-.panel {
-  position: relative;
-  overflow: hidden;
-  margin-top: clamp(26px, 3vw, 40px);
-  padding: clamp(30px, 4vw, 54px) clamp(22px, 3.4vw, 52px);
-  border-radius: var(--rad-card);
-  background: var(--grad-feat);
-  box-shadow: var(--sh-banner);
-  color: #fff;
-  text-align: center;
-}
-
-/* A soft spotlight behind the kicker, so the panel is not a flat rectangle of
-   red. Purely decorative and pointer-transparent. */
-.panel::before {
-  content: "";
-  position: absolute;
-  top: -40%;
-  left: 50%;
-  width: min(760px, 120%);
-  aspect-ratio: 1;
-  transform: translateX(-50%);
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, transparent 62%);
-  pointer-events: none;
-}
-
-.kicker {
-  position: relative;
-  font-size: var(--fs-h2-banner);
-  font-weight: 800;
-  letter-spacing: var(--ls-tight);
-  line-height: 1.15;
-  max-width: 20ch;
-  margin: 0 auto;
-}
-
-/* ---- fact strip ---------------------------------------------------------- */
-.meta {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px clamp(18px, 2.4vw, 34px);
-  margin: clamp(26px, 3vw, 38px) 0 0;
-  padding-top: clamp(22px, 2.6vw, 30px);
-  border-top: 1px solid rgba(255, 255, 255, 0.26);
-  text-align: left;
-}
-
-.metaItem dt {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  /* 0.82 on this red still clears 4.5:1; the labels are the smallest type in
-     the panel, so they get the least reduction. */
-  color: rgba(255, 255, 255, 0.82);
-}
-
-.metaItem dd {
-  margin: 6px 0 0;
-  font-size: clamp(15px, 1.4vw, 17px);
-  font-weight: 700;
-  line-height: 1.35;
-  letter-spacing: var(--ls-card);
-}
-
-/* TiE's fee disclaimer. Deliberately not small print: it sits at full body
-   size directly above the button, because it is the one thing on this page
-   someone can lose money by skimming past. */
-.feeNote {
-  position: relative;
-  margin: clamp(22px, 2.6vw, 30px) auto 0;
-  max-width: 62ch;
-  padding: clamp(14px, 1.6vw, 18px) clamp(16px, 2vw, 22px);
-  border-radius: var(--rad-sm);
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.95);
-  text-align: left;
-}
-
-/* ---- deadline + call to action ------------------------------------------- */
+/* ---- act ----------------------------------------------------------------- */
 .act {
-  position: relative;
-  margin-top: clamp(26px, 3vw, 36px);
-}
-
-/* Stacked on a phone, side by side once there is room for both. Explicit flex
-   rather than relying on the two being inline-level: the button is a block at
-   full width below 561px, and a margin on an inline element would not have
-   separated them anyway. */
-.actRow {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 14px;
+  margin-top: clamp(24px, 2.8vw, 32px);
+}
+
+.cta {
+  /* full width on a phone, hugging its label from 561px up */
+  display: flex;
+  width: 100%;
 }
 
 .deadline {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 9px;
+  gap: 8px;
   max-width: 100%;
-  font-size: 13.5px;
+  /* sized to clear a 390px phone on one line, inside the card's padding */
+  font-size: 12.5px;
   font-weight: 500;
-  padding: 7px 15px 7px 13px;
+  color: var(--c-ink);
+  padding: 7px 14px 7px 11px;
   border-radius: var(--rad-pill);
-  background: rgba(255, 255, 255, 0.14);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+  background: var(--r-06);
+  box-shadow: inset 0 0 0 1px var(--r-20);
 }
 
 .deadline strong {
@@ -394,7 +235,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--c-red);
   flex: none;
   animation: pulse 2.4s var(--ease-out) infinite;
 }
@@ -406,70 +247,75 @@
     transform: scale(1);
   }
   50% {
-    opacity: 0.45;
+    opacity: 0.4;
     transform: scale(0.78);
   }
 }
 
-.cta {
-  /* full width on a phone, hugging its label from 561px up */
-  display: flex;
-  width: 100%;
-}
-
-.note {
-  font-size: 12.5px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.78);
-  margin: 14px auto 0;
-  max-width: 44ch;
+/* Quiet, but present and at a readable size — it is the one line here someone
+   can lose money by skipping. */
+.feeNote {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--c-muted);
+  margin: 18px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--c-line);
 }
 
 @media (min-width: 561px) {
-  .stages {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .eligGrid,
-  .stepList {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .meta {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .feeNote {
-    text-align: center;
-  }
-  .actRow {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
+  .deadline {
+    font-size: 13.5px;
+    padding: 7px 15px 7px 13px;
+    gap: 9px;
   }
   .cta {
     display: inline-flex;
     width: auto;
   }
+  .act {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+  }
+  .cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (min-width: 981px) {
-  .stages {
-    grid-template-columns: repeat(3, 1fr);
+  .card {
+    /* A 3:4 poster can never fill this column's height: the copy beside it is
+       taller, and widening the poster column narrows the copy, which makes the
+       copy taller again — measured, 0.72fr grew the card and gained nothing.
+       0.66fr is where the poster is large enough to read while the
+       mat around it stays an even margin, so it looks like a framed print
+       rather than a letterboxed image. */
+    grid-template-columns: minmax(0, 0.66fr) 1fr;
+    align-items: stretch;
   }
-  .meta {
-    grid-template-columns: repeat(4, 1fr);
+  .media {
+    border-bottom: none;
+    border-right: 1px solid var(--c-line);
+    padding: clamp(22px, 2.4vw, 32px);
+  }
+  .card::before {
+    top: var(--rad-card);
+    bottom: var(--rad-card);
+    left: 0;
+    right: auto;
+    width: 4px;
+    height: auto;
+  }
+  .content {
+    /* the gradient rule now runs down the left, so the copy moves off it */
+    padding-left: clamp(30px, 3.2vw, 44px);
   }
 }
 
 @media (min-width: 1600px) {
   .wrap {
     max-width: var(--wrap-xl);
-  }
-}
-
-/* touch devices have no hover, so the lift never fires — keep the resting
-   card from looking flat next to the panel */
-@media (hover: none) {
-  .stage:hover {
-    transform: none;
   }
 }

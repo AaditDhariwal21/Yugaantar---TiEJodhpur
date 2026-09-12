@@ -1,102 +1,67 @@
 /* ============================================================================
    The Marwar Pitch Room — the flagship pitch competition inside Yugaantar.
 
-   Everything here comes from TiE's own event listing (`pitchRoomUrl`): the
-   "Why attend?" copy, the eligibility stages, the two application steps and
-   the fee disclaimer are transcribed from it, lightly trimmed for the page.
-   The poster artwork supplies the tagline and the kicker. `deadline` is the
-   date the listing's registration offer stops selling, which is step one of
-   applying — see the note on it below.
+   Copy comes from TiE's own event listing (`pitchRoomUrl`): the "Why attend?"
+   blurb, the eligibility stages, the two application steps and the fee
+   disclaimer, lightly trimmed.
 
-   Anything still unconfirmed is marked TODO(content). Do not add a prize
-   figure here: TiE says "prize money" and names no amount.
+   WHAT IS DELIBERATELY NOT HERE. The poster does the talking for everything
+   printed on it, so none of it is repeated as text beside it:
+
+     - the event name and the "Pitch Bold | Think Big | Build The
+       Extraordinary" tagline
+     - the dates, 22-23 October 2026, and Jodhpur
+     - "The stage is set. The spotlight is yours."
+     - "a premier platform for entrepreneurs to pitch, compete and unlock
+       opportunities with Mentors, Investors and Industry Leaders"
+
+   What is left is only what the artwork cannot say: who may apply, how to
+   apply, what it costs, and by when. Adding any of the above back would put
+   the same sentence on screen twice.
+
+   Do not add a prize figure: TiE says "prize money" and names no amount.
    ========================================================================== */
+
+import posterUrl from "../assets/marwarpitchroom.jpg";
 
 /* Step one. Registering and paying happens on TiE's events platform. */
 export const pitchRoomUrl =
   "https://events.tie.org/Yugaantar-TheMarwarPitchRoomPitchBoldIThinkBigIBuildTheExtraordinary";
 
-/* Step two is the application form itself, which TiE emails out after
-   registration. It also publishes the link openly —
+/* Step two is the application form, which TiE emails out after registration.
+   It also publishes the link openly —
    https://tiejodhpurangels.ssdspvhub.com/demoday/events-portfolio/2040 — but
-   the section deliberately does NOT link it: it is a third domain (TiE Jodhpur
-   Angels' deal-flow portal), and the fee and the deadline already sit in the
-   panel below, so the steps only need to say what the two steps are. */
+   the section does not link it: it is a third domain (TiE Jodhpur Angels'
+   deal-flow portal), and the steps only need to say what the steps are. */
 
 export const pitchRoom = {
-  badge: "The Marwar Pitch Room",
-  /* The poster sets this as three beats separated by rules. `heading` is the
-     plain version used as the accessible label; the section renders
-     `headingParts` so the beats can break and colour the way the artwork
-     does. */
-  heading: "Pitch bold. Think big. Build the extraordinary.",
-  headingParts: ["Pitch bold.", "Think big.", "Build the extraordinary."],
-  sub: "Pitch your venture live on the main stage of Jodhpur's largest entrepreneurship conference — competing for prize money in front of a curated panel of investors, entrepreneurs and ecosystem leaders.",
+  image: posterUrl,
+  imageAlt:
+    "The Marwar Pitch Room at Yugaantar — pitch bold, think big, build the extraordinary. 22–23 October 2026, Jodhpur.",
 
-  highlights: [
-    {
-      icon: "mic",
-      label: "The main stage",
-      title: "Pitch live at Yugaantar",
-      body: "Shortlisted startups pitch on the main stage, in front of the whole festival and a curated panel of investors, entrepreneurs and ecosystem leaders.",
-    },
-    {
-      icon: "trend",
-      label: "Prize money",
-      title: "Three startups take it",
-      body: "The top three are chosen on the merit of the pitch, business potential, clarity of vision and overall evaluation.",
-    },
-    {
-      icon: "handshake",
-      label: "Everyone who pitches",
-      title: "More than the trophy",
-      body: "Visibility, feedback, and access to a curated ecosystem of entrepreneurs, mentors and investors — whether or not you place.",
-    },
-  ],
+  /* The section heading. The poster carries the name too, but as the only <h2>
+     between the Committee and the Agenda it is what tells a reader scanning
+     the page — or a search engine reading the outline — what this section is,
+     and it matches the "Pitch Room" entry in the nav. */
+  title: "Marwar Pitch Room",
+
+  /* Both from TiE's "Why attend?" copy, and neither appears on the poster. */
+  badge: "Live pitching at Yugaantar",
+  heading: "Pitch on the main stage of Jodhpur's largest entrepreneurship conference.",
+  lead: "Shortlisted startups pitch live in front of a curated panel of investors, entrepreneurs and ecosystem leaders. The top three take prize money, judged on the merit of the pitch, business potential and clarity of vision.",
 
   eligibility: {
     label: "Who can apply",
-    heading: "Open to startups at either stage.",
     stages: [
-      {
-        name: "Pre-revenue",
-        question: "Have an idea, a prototype or an MVP?",
-        focus: [
-          "Problem validation, ideation and early learning",
-          "Product validation, customer traction and business model",
-        ],
-      },
-      {
-        name: "Revenue",
-        question: "Have early revenue or a paying customer base?",
-        focus: ["Growth, scaling, unit economics and investment readiness"],
-      },
+      { name: "Pre-revenue", detail: "An idea, a prototype or an MVP" },
+      { name: "Revenue", detail: "Early revenue or a paying customer base" },
     ],
   },
 
-  /* Just the two beats, in order. The amount, the deadline and the button all
-     live in the panel underneath, so repeating them on the steps only made
-     them longer than the thing they describe. */
   steps: {
     label: "How to apply",
     items: ["Register and pay the application fee", "Complete the application form"],
   },
-
-  /* The line across the bottom of the poster. */
-  kicker: "The stage is set. The spotlight is yours.",
-
-  meta: [
-    { icon: "calendar", label: "Semi-finals & finals", value: "22–23 October 2026" },
-    { icon: "pin", label: "Venue", value: "Hotel Radisson, Jodhpur" },
-    { icon: "ticket", label: "Application fee", value: "₹1,000 + GST" },
-    { icon: "trend", label: "Prize money", value: "Top three startups" },
-  ],
-
-  /* TiE's own disclaimer, condensed but not softened. It is the one thing on
-     this page an applicant can lose money by misreading, so it stays next to
-     the button rather than in the small print at the foot of the section. */
-  feeNote:
-    "The fee covers registration and processing of your application. Every application is reviewed, and only those shortlisted by the jury are invited to the next round — the fee secures your application, not your selection.",
 
   /* The registration offer on TiE's listing stops selling at the start of
      21 Sep 2026, and registering is step one of applying. Set this to null to
@@ -105,5 +70,10 @@ export const pitchRoom = {
   deadline: { label: "Applications close", value: "21 September 2026" },
 
   cta: { label: "Apply to pitch", href: pitchRoomUrl },
-  ctaNote: "Registration and the application form are handled on TiE's own platforms.",
+
+  /* TiE's own disclaimer, condensed but not softened — it is the one thing
+     here someone can lose money by skimming past, so it carries the fee amount
+     rather than leaving it to a separate stat. */
+  feeNote:
+    "The ₹1,000 + GST application fee covers registration and processing. Every application is reviewed, and only those shortlisted by the jury are invited to the next round — the fee secures your application, not your selection.",
 };
