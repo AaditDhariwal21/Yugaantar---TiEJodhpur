@@ -2,7 +2,7 @@ import { site, footer } from "../data/site";
 import Button from "../components/ui/Button";
 import s from "./ComingSoon.module.css";
 
-/* Holding page for the routes still to be built (3.16: /partnership and
+/* Holding page for the routes still to be built (3.16:
    /tickets/registration-form) and for unknown URLs. Without it the nav's
    Register button lands on a blank page in production. */
 export default function ComingSoon({

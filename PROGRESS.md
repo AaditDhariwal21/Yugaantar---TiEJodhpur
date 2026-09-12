@@ -129,8 +129,11 @@ overflow at 390px. The server API was covered separately during the build:
 
 ## Not started
 
-- [ ] **3.16 `/partnership`** — needs its own Phase Zero pass against the live page
-- [ ] **3.16 `/tickets/registration-form`** — same
+- [x] ~~**3.16 `/partnership`**~~ — dropped. Partnership is the "Our Partners"
+  section on the home page (`#sponsors`); the nav and footer anchor to it and
+  the holding route has been removed.
+- [ ] **3.16 `/tickets/registration-form`** — needs its own Phase Zero pass
+  against the live page
 
 ## Verification
 

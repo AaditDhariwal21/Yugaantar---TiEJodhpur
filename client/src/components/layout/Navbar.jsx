@@ -1,13 +1,130 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { site, nav } from "../../data/site";
 import HashLink from "../ui/HashLink";
 import s from "./Navbar.module.css";
 
+/* How far the highlight pill is allowed to bleed past the link's own box, each
+   side. The desktop row's tightest gap is 18px, so 10 leaves the pill clear of
+   its neighbours' text at every width. */
+const PILL_PAD = 10;
+
+/* Which nav entry the reader is currently inside.
+
+   Not an IntersectionObserver: the sections are taller than the viewport and
+   several are on screen at once, so "is it visible" is the wrong question. The
+   right one is "which section has most recently passed under the nav", which a
+   single probe line just below the sticky bar answers directly.
+
+   Menu order is not DOM order — Agenda is listed third but sits after the
+   Committee on the page — so the winner is the candidate with the greatest top
+   above the probe, not the last one that matches. */
+function useActiveNavIndex(pathname) {
+  const [active, setActive] = useState(-1);
+
+  useEffect(() => {
+    /* Every nav entry is a home-page anchor, so nothing is current anywhere
+       else and this resolves to -1. The lookup is kept rather than hard-coding
+       that, so a future route entry lights up without a special case. */
+    if (pathname !== "/") {
+      setActive(nav.links.findIndex((l) => l.href === pathname));
+      return;
+    }
+
+    const targets = nav.links
+      .map((l, i) => ({ i, id: l.href.includes("#") ? l.href.split("#")[1] : null }))
+      .filter((t) => t.id);
+
+    const navH =
+      parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue("--nav-h")
+      ) || 76;
+    const probe = navH + 28;
+
+    let raf = 0;
+    const measure = () => {
+      raf = 0;
+      let best = -1;
+      let bestTop = -Infinity;
+      for (const t of targets) {
+        // sections that depend on API content are absent until it lands
+        const el = document.getElementById(t.id);
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top;
+        if (top <= probe && top > bestTop) {
+          bestTop = top;
+          best = t.i;
+        }
+      }
+      setActive(best);
+    };
+
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(measure);
+    };
+
+    measure();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    // the roster, committee and agenda arrive after first paint and move
+    // everything below them, so re-probe when the page's height changes
+    const ro = new ResizeObserver(schedule);
+    ro.observe(document.body);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      ro.disconnect();
+    };
+  }, [pathname]);
+
+  return active;
+}
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const active = useActiveNavIndex(location.pathname);
+
+  const linksRef = useRef(null);
+  const [pill, setPill] = useState({ x: 0, w: 0, on: false });
+
+  /* The pill is one element that slides and resizes between links, rather than
+     a background switched on per link, so the change of section reads as a
+     single marker following the reader down the page.
+
+     When nothing is active it only fades — its position is left where it was,
+     so scrolling back up into the hero does not send it racing to x=0 on the
+     way out. */
+  const measurePill = useCallback(() => {
+    const root = linksRef.current;
+    if (!root) return;
+    const el = active >= 0 ? root.querySelectorAll("a")[active] : null;
+    if (!el) {
+      setPill((p) => ({ ...p, on: false }));
+      return;
+    }
+    setPill({
+      x: el.offsetLeft - PILL_PAD,
+      w: el.offsetWidth + PILL_PAD * 2,
+      on: true,
+    });
+  }, [active]);
+
+  useLayoutEffect(() => {
+    measurePill();
+  }, [measurePill]);
+
+  useEffect(() => {
+    window.addEventListener("resize", measurePill);
+    // Inter is fetched from a CDN; the row reflows when it finally lands
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(measurePill);
+    }
+    return () => window.removeEventListener("resize", measurePill);
+  }, [measurePill]);
 
   // close the panel on route change and on resize past the desktop breakpoint
   useEffect(() => setOpen(false), [location.pathname]);
@@ -38,9 +155,20 @@ export default function Navbar() {
             )}
           </HashLink>
 
-          <nav className={s.links} aria-label="Primary">
-            {nav.links.map((l) => (
-              <HashLink key={l.label} to={l.href}>
+          <nav className={s.links} aria-label="Primary" ref={linksRef}>
+            <span
+              className={s.marker}
+              aria-hidden="true"
+              data-on={pill.on ? "true" : "false"}
+              style={{ transform: `translateX(${pill.x}px)`, width: `${pill.w}px` }}
+            />
+            {nav.links.map((l, i) => (
+              <HashLink
+                key={l.label}
+                to={l.href}
+                data-active={i === active ? "true" : undefined}
+                aria-current={i === active ? "true" : undefined}
+              >
                 {l.label}
               </HashLink>
             ))}
@@ -75,8 +203,14 @@ export default function Navbar() {
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
           >
             <nav aria-label="Mobile">
-              {nav.links.map((l) => (
-                <HashLink key={l.label} to={l.href} onNavigate={() => setOpen(false)}>
+              {nav.links.map((l, i) => (
+                <HashLink
+                  key={l.label}
+                  to={l.href}
+                  onNavigate={() => setOpen(false)}
+                  data-active={i === active ? "true" : undefined}
+                  aria-current={i === active ? "true" : undefined}
+                >
                   {l.label}
                 </HashLink>
               ))}

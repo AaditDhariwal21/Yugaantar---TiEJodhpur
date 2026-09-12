@@ -39,17 +39,9 @@ export default function App() {
       <Route element={<SiteLayout />}>
         <Route path="/" element={<Home />} />
 
-        {/* 3.16 — holding pages until these are built out */}
-        <Route
-          path="/partnership"
-          element={
-            <ComingSoon
-              badge="Partnership"
-              heading="Partner with Yugaantar 2026."
-              body="Sponsorship and exhibitor packages are being finalised. Tell us what you have in mind and we'll send the deck as soon as it's ready."
-            />
-          }
-        />
+        {/* 3.16 — holding page until this is built out. Partnership used to
+            have one too; it is a section on the home page now, so the nav and
+            footer anchor straight to it instead. */}
         <Route
           path="/tickets/registration-form"
           element={

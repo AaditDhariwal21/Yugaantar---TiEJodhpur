@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from "react";
 /* The hero H1, reproduced from the reference.
 
    It is not laid-out text: a heavy weight is rasterised to an offscreen canvas,
-   quantised onto the same 12px lattice as the graph-paper background behind it,
-   and each "on" cell is painted as a square inset by 1px so the grid lines show
+   quantised onto the same lattice as the graph-paper background behind it, and
+   each "on" cell is painted as a square inset by 1px so the grid lines show
    through the glyphs. Phrases cycle, and the swap is a per-cell dissolve with a
    randomised delay rather than a crossfade.
 
@@ -13,18 +13,36 @@ import { useEffect, useRef, useState } from "react";
    phrase stacks onto two lines rather than shrinking to nothing, which is what
    the reference does on phones.
 
+   The lattice is NOT a fixed 12px. Desktop sets its type at ~150px, which puts
+   the cap-height at roughly ten 12px cells — enough to read. A phone only has
+   room for ~85px type, and on that same 12px lattice the cap-height is five
+   cells, at which point the glyphs stop being letters and become blocks. So the
+   cell pitch shrinks with the viewport (see `cellFor`), holding the cap-height
+   in a readable 8-12 cells everywhere while desktop stays exactly as it was.
+   The pitch is published to CSS as --gh-cell so the graph-paper lines behind
+   the canvas stay locked to the same lattice.
+
    Each phrase can carry a `lead` — the small connector word ("From" / "to")
    rendered above the band and swapped in step with the dissolve, so the full
    tagline reads across the cycle. Setting the connectors in the pixel grid
-   instead would roughly double the character count per line, and the glyphs
-   are already only ~10 cells tall on desktop and ~6 on a phone.
+   instead would roughly double the character count per line.
 
    Accessible text lives on the <h1>'s aria-label — the canvas is aria-hidden. */
 
-const CELL = 12;
 const GAP = 1; // the grid line that shows between blocks
 const HOLD = 2600; // ms a phrase rests before the next dissolve
 const MORPH = 900; // ms the dissolve itself takes
+
+/* Lattice pitch by band width. 12px from 1024 up is the reference value and is
+   deliberately left exactly as it was; below that the pitch drops so the glyphs
+   keep roughly the same number of cells across their cap-height — the measured
+   range is 8-12 cells at every width, against 4.4 on a 320px phone before. */
+const cellFor = (w) => (w >= 1024 ? 12 : w >= 560 ? 8 : 6);
+
+/* Share of the band the longest line may occupy. Phones get more of it — width,
+   not height, is what caps the type size there, and .gband fades a narrower
+   margin at those sizes so nothing is lost to the edge mask. */
+const widthBudgetFor = (w) => (w >= 700 ? 0.88 : 0.94);
 
 export default function GridHeadline({ phrases, className, leadClassName }) {
   const wrapRef = useRef(null);
@@ -42,14 +60,15 @@ export default function GridHeadline({ phrases, className, leadClassName }) {
     let W = 0;
     let H = 0;
     let dpr = 1;
+    let cell = 12;
     let cols = 0;
     let rows = 0;
 
     /* Largest size at which EVERY line of EVERY layout fits the width, and the
-       tallest layout fits the band. Cap-height lands at roughly 44% of the band
-       on the reference; narrow viewports hit the width limit first. */
+       tallest layout fits the band. Independent of the lattice — the cell pitch
+       is derived from the result, not the other way round. */
     const fitSizeAll = (ctx2, layouts) => {
-      const maxW = W * 0.88;
+      const maxW = W * widthBudgetFor(W);
       const family = getComputedStyle(document.body).fontFamily;
       const maxLines = Math.max(...layouts.map((l) => l.length));
       let size = Math.floor((H * 0.9) / maxLines / 1.15);
@@ -61,6 +80,23 @@ export default function GridHeadline({ phrases, className, leadClassName }) {
       };
       while (size > 8 && widest() > maxW) size -= 2;
       return size;
+    };
+
+    /* One line per phrase if they can be set large enough; otherwise split each
+       phrase on its spaces and stack. The choice is made once for all phrases
+       so they stay visually consistent as they cycle. */
+    const planType = () => {
+      const probe = document.createElement("canvas").getContext("2d");
+      const upper = phrases.map((p) => p.text.toUpperCase());
+      const oneLine = upper.map((p) => [p]);
+      const twoLine = upper.map((p) => p.split(/\s+/).filter(Boolean));
+
+      const sOne = fitSizeAll(probe, oneLine);
+      const splittable = twoLine.every((l) => l.length > 1);
+      const sTwo = splittable ? fitSizeAll(probe, twoLine) : 0;
+
+      const useTwo = splittable && sTwo > sOne * 1.25;
+      return { layouts: useTwo ? twoLine : oneLine, size: useTwo ? sTwo : sOne };
     };
 
     /* Rasterise one already-sized layout into a cols×rows coverage mask. */
@@ -81,14 +117,16 @@ export default function GridHeadline({ phrases, className, leadClassName }) {
       lines.forEach((l, i) => o.fillText(l, W / 2, y0 + i * lh));
 
       const img = o.getImageData(0, 0, W, H).data;
+      // a fine lattice has few pixels per cell, so sample every one of them
+      const step = cell >= 10 ? 2 : 1;
       const mask = new Uint8Array(cols * rows);
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
           // average alpha across the cell; >45% coverage turns the cell on
           let sum = 0;
           let n = 0;
-          for (let y = r * CELL; y < (r + 1) * CELL; y += 2) {
-            for (let x = c * CELL; x < (c + 1) * CELL; x += 2) {
+          for (let y = r * cell; y < (r + 1) * cell; y += step) {
+            for (let x = c * cell; x < (c + 1) * cell; x += step) {
               if (x >= W || y >= H) continue;
               sum += img[(y * W + x) * 4 + 3];
               n++;
@@ -100,26 +138,6 @@ export default function GridHeadline({ phrases, className, leadClassName }) {
       return mask;
     };
 
-    /* One line per phrase if they can be set large enough; otherwise split each
-       phrase on its spaces and stack. The choice is made once for all phrases
-       so they stay visually consistent as they cycle. */
-    const buildMasks = () => {
-      const probe = document.createElement("canvas").getContext("2d");
-      const upper = phrases.map((p) => p.text.toUpperCase());
-      const oneLine = upper.map((p) => [p]);
-      const twoLine = upper.map((p) => p.split(/\s+/).filter(Boolean));
-
-      const sOne = fitSizeAll(probe, oneLine);
-      const splittable = twoLine.every((l) => l.length > 1);
-      const sTwo = splittable ? fitSizeAll(probe, twoLine) : 0;
-
-      const useTwo = splittable && sTwo > sOne * 1.25;
-      const layouts = useTwo ? twoLine : oneLine;
-      const size = useTwo ? sTwo : sOne;
-
-      return layouts.map((lines) => rasterise(lines, size));
-    };
-
     let masks = [];
     let idx = 0;
     let from = null;
@@ -128,21 +146,33 @@ export default function GridHeadline({ phrases, className, leadClassName }) {
     let phase = "hold"; // hold | morph
     let t0 = performance.now();
     let raf = 0;
+    // the band size the current rasterisation was built for
+    let laidOutW = 0;
+    let laidOutH = 0;
 
     const layout = () => {
       const rect = wrap.getBoundingClientRect();
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       W = Math.max(1, Math.round(rect.width));
       H = Math.max(1, Math.round(rect.height));
-      cols = Math.ceil(W / CELL);
-      rows = Math.ceil(H / CELL);
+      laidOutW = W;
+      laidOutH = H;
+
+      // the type is sized first; the lattice is then chosen to suit it
+      const plan = planType();
+      cell = cellFor(W);
+      cols = Math.ceil(W / cell);
+      rows = Math.ceil(H / cell);
+
       canvas.width = W * dpr;
       canvas.height = H * dpr;
       canvas.style.width = `${W}px`;
       canvas.style.height = `${H}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // keep the graph-paper behind the canvas on the very same lattice
+      wrap.style.setProperty("--gh-cell", `${cell}px`);
 
-      masks = buildMasks();
+      masks = plan.layouts.map((lines) => rasterise(lines, plan.size));
       from = masks[idx];
       to = masks[idx];
       delays = new Float32Array(cols * rows);
@@ -165,6 +195,8 @@ export default function GridHeadline({ phrases, className, leadClassName }) {
       grad.addColorStop(0, "#E4002B");
       grad.addColorStop(1, "#C20E4D");
 
+      const block = Math.max(1, cell - GAP);
+
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
           const i = r * cols + c;
@@ -185,7 +217,7 @@ export default function GridHeadline({ phrases, className, leadClassName }) {
 
           ctx.globalAlpha = alpha;
           ctx.fillStyle = grad;
-          ctx.fillRect(c * CELL, r * CELL, CELL - GAP, CELL - GAP);
+          ctx.fillRect(c * cell, r * cell, block, block);
         }
       }
       ctx.globalAlpha = 1;
@@ -229,7 +261,17 @@ export default function GridHeadline({ phrases, className, leadClassName }) {
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(boot);
     else boot();
 
+    /* A relayout re-rasterises every phrase and re-rolls the dissolve, and on a
+       6px lattice that is four times the cells it used to be. Mobile browsers
+       fire resizes for chrome that comes and goes, so anything that would not
+       move the type size is ignored — a height wobble under 24px shifts the
+       fitted size by well under a pixel. A width change always counts. */
     const ro = new ResizeObserver(() => {
+      const rect = wrap.getBoundingClientRect();
+      const w = Math.round(rect.width);
+      const h = Math.round(rect.height);
+      if (w === laidOutW && Math.abs(h - laidOutH) < 24) return;
+
       const keep = idx;
       layout();
       idx = keep;

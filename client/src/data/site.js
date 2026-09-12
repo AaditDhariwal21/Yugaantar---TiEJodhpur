@@ -32,15 +32,24 @@ export const site = {
     "Join 300+ founders, investors, and corporate leaders at Yugaantar 2026 — the flagship entrepreneurship festival of TiE Jodhpur, 22–23 October 2026 at Hotel Radisson, Jodhpur.",
 };
 
+/* The order here is the order these sections appear down the page, and it has
+   to stay that way: the navbar's highlight pill tracks whichever section is
+   under the reader, so any entry out of document order makes the pill jump
+   backwards mid-scroll. Delegates and the Committee both sit above the agenda
+   table on the page, so they are listed above it here.
+
+   Every entry is an in-page anchor — there are no separate routes in the nav.
+   #sponsors is the "Our Partners" section below the tickets; the id predates
+   the section's current heading. */
 export const nav = {
   links: [
     { label: "About", href: "/#about" },
     { label: "Experience", href: "/#experience" },
-    { label: "Agenda", href: "/#agendatable" },
     { label: "Delegates", href: "/#delegates" },
     { label: "Committee", href: "/#planningcommittee" },
+    { label: "Agenda", href: "/#agendatable" },
     { label: "Tickets", href: "/#tickets" },
-    { label: "Partnership", href: "/partnership" },
+    { label: "Partnership", href: "/#sponsors" },
   ],
   cta: { label: "Register", href: registrationUrl },
 };
@@ -72,11 +81,12 @@ export const hero = {
     { label: "Explore the Programme", href: "#experience", variant: "soft" },
   ],
   // TODO(content): real TiE Global / TiE Jodhpur figures.
+  // ordered by value, largest first — the pill reads as a descending ladder
   stats: [
     { value: 500000, suffix: "+", label: "Community", icon: "users" },
-    { value: 12000, suffix: "+", label: "Corporate leaders", icon: "briefcase" },
     { value: 50000, suffix: "+", label: "Entrepreneurs & Mentors", icon: "spark" },
     { value: 15000, suffix: "+", label: "Investors", icon: "trend" },
+    { value: 12000, suffix: "+", label: "Corporate leaders", icon: "briefcase" },
   ],
   // Set to a date string to switch the countdown on, e.g. "2026-10-22T09:00:00+05:30".
   countdownTo: null,
@@ -92,7 +102,7 @@ export const about = {
   stats: [
     { value: "300+", label: "Founders, investors & leaders" },
     { value: "2 Days", label: "Of high-signal programming" },
-    { value: "India", label: "Where founders & capital meet" },
+    { value: "Jodhpur", label: "Where founders & capital meet" },
     { value: "Since 1992", label: "Backed by the global TiE network" },
   ],
 };
@@ -113,7 +123,7 @@ export const footer = {
     { label: "Delegates", href: "/#delegates" },
     { label: "Planning Committee", href: "/#planningcommittee" },
     { label: "Tickets", href: "/#tickets" },
-    { label: "Partner With Us", href: "/partnership" },
+    { label: "Partner With Us", href: "/#sponsors" },
   ],
   contactTitle: "Contact",
   email: "ed@jodhpur.tie.org",

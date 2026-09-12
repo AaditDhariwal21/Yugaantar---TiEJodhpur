@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
      external   https://…, mailto:, tel:  → plain <a>, never touches the router
      in-page    /#speakers, #experience   → smooth-scrolls, navigating first if
                                             we are on another route
-     internal   /partnership              → client-side navigation
+     internal   /tickets/registration-form → client-side navigation
 
    Anything with a scheme (or protocol-relative //) is external. Handing those
    to navigate() would make the router treat them as in-app paths. */

@@ -13,7 +13,9 @@ export const partnersMeta = {
   heading: "The organisations behind Yugaantar 2026",
   sub: "Brands backing the founders, investors, and leaders building India's next great companies.",
   ctaLine: "Interested in putting your brand in the room?",
-  cta: { label: "Explore partnership options", href: "/partnership" },
+  // TODO(content): point this at a real prospectus when there is one. The
+  // /partnership holding page it used to open has been removed.
+  cta: { label: "Talk to us about partnering", href: "mailto:ed@jodhpur.tie.org" },
 };
 
 /* Order here is the render order of the tier groups. */

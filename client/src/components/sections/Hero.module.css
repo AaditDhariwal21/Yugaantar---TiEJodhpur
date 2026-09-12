@@ -38,17 +38,19 @@
   line-height: 0;
 }
 
-/* The connector word above the band. Deliberately quiet — it carries the
-   grammar of the tagline without competing with the pixel type under it. */
+/* The connector word above the band. Set in the same red as the pixel type it
+   introduces, so "From … to" reads as one phrase with the headline rather than
+   as a caption sitting above it. The small size and wide tracking keep it from
+   competing even though the colour now matches. */
 .lead {
   display: block;
   text-align: center;
   font-size: clamp(13px, 1.3vw, 17px);
   line-height: 1;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.34em;
   text-transform: uppercase;
-  color: var(--c-muted);
+  color: var(--c-red);
   /* the indent balances the trailing letter-space so it optically centres */
   text-indent: 0.34em;
   margin-bottom: clamp(2px, 0.6vw, 8px);
@@ -66,14 +68,32 @@
   }
 }
 
+/* --edge is how much of each side the fade eats. Phones set their type across
+   94% of the band (see GridHeadline), so a 6% fade would nibble the outer
+   letters — they get a much narrower margin instead.
+   --gh-cell is written by GridHeadline: it is the pixel pitch the headline is
+   actually quantised to, and the graph paper has to sit on the same lattice. */
 .gh :global(.gband) {
+  --edge: 6%;
   position: relative;
   display: block;
   width: 100%;
   height: clamp(200px, 30vh, 330px);
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 var(--edge),
+    #000 calc(100% - var(--edge)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 var(--edge),
+    #000 calc(100% - var(--edge)),
+    transparent 100%
+  );
 }
 
 .gh :global(.glines) {
@@ -83,7 +103,7 @@
   opacity: 0.9;
   background-image: linear-gradient(to right, var(--c-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--c-line) 1px, transparent 1px);
-  background-size: 12px 12px;
+  background-size: var(--gh-cell, 12px) var(--gh-cell, 12px);
   -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
   mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
 }
@@ -233,6 +253,26 @@
   color: var(--c-muted);
   text-transform: uppercase;
   letter-spacing: 0.07em;
+}
+
+/* Narrow viewports run a finer lattice (8px, then 6px on phones), so the graph
+   paper behind the glyphs is up to four times denser — at full strength it
+   stops reading as grid lines and turns into a grey wash. It is stepped back
+   in proportion. The 700px stop also matches GridHeadline's width budget: below
+   it the type is set across 94% of the band, so the edge fade has to give way. */
+@media (max-width: 1023px) {
+  .gh :global(.glines) {
+    opacity: 0.72;
+  }
+}
+
+@media (max-width: 700px) {
+  .gh :global(.gband) {
+    --edge: 2.5%;
+  }
+  .gh :global(.glines) {
+    opacity: 0.6;
+  }
 }
 
 @media (min-width: 1600px) {

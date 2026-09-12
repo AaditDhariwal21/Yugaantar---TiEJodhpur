@@ -153,16 +153,33 @@
 }
 
 .mobile a:not(.cta) {
+  position: relative;
   display: block;
   padding: 13px var(--gutter-nav);
   font-weight: 500;
   font-size: 15px;
   color: var(--c-ink);
-  transition: color 0.2s;
+  transition: color 0.2s, background 0.2s;
 }
 
 .mobile a:not(.cta):hover {
   color: var(--c-red);
+}
+
+/* The panel only exists while it is open and the page is still, so there is
+   nothing for a sliding marker to track here — the current row just wears the
+   same solid chip the desktop pill does.
+
+   The 12px margin is paid back out of the padding, so the label sits on the
+   same left edge as every inactive row and nothing shifts as the chip moves
+   between them. */
+.mobile a:not(.cta)[data-active="true"],
+.mobile a:not(.cta)[data-active="true"]:hover {
+  margin: 0 12px;
+  padding: 13px calc(var(--gutter-nav) - 12px);
+  border-radius: var(--rad-pill);
+  background: var(--grad);
+  color: #fff;
 }
 
 .mobileCta {
@@ -173,12 +190,47 @@
 
 @media (min-width: 1101px) {
   .links {
+    /* the marker is positioned against this row */
+    position: relative;
     display: flex;
     align-items: center;
     gap: clamp(18px, 2.2vw, 30px);
   }
 
+  /* The travelling section highlight. Absolutely positioned on purpose: it
+     contributes nothing to the row's width, which matters at exactly 1101px
+     where the logo, seven links and the CTA only just fit. Its x and width are
+     written from JS (see Navbar.jsx) and the transition does the moving, so
+     the pill glides between links instead of blinking from one to the next.
+
+     Solid, on the same gradient as the Register button, so the current section
+     reads at a glance. Its shadow is deliberately lighter than the button's —
+     they sit 20px apart, and matching --sh-nav-cta here would put two equally
+     loud red chips in the row with nothing to say which one is the action. */
+  .marker {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    z-index: 0;
+    height: 34px;
+    margin-top: -17px;
+    border-radius: var(--rad-pill);
+    background: var(--grad);
+    box-shadow: 0 6px 16px rgba(228, 0, 43, 0.22);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.42s var(--ease-out), width 0.42s var(--ease-out),
+      opacity 0.24s ease;
+  }
+
+  .marker[data-on="true"] {
+    opacity: 1;
+  }
+
   .links a:not(.cta) {
+    /* positioned so the links paint above the marker, not under it */
+    position: relative;
+    z-index: 1;
     color: var(--c-ink);
     opacity: 0.78;
     font-size: 15px;
@@ -190,6 +242,18 @@
   .links a:not(.cta):hover {
     opacity: 1;
     color: var(--c-red);
+  }
+
+  /* Reversed out of the pill. The :hover case is restated because the generic
+     hover rule above would otherwise paint the label red on a red ground and
+     make it vanish.
+
+     The weight is deliberately left alone: bolding the current link would
+     change its width and nudge every link after it as you scroll. */
+  .links a:not(.cta)[data-active="true"],
+  .links a:not(.cta)[data-active="true"]:hover {
+    opacity: 1;
+    color: #fff;
   }
 
   .desktopCta {
