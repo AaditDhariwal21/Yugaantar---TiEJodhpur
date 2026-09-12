@@ -2,8 +2,8 @@ import { createContext, useContext, useEffect, useMemo, useRef, useState } from 
 import snapshot from "../data/snapshot.json";
 import { api, isApiConfigured } from "./api";
 
-/* Site content: delegates, committee and the agenda, all editable from
-   /adminpanel and served by GET /api/content.
+/* Site content: delegates, committee, the agenda and the partners, all
+   editable from /adminpanel and served by GET /api/content.
 
    Why not just fetch and show a spinner: the API runs on Render's free tier,
    which sleeps after 15 minutes idle and takes 30-50s to wake. A visitor who
@@ -55,12 +55,25 @@ function writeCache(data) {
   }
 }
 
+/* `partners` and `partnerTiers` are deliberately NOT part of shapeOk, and are
+   null rather than [] when absent.
+
+   The client deploys to Vercel and the API to Render, separately, so there is
+   always a window where one is newer than the other. An older API — or the
+   snapshot bundled before partners moved into the database — simply omits
+   these keys. Requiring them would make that whole payload fail shapeOk and
+   strand the site on its snapshot; defaulting them to [] would empty the
+   partners section instead. null means "this API did not say", and the section
+   falls back to the copy in data/partners.js. An empty ARRAY is a real answer:
+   the admin deleted everything, and the section empties. */
 const pick = (d) => ({
   rev: d.rev ?? null,
   delegates: d.delegates,
   committee: d.committee,
   agenda: d.agenda,
   agendaDays: d.agendaDays,
+  partners: Array.isArray(d.partners) ? d.partners : null,
+  partnerTiers: Array.isArray(d.partnerTiers) ? d.partnerTiers : null,
 });
 
 export function ContentProvider({ children }) {

@@ -1,5 +1,5 @@
 import { adminApi, API_BASE } from "./api";
-import { prepareSquareImage } from "./imageResize";
+import { prepareLogoImage, prepareSquareImage } from "./imageResize";
 
 /* Photo upload: crop locally, ask our API to sign a URL, PUT straight to R2.
 
@@ -8,8 +8,16 @@ import { prepareSquareImage } from "./imageResize";
    memory spike, no request held open while a photo transfers. */
 
 export async function uploadPhoto(file, { folder = "delegates", focus = 0.5 } = {}) {
-  const prepared = await prepareSquareImage(file, { focus });
+  return put(await prepareSquareImage(file, { focus }), folder);
+}
 
+/* Same round trip, but fitted to a box instead of cropped to a square — see
+   prepareLogoImage. */
+export async function uploadLogo(file, { folder = "partners" } = {}) {
+  return put(await prepareLogoImage(file), folder);
+}
+
+async function put(prepared, folder) {
   const sig = await adminApi("/api/admin/media/sign", {
     method: "POST",
     body: {

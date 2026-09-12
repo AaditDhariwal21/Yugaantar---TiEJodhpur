@@ -73,9 +73,9 @@ tools/            Playwright scripts: audit, probe, measure, interact, clipsec
 
 ## Editing content
 
-Content is split in two. **Delegates, the planning committee and the agenda**
-live in MongoDB and are edited at `/adminpanel`. **Everything else** is still
-static copy under `client/src/data/`:
+Content is split in two. **Delegates, the planning committee, the agenda and
+the partners** live in MongoDB and are edited at `/adminpanel`. **Everything
+else** is still static copy under `client/src/data/`:
 
 | File | Drives |
 |---|---|
@@ -85,7 +85,8 @@ static copy under `client/src/data/`:
 | `committee.js` | committee section *headings* (the roster is in the DB) |
 | `agenda.js` | agenda headings, filter labels, venue, `.ics` block (sessions are in the DB) |
 | `tickets.js` | pricing tiers; `featured: true` renders the gradient card |
-| `partners.js` | partners by tier (filter counts derive automatically) + logo strip |
+| `partners.js` | partners section *headings*, the Global Community logo strip, and the roster used as a fallback until the database has tiers |
+| `pitchroom.js` | the Marwar Pitch Room section — see the provenance note at the top of the file |
 | `snapshot.json` | generated — the offline fallback, see below |
 
 Anything written `[LIKE THIS]` is a placeholder awaiting real content. Photos
@@ -94,8 +95,8 @@ reference does too.
 
 ## The admin panel
 
-`/adminpanel` — no login by default. Two jobs: the people lists, and the
-programme.
+`/adminpanel` — no login by default. Three jobs: the people lists, the
+programme, and the partners.
 
 - **Delegates** — add, edit, delete. Photo, name, position, company, LinkedIn
   and country. Drag (or use the arrow buttons) to set the order they appear in;
@@ -106,6 +107,18 @@ programme.
   Times are free text, so `Onward` works. Adding one or more breakout tracks to
   a session makes its row expandable on the site. The plenary/breakout counters
   on the site are derived from these rows and cannot drift.
+- **Partners** — the tiers (`Silver Partner`, and so on) and the partners in
+  them, on one screen. Tiers are ordered top to bottom and can be renamed
+  freely: a partner points at the tier document, not at its name. A tier that
+  still holds partners cannot be deleted — empty it first — because its
+  partners would still exist but would stop rendering. Logos are **fitted** to
+  the tile, never cropped, so a wide wordmark survives. The filter chips and
+  their counts on the site derive from these rows.
+
+  Until at least one tier exists, the section falls back to the roster in
+  `client/src/data/partners.js`, so it does not go blank between deploying this
+  and seeding. Once a tier exists the database is the only source, and
+  deleting every partner empties the section as you would expect.
 
 ### Setting it up
 
@@ -118,6 +131,9 @@ programme.
 3. Open `/adminpanel`. If the database is empty it offers to load the content
    that is currently hardcoded, so you start from today's site rather than a
    blank list. Locally you can do the same with `npm run seed` in `server/`.
+   Both paths also create the partner tiers and partners; on an already-seeded
+   database the seed skips every collection it finds populated, so running it
+   again is safe and will fill in only the partners.
 
 Every variable, and the exact R2 CORS JSON, is in `server/.env.example`.
 

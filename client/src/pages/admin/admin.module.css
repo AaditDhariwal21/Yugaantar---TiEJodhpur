@@ -203,6 +203,13 @@
   margin-left: auto;
 }
 
+/* The tier row carries a cluster of icon buttons as well as its "Add partner"
+   button. Only the first auto margin takes up the slack, so this pushes the
+   cluster right and the Add button sits beside it. */
+.groupHead > .rowActions {
+  margin-left: auto;
+}
+
 /* ------------------------------------------------------------------ list */
 
 .list {
@@ -266,6 +273,21 @@
   font-weight: 700;
   font-size: 15px;
 }
+/* Partner logos are landscape and fitted, not cropped — a round avatar would
+   cut the ends off a wordmark. */
+.avatarWide {
+  width: 62px;
+  height: 40px;
+  border-radius: var(--rad-xs);
+  background: #fff;
+  border: 1px solid var(--c-line);
+}
+
+.avatarWide img {
+  object-fit: contain;
+  padding: 4px;
+}
+
 .avatar img {
   width: 100%;
   height: 100%;
@@ -589,6 +611,20 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* Logo variant: a 3:2 window matching the tile on the site, and `contain`
+   rather than `cover` so the preview shows what the tile will actually show
+   instead of a cropped version of it. White ground for the same reason. */
+.photoWide {
+  width: 138px;
+  height: 92px;
+  background: #fff;
+}
+
+.photoWide img {
+  object-fit: contain;
+  padding: 7px;
 }
 
 .photoInitial {

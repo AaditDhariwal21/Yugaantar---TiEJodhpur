@@ -17,9 +17,11 @@ const PILL_PAD = 10;
    right one is "which section has most recently passed under the nav", which a
    single probe line just below the sticky bar answers directly.
 
-   Menu order is not DOM order — Agenda is listed third but sits after the
-   Committee on the page — so the winner is the candidate with the greatest top
-   above the probe, not the last one that matches. */
+   The winner is the candidate with the greatest top above the probe, not the
+   last one in the list that matches. nav.links is kept in document order (see
+   data/site.js) so those two are the same thing today, but relying on list
+   position would make a mis-ordered menu silently mis-highlight instead of
+   just making the pill jump. */
 function useActiveNavIndex(pathname) {
   const [active, setActive] = useState(-1);
 
@@ -129,7 +131,8 @@ export default function Navbar() {
   // close the panel on route change and on resize past the desktop breakpoint
   useEffect(() => setOpen(false), [location.pathname]);
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1101px)");
+    // must track the breakpoint in Navbar.module.css
+    const mq = window.matchMedia("(min-width: 1180px)");
     const onChange = (e) => e.matches && setOpen(false);
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);

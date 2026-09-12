@@ -3,18 +3,22 @@ import { adminApi, api, API_BASE, getAdminKey, setAdminKey } from "../../lib/api
 import { primeContentCache } from "../../lib/content";
 import PeopleTab, { COMMITTEE, DELEGATES } from "./PeopleTab";
 import AgendaTab from "./AgendaTab";
+import PartnersTab from "./PartnersTab";
 import { Btn, Icons, TextInput } from "./ui";
 import s from "./admin.module.css";
 
-/* /adminpanel — content editor for the delegates, committee and agenda.
+/* /adminpanel — content editor for the delegates, committee, agenda and
+   partners.
 
    Deliberately unauthenticated by default; see lib/adminGuard.js on the
    server for the one environment variable that turns a shared secret on. */
 
+/* Same order as the sections run down the page. */
 const TABS = [
   { id: "delegates", label: "Delegates" },
   { id: "committee", label: "Committee" },
   { id: "agenda", label: "Agenda" },
+  { id: "partners", label: "Partners" },
 ];
 
 function Unlock({ onUnlocked }) {
@@ -122,9 +126,9 @@ function Seed({ onDone }) {
     <div className={s.seed}>
       <h2>The database is empty</h2>
       <p>
-        Load the delegates, committee and agenda that are currently hardcoded on the site, so you
-        have something to edit rather than starting from a blank list. Nothing on the live site
-        changes.
+        Load the delegates, committee, agenda and partners that are currently hardcoded on the
+        site, so you have something to edit rather than starting from a blank list. Nothing on the
+        live site changes.
       </p>
       {error && <p className={s.formError}>{error}</p>}
       <button type="button" className={`${s.btn} ${s.primary}`} onClick={run} disabled={running}>
@@ -305,6 +309,7 @@ export default function AdminPanel() {
               {tab === "delegates" && <PeopleTab key={`d${epoch}`} cfg={DELEGATES} />}
               {tab === "committee" && <PeopleTab key={`c${epoch}`} cfg={COMMITTEE} />}
               {tab === "agenda" && <AgendaTab key={`a${epoch}`} />}
+              {tab === "partners" && <PartnersTab key={`p${epoch}`} />}
             </div>
           </>
         )}

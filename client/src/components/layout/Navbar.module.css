@@ -1,6 +1,10 @@
 /* Navbar — reference: .tnv-R3m6lp
    Sticky, permanently translucent + blurred (it does NOT change on scroll),
-   burger below 1100px. Authored mobile-first. */
+   burger below 1180px. Authored mobile-first.
+
+   The reference collapsed at 1100, where its seven links stopped fitting. The
+   Pitch Room makes eight, which needs roughly 100px more row, so the collapse
+   moved up with it rather than letting the row crowd or overflow. */
 
 .nav {
   position: sticky;
@@ -41,8 +45,8 @@
 /* Sized so the wordmark reads at a glance without crowding the link row.
    The asset is the strapline-free lockup (see tools/make-logo.mjs) — with the
    strapline included, a fifth of this height went to five unreadable pixels. */
-/* Fluid, because the tightest moment for this row is 1101px — the breakpoint
-   where the seven desktop links appear but the viewport is at its narrowest.
+/* Fluid, because the tightest moment for this row is 1180px — the breakpoint
+   where the eight desktop links appear but the viewport is at its narrowest.
    A fixed 36px logo overflowed that row by 5px; scaling with the viewport
    keeps the mark as large as the space genuinely allows and no larger.
 
@@ -75,9 +79,9 @@
   white-space: nowrap;
 }
 
-/* ---- desktop link row: hidden until 1101px --------------------------------
-   The reference collapses at 1100 because seven links + logo + CTA stop
-   fitting below it. */
+/* ---- desktop link row: hidden until 1180px --------------------------------
+   Below it the eight links + logo + CTA stop fitting, and the burger takes
+   over. See the note at the top of this file. */
 .links {
   display: none;
 }
@@ -188,7 +192,7 @@
   color: #fff;
 }
 
-@media (min-width: 1101px) {
+@media (min-width: 1180px) {
   .links {
     /* the marker is positioned against this row */
     position: relative;
@@ -198,7 +202,7 @@
   }
 
   /* The travelling section highlight. Absolutely positioned on purpose: it
-     contributes nothing to the row's width, which matters at exactly 1101px
+     contributes nothing to the row's width, which matters at exactly 1180px
      where the logo, seven links and the CTA only just fit. Its x and width are
      written from JS (see Navbar.jsx) and the transition does the moving, so
      the pill glides between links instead of blinking from one to the next.

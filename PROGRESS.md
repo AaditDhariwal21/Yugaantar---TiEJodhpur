@@ -129,6 +129,13 @@ overflow at 390px. The server API was covered separately during the build:
 
 ## Not started
 
+- [ ] **Marwar Pitch Room — the last two unknowns.** The section at
+  `#pitchroom` now carries TiE's real copy: format, eligibility stages, both
+  application steps and the fee disclaimer. Still missing from TiE's own
+  listing, and so deliberately absent from the page rather than guessed:
+  the **prize amount** (they say "prize money" and name no figure) and the
+  **jury**. Add them to `client/src/data/pitchroom.js` when published.
+
 - [x] ~~**3.16 `/partnership`**~~ — dropped. Partnership is the "Our Partners"
   section on the home page (`#sponsors`); the nav and footer anchor to it and
   the holding route has been removed.

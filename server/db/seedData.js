@@ -1,5 +1,5 @@
 /* ============================================================================
-   Seed content - GENERATED from client/src/data/{speakers,committee,agenda}.js.
+   Seed content - GENERATED from client/src/data/{speakers,committee,agenda,partners}.js.
 
    Used by POST /api/admin/seed and `npm run seed` to populate an empty
    database, so that switching the site over to DB-backed content changes
@@ -875,6 +875,72 @@ export const seedData = {
       "parallel": false,
       "tracks": [],
       "order": 11
+    }
+  ],
+  /* Partner tiers are matched to partners by `key` at seed time only: the
+     database identifies a tier by its _id, so these keys never reach it. */
+  "partnerTiers": [
+    {
+      "key": "knowledge",
+      "label": "Knowledge Partner Sponsor"
+    },
+    {
+      "key": "silver",
+      "label": "Silver Partner"
+    },
+    {
+      "key": "exhibitor",
+      "label": "Exhibitor"
+    }
+  ],
+  "partners": [
+    {
+      "name": "[Knowledge Partner 01]",
+      "url": "",
+      "tier": "knowledge",
+      "exclusive": false
+    },
+    {
+      "name": "[Knowledge Partner 02]",
+      "url": "",
+      "tier": "knowledge",
+      "exclusive": false
+    },
+    {
+      "name": "[Silver Partner 01]",
+      "url": "",
+      "tier": "silver",
+      "exclusive": false
+    },
+    {
+      "name": "[Silver Partner 02]",
+      "url": "",
+      "tier": "silver",
+      "exclusive": false
+    },
+    {
+      "name": "[Silver Partner 03]",
+      "url": "",
+      "tier": "silver",
+      "exclusive": false
+    },
+    {
+      "name": "[Silver Partner 04]",
+      "url": "",
+      "tier": "silver",
+      "exclusive": false
+    },
+    {
+      "name": "[Silver Partner 05]",
+      "url": "",
+      "tier": "silver",
+      "exclusive": false
+    },
+    {
+      "name": "[Exhibitor 01]",
+      "url": "",
+      "tier": "exhibitor",
+      "exclusive": true
     }
   ]
 };

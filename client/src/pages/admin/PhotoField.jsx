@@ -1,17 +1,32 @@
 import { useEffect, useRef, useState } from "react";
 import { ACCEPTED, formatBytes } from "../../lib/imageResize";
-import { discardUploaded, uploadPhoto } from "../../lib/upload";
+import { discardUploaded, uploadLogo, uploadPhoto } from "../../lib/upload";
 import { Btn, Icons, initialOf } from "./ui";
 import s from "./admin.module.css";
 
-/* Upload a square avatar.
+/* Upload an image: a square avatar, or a partner logo.
 
-   The crop happens in the browser (lib/imageResize.js) because R2 has no
-   transform layer. `focus` slides the square up or down the source image —
-   portraits are usually framed with the face high, and a plain centre crop
-   takes the top of the head off. */
+   The resize happens in the browser (lib/imageResize.js) because R2 has no
+   transform layer.
 
-export default function PhotoField({ value, valueKey, name, folder, onChange, disabled }) {
+   shape="square" is the people path. `focus` slides the square up or down the
+   source image — portraits are usually framed with the face high, and a plain
+   centre crop takes the top of the head off.
+
+   shape="logo" fits the image inside a box instead, and offers no crop
+   control: there is no such thing as a well-cropped logo, only a ruined one.
+   A wordmark cropped to a square loses half the brand. */
+
+export default function PhotoField({
+  value,
+  valueKey,
+  name,
+  folder,
+  onChange,
+  disabled,
+  shape = "square",
+}) {
+  const isLogo = shape === "logo";
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(null);
   const [info, setInfo] = useState(null);
@@ -37,7 +52,9 @@ export default function PhotoField({ value, valueKey, name, folder, onChange, di
     setUploading(true);
     setError(null);
     try {
-      const res = await uploadPhoto(file, { folder, focus: focusValue });
+      const res = isLogo
+        ? await uploadLogo(file, { folder })
+        : await uploadPhoto(file, { folder, focus: focusValue });
       // the one this supersedes is now unreferenced
       if (ownKey.current && ownKey.current !== res.photoKey) discardUploaded(ownKey.current);
       ownKey.current = res.photoKey;
@@ -78,7 +95,7 @@ export default function PhotoField({ value, valueKey, name, folder, onChange, di
 
   return (
     <div className={s.photoField}>
-      <div className={s.photoPreview}>
+      <div className={`${s.photoPreview} ${isLogo ? s.photoWide : ""}`}>
         {value ? (
           <img src={value} alt="" />
         ) : (
@@ -105,7 +122,7 @@ export default function PhotoField({ value, valueKey, name, folder, onChange, di
             onClick={() => inputRef.current?.click()}
             disabled={disabled || uploading}
           >
-            {value ? "Replace" : "Upload photo"}
+            {value ? "Replace" : isLogo ? "Upload logo" : "Upload photo"}
           </Btn>
           {value && (
             <Btn kind="ghost" onClick={clear} disabled={disabled || uploading}>
@@ -116,7 +133,7 @@ export default function PhotoField({ value, valueKey, name, folder, onChange, di
 
         {/* Only offered once there is a file to re-crop — re-cropping needs
             the original, which we only hold for this session. */}
-        {pendingFile && !uploading && (
+        {!isLogo && pendingFile && !uploading && (
           <label className={s.focusRow}>
             <span className={s.fieldHint}>Crop position</span>
             <input
@@ -142,11 +159,18 @@ export default function PhotoField({ value, valueKey, name, folder, onChange, di
         {error && <p className={s.fieldError}>{error}</p>}
         {!error && info && (
           <p className={s.fieldHint}>
-            Cropped to {info.dimension}×{info.dimension}, {formatBytes(info.size)}
+            {isLogo
+              ? `Fitted to ${info.dimension}`
+              : `Cropped to ${info.dimension}×${info.dimension}`}
+            , {formatBytes(info.size)}
           </p>
         )}
         {!error && !info && !value && (
-          <p className={s.fieldHint}>Square crop, resized and compressed in your browser.</p>
+          <p className={s.fieldHint}>
+            {isLogo
+              ? "Fitted to the tile, never cropped. Resized and compressed in your browser."
+              : "Square crop, resized and compressed in your browser."}
+          </p>
         )}
         {valueKey && !info && <p className={s.fieldHint}>Stored image</p>}
       </div>

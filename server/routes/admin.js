@@ -1,10 +1,18 @@
 import { Router } from "express";
 import mongoose from "mongoose";
 import { isConfigured, requireDb } from "../db/mongo.js";
-import { AgendaDay, AgendaSession, CommitteeMember, Delegate } from "../db/models.js";
+import {
+  AgendaDay,
+  AgendaSession,
+  CommitteeMember,
+  Delegate,
+  Partner,
+  PartnerTier,
+} from "../db/models.js";
 import { adminGuard, adminKeyRequired } from "../lib/adminGuard.js";
 import { deleteObject, isR2Configured, signUpload } from "../lib/r2.js";
 import { seedData } from "../db/seedData.js";
+import { seedPartners } from "../db/seedPartners.js";
 
 const router = Router();
 
@@ -215,6 +223,59 @@ router.post("/agenda/reorder", async (req, res, next) => {
   }
 });
 
+/* Ranks partners inside one tier. `tier` is written too, so moving a partner
+   into another tier is the same single call as reordering within one. */
+router.post("/partners/reorder", async (req, res, next) => {
+  try {
+    const { tier, ids } = req.body || {};
+    if (!Array.isArray(ids)) {
+      return res.status(422).json({ ok: false, error: "Expected { ids: [] }." });
+    }
+    if (tier !== undefined && badId(tier)) {
+      return res.status(422).json({ ok: false, error: "Unknown tier." });
+    }
+    const patch = tier === undefined ? {} : { tier };
+    res.json({ ok: true, updated: await applyOrder(Partner, ids, patch) });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/partner-tiers/reorder", async (req, res, next) => {
+  try {
+    const ids = req.body?.ids;
+    if (!Array.isArray(ids)) {
+      return res.status(422).json({ ok: false, error: "Expected { ids: [] }." });
+    }
+    res.json({ ok: true, updated: await applyOrder(PartnerTier, ids) });
+  } catch (err) {
+    next(err);
+  }
+});
+
+/* Deleting a tier would orphan its partners: their `tier` would point at a
+   document that no longer exists, and the section — which renders tier by
+   tier — would simply stop showing them, with no way to find them again from
+   the panel. So this refuses, and says how many are in the way. */
+router.delete("/partner-tiers/:id", async (req, res, next) => {
+  const { id } = req.params;
+  if (badId(id)) return res.status(404).json({ ok: false, error: "Not found" });
+  try {
+    const inUse = await Partner.countDocuments({ tier: id });
+    if (inUse > 0) {
+      return res.status(409).json({
+        ok: false,
+        error: `This tier still holds ${inUse} partner${inUse === 1 ? "" : "s"}. Move or delete them first.`,
+      });
+    }
+    const doc = await PartnerTier.findByIdAndDelete(id);
+    if (!doc) return res.status(404).json({ ok: false, error: "Not found" });
+    res.json({ ok: true, id });
+  } catch (err) {
+    next(err);
+  }
+});
+
 /* Bulk-removes the bracketed placeholder rows the seed ships with, so a real
    roster does not have to be cleared one card at a time. */
 router.post("/delegates/purge-placeholders", async (_req, res, next) => {
@@ -239,6 +300,14 @@ crud("/agenda", AgendaSession, {
   scopeOf: (b) => ({ day: Number(b.day) || 1 }),
 });
 crud("/days", AgendaDay, { sort: { order: 1, key: 1 } });
+crud("/partners", Partner, {
+  sort: { order: 1 },
+  scopeOf: (b) => ({ tier: b.tier }),
+  hasPhoto: true,
+});
+/* The DELETE above is registered first and therefore wins; crud's own delete
+   is unreachable for this collection, which is the point. */
+crud("/partner-tiers", PartnerTier, { sort: { order: 1 } });
 
 /* ------------------------------------------------------------------- seed */
 
@@ -269,6 +338,10 @@ router.post("/seed", async (req, res, next) => {
       const inserted = await Model.insertMany(rows, { ordered: false });
       counts[Model.modelName] = { inserted: inserted.length };
     }
+
+    // partners need their tiers inserted first; see db/seedPartners.js
+    counts.Partners = await seedPartners(replace);
+
     res.json({ ok: true, counts });
   } catch (err) {
     next(err);

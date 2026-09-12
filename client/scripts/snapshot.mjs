@@ -58,12 +58,18 @@ if (data.delegates.length === 0 && data.agenda.length === 0) {
   process.exit(1);
 }
 
+/* Partners are carried only when the API actually sent them. Writing an empty
+   array for an older API would bake "there are no partners" into the bundle,
+   and the section would paint empty on every cold start instead of falling
+   back to the copy in src/data/partners.js. */
 const snapshot = {
   rev: data.rev ?? null,
   delegates: data.delegates,
   committee: data.committee,
   agenda: data.agenda,
   agendaDays: data.agendaDays,
+  ...(Array.isArray(data.partners) ? { partners: data.partners } : {}),
+  ...(Array.isArray(data.partnerTiers) ? { partnerTiers: data.partnerTiers } : {}),
 };
 
 writeFileSync(OUT, JSON.stringify(snapshot, null, 2) + "\n", "utf8");
@@ -71,6 +77,10 @@ writeFileSync(OUT, JSON.stringify(snapshot, null, 2) + "\n", "utf8");
 console.log(
   `Wrote src/data/snapshot.json — ${snapshot.delegates.length} delegates, ` +
     `${snapshot.committee.length} committee, ${snapshot.agenda.length} sessions, ` +
-    `${snapshot.agendaDays.length} days.`
+    `${snapshot.agendaDays.length} days` +
+    (snapshot.partners ? `, ${snapshot.partners.length} partners.` : ".")
 );
+if (!snapshot.partners) {
+  console.log("That API did not return partners — the bundled fallback copy still covers them.");
+}
 console.log("Commit it so the deployed build ships the current content.");

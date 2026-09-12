@@ -1,14 +1,21 @@
 import { Router } from "express";
 import { requireDb } from "../db/mongo.js";
-import { AgendaDay, AgendaSession, CommitteeMember, Delegate } from "../db/models.js";
+import {
+  AgendaDay,
+  AgendaSession,
+  CommitteeMember,
+  Delegate,
+  Partner,
+  PartnerTier,
+} from "../db/models.js";
 
 const router = Router();
 
 /* One public read for the whole site.
 
-   Three sections need data, and three round-trips to a sleeping Render
-   instance would be three cold starts. This is a single call the client makes
-   once, caches, and re-validates in the background. */
+   Four sections need data, and four round-trips to a sleeping Render instance
+   would be four cold starts. This is a single call the client makes once,
+   caches, and re-validates in the background. */
 
 const person = (d) => ({
   id: String(d._id),
@@ -37,6 +44,21 @@ const session = (s) => ({
   })),
 });
 
+/* `tier` is the PartnerTier's id, and tiers expose that id as `key` — so the
+   section's existing "does this partner belong to this tier" comparison is
+   unchanged from when both were hardcoded slugs. `photoUrl` becomes `logo`
+   because that is what the tile has always called it. */
+const partner = (p) => ({
+  id: String(p._id),
+  name: p.name,
+  logo: p.photoUrl || null,
+  url: p.url || null,
+  tier: String(p.tier),
+  exclusive: Boolean(p.exclusive),
+});
+
+const partnerTier = (t) => ({ key: String(t._id), label: t.label || "" });
+
 const day = (d) => ({
   key: d.key,
   label: d.label || `Day ${d.key}`,
@@ -60,21 +82,25 @@ const revOf = (...groups) => {
 
 router.get("/content", requireDb, async (_req, res, next) => {
   try {
-    const [delegates, committee, sessions, days] = await Promise.all([
+    const [delegates, committee, sessions, days, partners, tiers] = await Promise.all([
       Delegate.find().sort({ order: 1, createdAt: 1 }).lean(),
       CommitteeMember.find().sort({ order: 1, createdAt: 1 }).lean(),
       AgendaSession.find().sort({ day: 1, order: 1, createdAt: 1 }).lean(),
       AgendaDay.find().sort({ order: 1, key: 1 }).lean(),
+      Partner.find().sort({ order: 1, createdAt: 1 }).lean(),
+      PartnerTier.find().sort({ order: 1, createdAt: 1 }).lean(),
     ]);
 
     res.set("Cache-Control", "public, max-age=30, stale-while-revalidate=300");
     res.json({
       ok: true,
-      rev: revOf(delegates, committee, sessions, days),
+      rev: revOf(delegates, committee, sessions, days, partners, tiers),
       delegates: delegates.map(delegate),
       committee: committee.map(person),
       agenda: sessions.map(session),
       agendaDays: days.map(day),
+      partners: partners.map(partner),
+      partnerTiers: tiers.map(partnerTier),
     });
   } catch (err) {
     next(err);

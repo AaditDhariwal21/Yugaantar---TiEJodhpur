@@ -1,0 +1,475 @@
+/* Marwar Pitch Room.
+
+   Cream ground, matching the alternation either side of it (white Committee
+   above, dark Agenda below). Authored mobile-first like the rest of the site:
+   one column by default, widening at 561px and 981px to match the breakpoints
+   CardSection already uses, so the card grids across the page line up. */
+
+.sec {
+  padding: var(--sec-pad) 0;
+  background: var(--c-cream);
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ---- heading ------------------------------------------------------------- */
+.head {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--badge-bg);
+  color: var(--c-red);
+  font-size: var(--fs-badge);
+  font-weight: 600;
+  letter-spacing: var(--ls-badge);
+  padding: 8px 17px;
+  border-radius: var(--rad-pill);
+}
+
+.head h2 {
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  letter-spacing: var(--ls-tight);
+  line-height: 1.12;
+  margin: 18px 0 0;
+}
+
+/* The three beats of the poster's tagline. Inline-block so each one breaks as
+   a unit — "Build the extraordinary." never splits across a line while the
+   beat before it sits half-empty — with the space between them restored as a
+   margin, since inline-block eats the whitespace at some zoom levels. */
+.part {
+  display: inline-block;
+  margin-right: 0.28em;
+}
+
+.part:last-child {
+  margin-right: 0;
+}
+
+.part[data-accent="true"] {
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sub {
+  font-size: var(--fs-sub);
+  line-height: 1.6;
+  color: var(--c-muted);
+  margin: 16px auto 0;
+  max-width: 660px;
+}
+
+/* ---- the three beats ----------------------------------------------------- */
+.stages {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(14px, 1.8vw, 22px);
+  margin-top: clamp(38px, 4.4vw, 56px);
+}
+
+.stage {
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: var(--rad-card);
+  padding: clamp(22px, 2.4vw, 30px);
+  box-shadow: var(--sh-card);
+  transition: transform 0.32s var(--ease-out), box-shadow 0.32s ease,
+    border-color 0.32s ease;
+}
+
+.stage:hover {
+  transform: translateY(-6px);
+  border-color: var(--card-hover-border);
+  box-shadow: var(--sh-hover);
+}
+
+.ic {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--rad-sm);
+  background: var(--icon-tile-bg);
+  color: var(--c-red);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  display: block;
+  margin-top: 16px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-red);
+}
+
+.stage h3 {
+  font-size: var(--fs-card-t);
+  font-weight: 700;
+  letter-spacing: var(--ls-card);
+  line-height: 1.25;
+  margin: 7px 0 0;
+}
+
+.stage p {
+  font-size: var(--fs-card-d);
+  line-height: 1.6;
+  color: var(--c-muted);
+  margin-top: 9px;
+}
+
+/* ---- eligibility + how to apply ------------------------------------------
+   Two blocks that share a heading treatment: a red eyebrow, then either a
+   grid of qualifying stages or the numbered steps. */
+.block {
+  margin-top: clamp(34px, 4vw, 52px);
+}
+
+.blockHead {
+  text-align: center;
+  margin-bottom: clamp(18px, 2.2vw, 26px);
+}
+
+.eyebrow {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-red);
+}
+
+.blockHead h3 {
+  font-size: var(--fs-h2-attend);
+  font-weight: 800;
+  letter-spacing: var(--ls-h);
+  line-height: 1.2;
+  margin: 10px 0 0;
+}
+
+.eligGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(14px, 1.8vw, 22px);
+}
+
+.elig {
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: var(--rad-card);
+  padding: clamp(22px, 2.4vw, 30px);
+  box-shadow: var(--sh-card);
+}
+
+.stageName {
+  display: inline-block;
+  background: var(--badge-bg);
+  color: var(--c-red);
+  font-size: var(--fs-badge);
+  font-weight: 700;
+  letter-spacing: var(--ls-badge);
+  padding: 6px 14px;
+  border-radius: var(--rad-pill);
+}
+
+.question {
+  font-size: var(--fs-card-t);
+  font-weight: 700;
+  letter-spacing: var(--ls-card);
+  line-height: 1.3;
+  margin: 14px 0 0;
+}
+
+.focus {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+}
+
+.focus li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: var(--fs-card-d);
+  line-height: 1.55;
+  color: var(--c-muted);
+}
+
+.focus svg {
+  color: var(--c-red);
+  flex: none;
+  /* nudged onto the first line's optical centre */
+  margin-top: 4px;
+}
+
+/* ---- the two application steps ------------------------------------------- */
+.stepList {
+  list-style: none;
+  counter-reset: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(14px, 1.8vw, 22px);
+}
+
+/* Centred rather than top-aligned now the card holds a single line — the
+   number and the label sit on one optical axis. `align-items: center` still
+   does the right thing if a long label wraps to two lines. */
+.step {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: var(--rad-card);
+  padding: clamp(18px, 2vw, 22px) clamp(20px, 2.2vw, 26px);
+  box-shadow: var(--sh-card);
+}
+
+.num {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--grad);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  /* tabular so "1" and "2" sit on the same optical centre */
+  font-variant-numeric: tabular-nums;
+}
+
+.step h4 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: var(--ls-card);
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* ---- the apply panel ----------------------------------------------------- */
+
+/* The one gradient block on the page. Everything inside it is white, so the
+   ground has to stay dark enough for 4.5:1 — the house gradient runs #E4002B
+   to #C20E4D, both of which clear it against white text at this size. */
+.panel {
+  position: relative;
+  overflow: hidden;
+  margin-top: clamp(26px, 3vw, 40px);
+  padding: clamp(30px, 4vw, 54px) clamp(22px, 3.4vw, 52px);
+  border-radius: var(--rad-card);
+  background: var(--grad-feat);
+  box-shadow: var(--sh-banner);
+  color: #fff;
+  text-align: center;
+}
+
+/* A soft spotlight behind the kicker, so the panel is not a flat rectangle of
+   red. Purely decorative and pointer-transparent. */
+.panel::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  width: min(760px, 120%);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, transparent 62%);
+  pointer-events: none;
+}
+
+.kicker {
+  position: relative;
+  font-size: var(--fs-h2-banner);
+  font-weight: 800;
+  letter-spacing: var(--ls-tight);
+  line-height: 1.15;
+  max-width: 20ch;
+  margin: 0 auto;
+}
+
+/* ---- fact strip ---------------------------------------------------------- */
+.meta {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px clamp(18px, 2.4vw, 34px);
+  margin: clamp(26px, 3vw, 38px) 0 0;
+  padding-top: clamp(22px, 2.6vw, 30px);
+  border-top: 1px solid rgba(255, 255, 255, 0.26);
+  text-align: left;
+}
+
+.metaItem dt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  /* 0.82 on this red still clears 4.5:1; the labels are the smallest type in
+     the panel, so they get the least reduction. */
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.metaItem dd {
+  margin: 6px 0 0;
+  font-size: clamp(15px, 1.4vw, 17px);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: var(--ls-card);
+}
+
+/* TiE's fee disclaimer. Deliberately not small print: it sits at full body
+   size directly above the button, because it is the one thing on this page
+   someone can lose money by skimming past. */
+.feeNote {
+  position: relative;
+  margin: clamp(22px, 2.6vw, 30px) auto 0;
+  max-width: 62ch;
+  padding: clamp(14px, 1.6vw, 18px) clamp(16px, 2vw, 22px);
+  border-radius: var(--rad-sm);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
+  text-align: left;
+}
+
+/* ---- deadline + call to action ------------------------------------------- */
+.act {
+  position: relative;
+  margin-top: clamp(26px, 3vw, 36px);
+}
+
+/* Stacked on a phone, side by side once there is room for both. Explicit flex
+   rather than relying on the two being inline-level: the button is a block at
+   full width below 561px, and a margin on an inline element would not have
+   separated them anyway. */
+.actRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.deadline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  max-width: 100%;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 7px 15px 7px 13px;
+  border-radius: var(--rad-pill);
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+
+.deadline strong {
+  font-weight: 800;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  flex: none;
+  animation: pulse 2.4s var(--ease-out) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.78);
+  }
+}
+
+.cta {
+  /* full width on a phone, hugging its label from 561px up */
+  display: flex;
+  width: 100%;
+}
+
+.note {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 14px auto 0;
+  max-width: 44ch;
+}
+
+@media (min-width: 561px) {
+  .stages {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .eligGrid,
+  .stepList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .meta {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .feeNote {
+    text-align: center;
+  }
+  .actRow {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+  .cta {
+    display: inline-flex;
+    width: auto;
+  }
+}
+
+@media (min-width: 981px) {
+  .stages {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .meta {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1600px) {
+  .wrap {
+    max-width: var(--wrap-xl);
+  }
+}
+
+/* touch devices have no hover, so the lift never fires — keep the resting
+   card from looking flat next to the panel */
+@media (hover: none) {
+  .stage:hover {
+    transform: none;
+  }
+}

@@ -107,9 +107,49 @@ const agendaSessionSchema = new Schema(
 );
 agendaSessionSchema.index({ day: 1, order: 1 });
 
+/* ------------------------------------------------------------ partner tiers
+
+   The groups the partners section renders under ("Silver Partner", and so on).
+   A separate collection rather than an enum because sponsor tiers are sold
+   fresh for every edition and renaming one must not touch the partners in it.
+
+   Deliberately keyed by _id and not by a slug, unlike agenda days: a tier is
+   identified by the document itself, so renaming the label is free and there
+   is no slug to collide or go stale. */
+const partnerTierSchema = new Schema(
+  {
+    label: { type: String, required: true, trim: true, maxlength: 80 },
+    order: { type: Number, default: 0, index: true },
+  },
+  base
+);
+
+/* ----------------------------------------------------------------- partners
+
+   photoUrl/photoKey rather than logoUrl/logoKey so this rides the same generic
+   CRUD photo cleanup as the people collections — the field names are what that
+   code keys off. The public serializer renames it to `logo` on the way out. */
+const partnerSchema = new Schema(
+  {
+    name: { type: String, required: true, trim: true, maxlength: 140 },
+    /* The partner's own site. Empty renders a plain tile instead of a link. */
+    url: { type: String, default: "", trim: true, maxlength: 500 },
+    tier: { type: Schema.Types.ObjectId, ref: "PartnerTier", required: true, index: true },
+    /* Adds the "Exclusive" chip to the tile. */
+    exclusive: { type: Boolean, default: false },
+    order: { type: Number, default: 0, index: true },
+    ...photoFields,
+  },
+  base
+);
+partnerSchema.index({ tier: 1, order: 1 });
+
 export const Delegate = models.Delegate || model("Delegate", delegateSchema);
 export const CommitteeMember =
   models.CommitteeMember || model("CommitteeMember", committeeSchema, "committee");
 export const AgendaDay = models.AgendaDay || model("AgendaDay", agendaDaySchema, "agenda_days");
 export const AgendaSession =
   models.AgendaSession || model("AgendaSession", agendaSessionSchema, "agenda_sessions");
+export const PartnerTier =
+  models.PartnerTier || model("PartnerTier", partnerTierSchema, "partner_tiers");
+export const Partner = models.Partner || model("Partner", partnerSchema, "partners");

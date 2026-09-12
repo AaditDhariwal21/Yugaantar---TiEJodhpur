@@ -12,6 +12,7 @@ import mongoose from "mongoose";
 import { connectDb, isConfigured } from "../db/mongo.js";
 import { AgendaDay, AgendaSession, CommitteeMember, Delegate } from "../db/models.js";
 import { seedData } from "../db/seedData.js";
+import { seedPartners } from "../db/seedPartners.js";
 
 const force = process.argv.includes("--force");
 
@@ -39,6 +40,19 @@ for (const [label, Model, rows] of targets) {
   if (existing > 0) await Model.deleteMany({});
   const inserted = await Model.insertMany(rows, { ordered: false });
   console.log(`- ${label}: inserted ${inserted.length}${existing ? ` (replaced ${existing})` : ""}`);
+}
+
+/* Partners are not in the loop above: each one references its tier by _id, so
+   the tiers have to be inserted first and their ids carried across. */
+const pr = await seedPartners(force);
+if (pr.skipped) {
+  console.log(`- partners: ${pr.skipped} already there, skipped (use --force to replace)`);
+} else {
+  console.log(
+    `- partners: inserted ${pr.tiers} tier${pr.tiers === 1 ? "" : "s"} and ${pr.partners} partner${
+      pr.partners === 1 ? "" : "s"
+    }${pr.replaced ? ` (replaced ${pr.replaced})` : ""}`
+  );
 }
 
 await mongoose.disconnect();
