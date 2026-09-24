@@ -67,7 +67,7 @@ export const pitchRoom = {
      21 Sep 2026, and registering is step one of applying. Set this to null to
      hide the line — do that once the date passes rather than leaving a stale
      one up. */
-  deadline: { label: "Applications close", value: "21 September 2026" },
+  deadline: { label: "Applications close", value: "30 September 2026" },
 
   cta: { label: "Apply to pitch", href: pitchRoomUrl },
 
