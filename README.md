@@ -100,8 +100,9 @@ programme, and the partners.
 
 - **Delegates** — add, edit, delete. Photo, name, position, company, LinkedIn
   and country. Drag (or use the arrow buttons) to set the order they appear in;
-  the star button promotes someone into the **Featured** tier, which is the
-  large-card row above the main grid.
+  the sparkle, star and grid buttons move someone between the **Unicorn**,
+  **Featured** and general tiers. Unicorn is the top row; Featured is the
+  large-card row under it, above the main grid.
 - **Committee** — the same, as one list.
 - **Agenda** — per day: the date and main-stage theme, then the sessions.
   Times are free text, so `Onward` works. Adding one or more breakout tracks to

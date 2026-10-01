@@ -6,6 +6,7 @@ import {
   AgendaSession,
   CommitteeMember,
   Delegate,
+  DELEGATE_TIERS,
   Partner,
   PartnerTier,
 } from "../db/models.js";
@@ -180,17 +181,22 @@ function crud(basePath, Model, { sort, scopeOf = () => ({}), hasPhoto = false } 
    the PATCH/DELETE ":id" patterns, and so a literal "reorder" is never treated
    as an object id. */
 
-/* Both tiers arrive together so a cross-list drag can set rank and tier in one
-   shot. Sending only the moved list would leave the other list's ranks stale. */
+/* Every tier arrives together so a cross-list move can set rank and tier in one
+   shot. Sending only the moved list would leave the other lists' ranks stale.
+   A tier missing from the body is left alone, so an older panel that only
+   knows key/general cannot touch the unicorn row by omission. */
 router.post("/delegates/reorder", async (req, res, next) => {
   try {
-    const { key = [], general = [] } = req.body || {};
-    if (!Array.isArray(key) || !Array.isArray(general)) {
-      return res.status(422).json({ ok: false, error: "Expected { key: [], general: [] }." });
+    const body = req.body || {};
+    if (DELEGATE_TIERS.some((t) => body[t] !== undefined && !Array.isArray(body[t]))) {
+      return res
+        .status(422)
+        .json({ ok: false, error: "Expected { unicorn: [], key: [], general: [] }." });
     }
-    const n =
-      (await applyOrder(Delegate, key, { tier: "key" })) +
-      (await applyOrder(Delegate, general, { tier: "general" }));
+    let n = 0;
+    for (const tier of DELEGATE_TIERS) {
+      if (Array.isArray(body[tier])) n += await applyOrder(Delegate, body[tier], { tier });
+    }
     res.json({ ok: true, updated: n });
   } catch (err) {
     next(err);
@@ -291,7 +297,7 @@ router.post("/delegates/purge-placeholders", async (_req, res, next) => {
 
 crud("/delegates", Delegate, {
   sort: { tier: 1, order: 1 },
-  scopeOf: (b) => ({ tier: b.tier === "key" ? "key" : "general" }),
+  scopeOf: (b) => ({ tier: DELEGATE_TIERS.includes(b.tier) ? b.tier : "general" }),
   hasPhoto: true,
 });
 crud("/committee", CommitteeMember, { sort: { order: 1 }, hasPhoto: true });

@@ -3,7 +3,7 @@
 
    The full catalogue as published on the TiE events platform
    (events.tie.org → Yugaantar → Buy Tickets), read from its ticket API on
-   10 September 2026. Cards are display-only: buying happens on that platform,
+   1 October 2026 (`node tools/tickets-scrape.mjs`). Cards are display-only: buying happens on that platform,
    so there is one CTA under the whole carousel rather than a button per card.
 
    Shape:
@@ -17,9 +17,9 @@
      excludes  "" single line, omitted when nothing is excluded
      note      eligibility / availability caveat
 
-   TODO(content): early-bird windows closed on 10 September 2026 for most
-   passes. Once the platform flips to regular pricing, move `next` into
-   `current` and drop the `next` line.
+   TODO(content): the early-bird windows close on 3 October 2026 (5 October for
+   Associate Member — Other Chapters). Once the platform flips to regular
+   pricing, move `next` into `current` and drop the `next` line.
    ========================================================================== */
 
 import { registrationUrl } from "./site";
@@ -43,12 +43,12 @@ export const tickets = [
   {
     id: "delegate",
     eyebrow: "Most popular",
-    name: "Yugaantar Delegate Pass",
+    name: "Yugaantar Delegate Pass (Open to All)",
     price: {
       current: "₹5,599",
-      currentNote: "Early bird · per person, both days",
+      currentNote: "Early bird till 3 October · per person, both days",
       next: "₹5,999",
-      nextNote: "From 11 September",
+      nextNote: "From 4 October",
     },
     access: "Full event access · 22–23 October · 2 days",
     includes: [
@@ -61,7 +61,7 @@ export const tickets = [
       "Meals",
     ],
     excludes: "TiE membership",
-    note: "Early bird limited to the first 75 registrations",
+    note: "Early bird limited to the first 50 registrations",
   },
   {
     id: "startup",
@@ -69,9 +69,9 @@ export const tickets = [
     name: "Yugaantar Start-Up Pass",
     price: {
       current: "₹4,999",
-      currentNote: "Early bird · per person, both days",
+      currentNote: "Early bird till 3 October · per person, both days",
       next: "₹5,599",
-      nextNote: "From 11 September",
+      nextNote: "From 4 October",
     },
     access: "Full event access · 22–23 October · 2 days",
     includes: [
@@ -85,7 +85,7 @@ export const tickets = [
       "Meals",
     ],
     excludes: "TiE membership",
-    note: "Early bird limited to the first 75 registrations",
+    note: "Early bird limited to the first 50 registrations",
   },
   {
     id: "industry-2pax",
@@ -93,9 +93,9 @@ export const tickets = [
     name: "Yugaantar Industry Pass — 2 Pax",
     price: {
       current: "₹8,999",
-      currentNote: "Early bird · for 2 people, both days",
+      currentNote: "Early bird till 3 October · for 2 people, both days",
       next: "₹9,999",
-      nextNote: "From 11 September",
+      nextNote: "From 4 October",
     },
     access: "Complete event access for 2 people · 22–23 October",
     includes: [
@@ -115,10 +115,8 @@ export const tickets = [
     eyebrow: "Pass + membership",
     name: "Yugaantar New Associate Member Pass",
     price: {
-      current: "₹8,999",
-      currentNote: "Early bird · per person, both days",
-      next: "₹11,999",
-      nextNote: "From 11 September",
+      current: "₹11,999",
+      currentNote: "Per person, both days",
     },
     access: "Full event access · 22–23 October · 2 days",
     includes: [
@@ -134,7 +132,7 @@ export const tickets = [
       "Access to TiE Jodhpur programmes",
       "Access to other chapter events and programmes, subject to their guidelines",
     ],
-    note: "Early bird limited",
+    note: null,
   },
   {
     id: "student-membership",
@@ -142,9 +140,9 @@ export const tickets = [
     name: "Yugaantar Student Pass + TiE Jodhpur Membership",
     price: {
       current: "₹3,299",
-      currentNote: "Early bird · per student, both days",
+      currentNote: "Early bird till 3 October · per student, both days",
       next: "₹3,999",
-      nextNote: "From 11 September",
+      nextNote: "From 4 October",
     },
     access: "Full event access · 22–23 October · 2 days",
     includes: [
@@ -161,43 +159,9 @@ export const tickets = [
     note: "Students only, subject to verification · early bird limited to the first 35",
   },
   {
-    id: "student",
-    eyebrow: "Students",
-    name: "Yugaantar Student Pass",
-    price: {
-      current: "₹999",
-      currentNote: "Early bird · per student",
-      next: "₹1,499",
-      nextNote: "From 11 September",
-    },
-    access: "Expo & student pass · 22–23 October",
-    includes: [
-      "Student sessions",
-      "Expo & Innovation Zone",
-      "Networking opportunities",
-    ],
-    excludes: "Other conference sessions · TiE membership · meals",
-    note: "Students only, subject to verification",
-  },
-  {
-    id: "innovation-zone",
-    eyebrow: "Expo only",
-    name: "Yugaantar Innovation Zone",
-    price: {
-      current: "₹399",
-      currentNote: "Early bird · per person",
-      next: "₹499 → ₹699",
-      nextNote: "₹499 to 10 Oct, then ₹699",
-    },
-    access: "Startup stalls showcase · 22–23 October",
-    includes: ["Innovation & Showcase Zone (stalls)", "Networking opportunities"],
-    excludes: "Conference access · TiE membership · meals · Founder Connect",
-    note: null,
-  },
-  {
     id: "charter",
     eyebrow: "TiE members",
-    name: "Charter Members",
+    name: "Charter Member",
     free: true,
     freeLabel: "Complimentary",
     access: "Complete event access · 22–23 October",
@@ -238,9 +202,9 @@ export const tickets = [
     name: "Associate Member — Other Chapters",
     price: {
       current: "₹3,999",
-      currentNote: "Early bird · per person",
+      currentNote: "Early bird till 5 October · per person",
       next: "₹4,999",
-      nextNote: "From 11 September",
+      nextNote: "From 6 October",
     },
     access: "Complete event access · 22–23 October",
     includes: [
@@ -261,9 +225,9 @@ export const tickets = [
     name: "TiE Executive Director",
     price: {
       current: "₹4,299",
-      currentNote: "Early bird · per person, both days",
+      currentNote: "Early bird till 3 October · per person, both days",
       next: "₹4,999",
-      nextNote: "From 11 September",
+      nextNote: "From 4 October",
     },
     access: "Complete event access · 22–23 October",
     includes: [
@@ -284,9 +248,9 @@ export const tickets = [
     name: "Charter Member Spouse",
     price: {
       current: "₹5,999",
-      currentNote: "Early bird · per guest",
+      currentNote: "Early bird till 3 October · per guest",
       next: "₹6,999",
-      nextNote: "From 11 September",
+      nextNote: "From 4 October",
     },
     access: "Complete event access · 22–23 October",
     includes: [

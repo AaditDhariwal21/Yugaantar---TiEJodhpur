@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { speakersMeta } from "../../data/speakers";
 import { useContent } from "../../lib/content";
 import { LinkedInIcon } from "../ui/Icon";
@@ -46,12 +47,25 @@ function SpeakerCard({ p, index }) {
   );
 }
 
+/* Top to bottom. Anything that is not unicorn or key lands in the general
+   grid, so an unknown tier from a newer API still renders somewhere. */
+const TIERS = [
+  { id: "unicorn", label: speakersMeta.unicornLabel, cls: `${s.key} ${s.unicorn}` },
+  { id: "key", label: speakersMeta.keyLabel, cls: s.key },
+  { id: "general", label: speakersMeta.generalLabel, cls: "" },
+];
+
+const tierOf = (p) => (p.tier === "unicorn" || p.tier === "key" ? p.tier : "general");
+
 export default function Speakers() {
   const { delegates } = useContent();
 
-  const key = delegates.filter((p) => p.tier === "key");
-  const general = delegates.filter((p) => p.tier !== "key");
-  const split = key.length > 0 && general.length > 0;
+  const groups = TIERS.map((t) => ({
+    ...t,
+    items: delegates.filter((p) => tierOf(p) === t.id),
+  })).filter((g) => g.items.length > 0);
+  // the group labels only appear when the roster is actually split
+  const split = groups.length > 1;
 
   // an empty roster should collapse the section, not leave a bare heading
   if (delegates.length === 0) return null;
@@ -68,38 +82,21 @@ export default function Speakers() {
           <p className={s.sub}>{speakersMeta.sub}</p>
         </Reveal>
 
-        {key.length > 0 && (
-          <>
-            {/* the group labels only appear when the roster is actually split */}
+        {groups.map((g) => (
+          <Fragment key={g.id}>
             {split && (
               <div className={s.glabel}>
-                <span>{speakersMeta.keyLabel}</span>
+                <span>{g.label}</span>
                 <i />
               </div>
             )}
-            <div className={`${s.sgrid} ${s.key} ${split ? s.tight : ""}`}>
-              {key.map((p, i) => (
+            <div className={`${s.sgrid} ${g.cls} ${split ? s.tight : ""}`}>
+              {g.items.map((p, i) => (
                 <SpeakerCard key={p.id} p={p} index={i} />
               ))}
             </div>
-          </>
-        )}
-
-        {general.length > 0 && (
-          <>
-            {split && (
-              <div className={s.glabel}>
-                <span>{speakersMeta.generalLabel}</span>
-                <i />
-              </div>
-            )}
-            <div className={`${s.sgrid} ${split ? s.tight : ""}`}>
-              {general.map((p, i) => (
-                <SpeakerCard key={p.id} p={p} index={i} />
-              ))}
-            </div>
-          </>
-        )}
+          </Fragment>
+        ))}
       </div>
     </section>
   );

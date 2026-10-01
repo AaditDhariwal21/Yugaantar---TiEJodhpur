@@ -51,6 +51,18 @@ export const Icons = {
       p?.size
     ),
   check: (p) => svg(<path d="M4.5 12.5l5 5 10-11" />, p?.size),
+  sparkle: (p) =>
+    svg(<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3zM19 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" />, p?.size),
+  grid: (p) =>
+    svg(
+      <>
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1.5" />
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5" />
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5" />
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5" />
+      </>,
+      p?.size
+    ),
 };
 
 export function Field({ label, hint, error, children, wide = false }) {

@@ -10,9 +10,9 @@ import s from "./admin.module.css";
 /* Delegates and the planning committee.
 
    One component drives both because they are the same job: a ranked list of
-   people with a photo. Delegates differ only in being split across two tiers
-   — the featured row and the grid below it — which is what "shown earlier"
-   means for that section.
+   people with a photo. Delegates differ only in being split across three
+   tiers — the unicorn row, the featured row and the grid below them — which
+   is what "shown earlier" means for that section.
 
    Order within a list is drag-and-drop, with arrow buttons alongside because
    dragging is neither keyboard-accessible nor pleasant on a phone. */
@@ -23,14 +23,17 @@ export const DELEGATES = {
   title: "Delegates",
   singular: "delegate",
   blurb:
-    "Drag to reorder. The order here is the order on the site, top-left first. Move someone into Featured to give them a large card above the main grid.",
+    "Drag to reorder. The order here is the order on the site, top-left first. Move someone into Unicorn or Featured to give them a large card above the main grid.",
+  /* `icon` is the button that moves someone INTO this group from another. */
   groups: [
-    { id: "key", label: "Featured", note: "Large cards, shown first" },
-    { id: "general", label: "Everyone else", note: "The grid underneath" },
+    { id: "unicorn", label: "Unicorn", note: "The top row, above Featured", icon: Icons.sparkle },
+    { id: "key", label: "Featured", note: "Large cards, under the unicorns", icon: Icons.star },
+    { id: "general", label: "Everyone else", note: "The grid underneath", icon: Icons.grid },
   ],
-  groupOf: (d) => (d.tier === "key" ? "key" : "general"),
+  groupOf: (d) => (d.tier === "unicorn" || d.tier === "key" ? d.tier : "general"),
   groupPatch: (id) => ({ tier: id }),
   reorderBody: (lists) => ({
+    unicorn: lists.unicorn.map((i) => i.id),
     key: lists.key.map((i) => i.id),
     general: lists.general.map((i) => i.id),
   }),
@@ -150,7 +153,7 @@ function PersonForm({ cfg, initial, onCancel, onSave, saving }) {
 
 /* -------------------------------------------------------------------- row */
 
-function PersonRow({ cfg, item, index, total, editing, onEdit, onSave, onDelete, onMove, onNudge, saving, otherGroup, onDragEnd }) {
+function PersonRow({ cfg, item, index, total, editing, onEdit, onSave, onDelete, onMove, onNudge, saving, otherGroups, onDragEnd }) {
   const controls = useDragControls();
   const [confirming, setConfirming] = useState(false);
 
@@ -216,17 +219,21 @@ function PersonRow({ cfg, item, index, total, editing, onEdit, onSave, onDelete,
           >
             <Icons.down size={15} />
           </button>
-          {otherGroup && (
-            <button
-              type="button"
-              className={s.iconBtn}
-              onClick={onMove}
-              aria-label={`Move ${item.name} to ${otherGroup.label}`}
-              title={`Move to ${otherGroup.label}`}
-            >
-              <Icons.star size={15} />
-            </button>
-          )}
+          {otherGroups.map((g) => {
+            const GroupIcon = g.icon || Icons.star;
+            return (
+              <button
+                key={g.id}
+                type="button"
+                className={s.iconBtn}
+                onClick={() => onMove(g.id)}
+                aria-label={`Move ${item.name} to ${g.label}`}
+                title={`Move to ${g.label}`}
+              >
+                <GroupIcon size={15} />
+              </button>
+            );
+          })}
           <button
             type="button"
             className={s.iconBtn}
@@ -339,12 +346,11 @@ export default function PeopleTab({ cfg }) {
     commit({ ...lists, [groupId]: next });
   }
 
-  /* Cross-tier move. Framer's Reorder cannot drag between two groups, and a
-     button is clearer anyway: the person goes to the top of the other list,
+  /* Cross-tier move. Framer's Reorder cannot drag between groups, and a
+     button is clearer anyway: the person goes to the top of the target list,
      which is where you want them if you are promoting someone. */
-  function moveGroup(fromId, item) {
-    const toId = cfg.groups.find((g) => g.id !== fromId)?.id;
-    if (!toId) return;
+  function moveGroup(fromId, toId, item) {
+    if (!toId || toId === fromId || !lists[toId]) return;
     rollback.current = items;
     commit({
       ...lists,
@@ -436,10 +442,10 @@ export default function PeopleTab({ cfg }) {
                   total={lists[group.id].length}
                   saving={busy}
                   editing={editingId === item.id}
-                  otherGroup={cfg.groups.length > 1 ? cfg.groups.find((g) => g.id !== group.id) : null}
+                  otherGroups={cfg.groups.filter((g) => g.id !== group.id)}
                   onEdit={(v) => setEditingId(v === false ? null : item.id)}
                   onNudge={(delta) => nudge(group.id, i, delta)}
-                  onMove={() => moveGroup(group.id, item)}
+                  onMove={(toId) => moveGroup(group.id, toId, item)}
                   onDelete={() => remove(item.id).catch(setError)}
                   onDragEnd={() => onDrop(group.id)}
                   onSave={async (draft) => {

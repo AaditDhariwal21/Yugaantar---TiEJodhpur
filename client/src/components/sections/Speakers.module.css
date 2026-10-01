@@ -1,6 +1,7 @@
 /* Speakers — reference: .tch-Rqmlp
-   Cream ground. Two tiers: a centred flex row of larger "key" cards, and a
-   denser auto-fit grid for the rest.
+   Cream ground. Three tiers: the unicorn row on top (the key layout, sized up
+   and ringed in the brand gradient), a centred flex row of larger "key"
+   cards, and a denser auto-fit grid for the rest.
 
    Key speakers use flex, not grid, on purpose — an auto-fit grid stretches its
    tracks to fill the row, so two key speakers would each blow up to ~520px. */
@@ -333,6 +334,36 @@
   .li {
     right: 12px;
     bottom: 12px;
+  }
+}
+
+/* ---- unicorn tier ---------------------------------------------------------
+   Rides on .key for the flex layout and only adds what sets it apart: a
+   gradient ring, painted as a border-box background under a white
+   padding-box, so it follows the card's radius exactly. Kept after the
+   breakpoint block above: these override .key rules of equal specificity. */
+.unicorn .sp {
+  border: 2px solid transparent;
+  background: linear-gradient(var(--c-white), var(--c-white)) padding-box,
+    var(--grad) border-box;
+  box-shadow: 0 14px 38px rgba(228, 0, 43, 0.12);
+}
+
+.unicorn .sp:hover {
+  border-color: transparent;
+  box-shadow: 0 28px 62px rgba(228, 0, 43, 0.2);
+}
+
+@media (min-width: 561px) {
+  .unicorn .sp {
+    flex: 0 1 300px;
+    max-width: 340px;
+  }
+  .unicorn .nm {
+    font-size: 21px;
+  }
+  .unicorn .init {
+    font-size: 66px;
   }
 }
 

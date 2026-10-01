@@ -30,6 +30,8 @@ const photoFields = {
 };
 
 /* ---------------------------------------------------------------- delegates */
+export const DELEGATE_TIERS = ["unicorn", "key", "general"];
+
 const delegateSchema = new Schema(
   {
     name: { type: String, required: true, trim: true, maxlength: 120 },
@@ -38,9 +40,10 @@ const delegateSchema = new Schema(
     linkedin: { type: String, default: "", trim: true, maxlength: 500 },
     /* Rendered as the chip in the card's top-left. Optional. */
     country: { type: String, default: "", trim: true, maxlength: 60 },
-    /* tier "key" is the large featured row, "general" the denser grid below.
-       Moving a delegate between the two admin lists flips this. */
-    tier: { type: String, enum: ["key", "general"], default: "general", index: true },
+    /* tier "unicorn" is the top row, above everyone else; "key" is the large
+       featured row under it, "general" the denser grid below. Moving a
+       delegate between the admin lists flips this. */
+    tier: { type: String, enum: DELEGATE_TIERS, default: "general", index: true },
     order: { type: Number, default: 0, index: true },
     ...photoFields,
   },

@@ -9,7 +9,7 @@ import s from "./Tickets.module.css";
 /* ============================================================================
    Section 3.11 — Passes.
 
-   A depth carousel rather than the old constant-scroll belt. Twelve passes,
+   A depth carousel rather than the old constant-scroll belt. Ten passes,
    several carrying eleven bullet points, all rendered at full detail was a
    wall of text sliding past faster than any of it could be read.
 
@@ -19,7 +19,7 @@ import s from "./Tickets.module.css";
         scale and opacity. The eye is told where to look.
      2. Detail follows focus. Only the centred card lists its inclusions; the
         flanking cards fall back to name, price and a count. At any moment
-        there is one card to read, not twelve.
+        there is one card to read, not ten.
 
    Motion is stepped, not continuous — the belt settles on each pass for a few
    seconds. Text scaling through a smooth translate is unreadable, and the
@@ -29,7 +29,7 @@ import s from "./Tickets.module.css";
 const DWELL_MS = 5000;
 const SWIPE_PX = 44;
 /* Inclusions shown on the centred card before the rest are summarised. Keeps
-   the tallest pass (eleven bullets) from setting the height for all twelve.
+   the tallest pass (eleven bullets) from setting the height for all ten.
    Fewer on a phone, where the list is one column instead of two — and read in
    JS rather than hidden in CSS so the "+N more" count stays truthful. */
 const BULLETS_WIDE = 6;

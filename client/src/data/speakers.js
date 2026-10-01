@@ -5,7 +5,8 @@
    investors and industry guests alike, which is why it reads "Delegates".
 
    Shape: { name, photo, country, linkedin, role, org, tier }
-     tier: "key"     → the featured, larger flex row ("Featured Delegates")
+     tier: "unicorn" → the top row, above the featured one ("Unicorn Delegates")
+           "key"     → the featured, larger flex row ("Featured Delegates")
            "general" → the denser auto-fit grid ("Delegates")
      photo: null     → card falls back to the person's initial on a red tint,
                        which is exactly what the reference does for missing art.
@@ -18,6 +19,7 @@ export const speakersMeta = {
   badge: "Who You'll Meet",
   heading: "Delegates",
   sub: "Founders, investors, mentors and industry leaders joining us in Jodhpur. The line-up is still coming together — names are indicative and subject to change.",
+  unicornLabel: "Unicorn Delegates",
   keyLabel: "Featured Delegates",
   generalLabel: "Delegates",
 };
